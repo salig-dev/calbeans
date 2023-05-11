@@ -12,9 +12,12 @@
 ### FRONT-END
 - Revise Website Color Palette to fit Calbeans
 - Add Calbeans Coffee Website Content and Copywriting
+- Get Better Images for Website
 - Update Menu Content
 - Update Website Layout
 
 ### BACK-END
 - Experiment with creating database for [Menu] and [Events] form.
 - Connect website content to database
+
+// Test Commit Here
