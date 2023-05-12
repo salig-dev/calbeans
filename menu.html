@@ -1,435 +1,567 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="zxx">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Cafe | Template</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/icon/favicon.png"
+    />
 
-<head>
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Cafe | Template</title>
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" type="image/x-icon" href="assets/img/icon/favicon.png">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/css/slicknav.css" />
+    <link rel="stylesheet" href="assets/css/animate.min.css" />
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="assets/css/slick.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script nonce="cd631206-53e0-4ca0-9269-907cffc86be7">
+      (function (w, d) {
+        !(function (dk, dl, dm, dn) {
+          dk[dm] = dk[dm] || {};
+          dk[dm].executed = [];
+          dk.zaraz = { deferred: [], listeners: [] };
+          dk.zaraz.q = [];
+          dk.zaraz._f = function (dp) {
+            return function () {
+              var dq = Array.prototype.slice.call(arguments);
+              dk.zaraz.q.push({ m: dp, a: dq });
+            };
+          };
+          for (const dr of ["track", "set", "debug"])
+            dk.zaraz[dr] = dk.zaraz._f(dr);
+          dk.zaraz.init = () => {
+            var ds = dl.getElementsByTagName(dn)[0],
+              dt = dl.createElement(dn),
+              du = dl.getElementsByTagName("title")[0];
+            du && (dk[dm].t = dl.getElementsByTagName("title")[0].text);
+            dk[dm].x = Math.random();
+            dk[dm].w = dk.screen.width;
+            dk[dm].h = dk.screen.height;
+            dk[dm].j = dk.innerHeight;
+            dk[dm].e = dk.innerWidth;
+            dk[dm].l = dk.location.href;
+            dk[dm].r = dl.referrer;
+            dk[dm].k = dk.screen.colorDepth;
+            dk[dm].n = dl.characterSet;
+            dk[dm].o = new Date().getTimezoneOffset();
+            if (dk.dataLayer)
+              for (const dy of Object.entries(
+                Object.entries(dataLayer).reduce((dz, dA) => ({
+                  ...dz[1],
+                  ...dA[1],
+                }))
+              ))
+                zaraz.set(dy[0], dy[1], { scope: "page" });
+            dk[dm].q = [];
+            for (; dk.zaraz.q.length; ) {
+              const dB = dk.zaraz.q.shift();
+              dk[dm].q.push(dB);
+            }
+            dt.defer = !0;
+            for (const dC of [localStorage, sessionStorage])
+              Object.keys(dC || {})
+                .filter((dE) => dE.startsWith("_zaraz_"))
+                .forEach((dD) => {
+                  try {
+                    dk[dm]["z_" + dD.slice(7)] = JSON.parse(dC.getItem(dD));
+                  } catch {
+                    dk[dm]["z_" + dD.slice(7)] = dC.getItem(dD);
+                  }
+                });
+            dt.referrerPolicy = "origin";
+            dt.src =
+              "../../cdn-cgi/zaraz/sd0d9.js?z=" +
+              btoa(encodeURIComponent(JSON.stringify(dk[dm])));
+            ds.parentNode.insertBefore(dt, ds);
+          };
+          ["complete", "interactive"].includes(dl.readyState)
+            ? zaraz.init()
+            : dk.addEventListener("DOMContentLoaded", zaraz.init);
+        })(w, d, "zarazData", "script");
+      })(window, document);
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="header-area">
+        <div class="container">
+          <div class="position-relative">
+            <div class="off-canvas-menu menu-bar d-block d-xxl-none">
+              <div class="line">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
 
-<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-<link rel="stylesheet" href="assets/css/slicknav.css">
-<link rel="stylesheet" href="assets/css/animate.min.css">
-<link rel="stylesheet" href="assets/css/magnific-popup.css">
-<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-<link rel="stylesheet" href="assets/css/themify-icons.css">
-<link rel="stylesheet" href="assets/css/slick.css">
-<link rel="stylesheet" href="assets/css/nice-select.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<script nonce="cd631206-53e0-4ca0-9269-907cffc86be7">(function(w,d){!function(dk,dl,dm,dn){dk[dm]=dk[dm]||{};dk[dm].executed=[];dk.zaraz={deferred:[],listeners:[]};dk.zaraz.q=[];dk.zaraz._f=function(dp){return function(){var dq=Array.prototype.slice.call(arguments);dk.zaraz.q.push({m:dp,a:dq})}};for(const dr of["track","set","debug"])dk.zaraz[dr]=dk.zaraz._f(dr);dk.zaraz.init=()=>{var ds=dl.getElementsByTagName(dn)[0],dt=dl.createElement(dn),du=dl.getElementsByTagName("title")[0];du&&(dk[dm].t=dl.getElementsByTagName("title")[0].text);dk[dm].x=Math.random();dk[dm].w=dk.screen.width;dk[dm].h=dk.screen.height;dk[dm].j=dk.innerHeight;dk[dm].e=dk.innerWidth;dk[dm].l=dk.location.href;dk[dm].r=dl.referrer;dk[dm].k=dk.screen.colorDepth;dk[dm].n=dl.characterSet;dk[dm].o=(new Date).getTimezoneOffset();if(dk.dataLayer)for(const dy of Object.entries(Object.entries(dataLayer).reduce(((dz,dA)=>({...dz[1],...dA[1]})))))zaraz.set(dy[0],dy[1],{scope:"page"});dk[dm].q=[];for(;dk.zaraz.q.length;){const dB=dk.zaraz.q.shift();dk[dm].q.push(dB)}dt.defer=!0;for(const dC of[localStorage,sessionStorage])Object.keys(dC||{}).filter((dE=>dE.startsWith("_zaraz_"))).forEach((dD=>{try{dk[dm]["z_"+dD.slice(7)]=JSON.parse(dC.getItem(dD))}catch{dk[dm]["z_"+dD.slice(7)]=dC.getItem(dD)}}));dt.referrerPolicy="origin";dt.src="../../cdn-cgi/zaraz/sd0d9.js?z="+btoa(encodeURIComponent(JSON.stringify(dk[dm])));ds.parentNode.insertBefore(dt,ds)};["complete","interactive"].includes(dl.readyState)?zaraz.init():dk.addEventListener("DOMContentLoaded",zaraz.init)}(w,d,"zarazData","script");})(window,document);</script></head>
-<body>
-<header>
-<div class="header-area">
-<div class="container">
-<div class="position-relative">
+            <div class="menu-body">
+              <div class="close-icon-menu">
+                <button><i class="ti-close"></i></button>
+              </div>
+              <div class="logo">
+                <a href="index.html"
+                  ><img src="assets/img/logo/logo.png" alt=""
+                /></a>
+              </div>
+              <div class="off-can-menu">
+                <nav>
+                  <ul>
+                    <li class="click-menu">
+                      <a href="index.html">Home</a>
+                    </li>
+                    <li class="click-menu">
+                      <a href="about.html">About Us</a>
+                    </li>
+                    <li class="click-menu">
+                      <a href="menu.html">Menu</a>
+                    </li>
+                    <li class="click-menu">
+                      <a href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="click-menu">
+                      <a href="#"
+                        >Blog
+                        <div class="ti-plus right"></div
+                      ></a>
+                      <ul>
+                        <li>
+                          <a href="blog.html">Blog</a>
+                          <a href="blog_details.html">Blog Details</a>
+                          <a href="elements.html">Elements</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="click-menu">
+                      <a href="contact.html">Contact us</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
 
-<div class="off-canvas-menu menu-bar d-block d-xxl-none">
-<div class="line">
-<span></span>
-<span></span>
-<span></span>
-</div>
-</div>
+              <div class="menu-footer">
+                <a href="#" class="btn_01 mb-30">Order Online</a>
+                <p>+10 (88) 237 3782</p>
+                <p>88/A, Green lane, Monaka CA 92032</p>
 
-<div class="menu-body">
-<div class="close-icon-menu">
-<button> <i class="ti-close"></i></button>
-</div>
-<div class="logo">
-<a href="index-2.html"><img src="assets/img/logo/logo.png" alt=""></a>
-</div>
-<div class="off-can-menu">
-<nav>
-<ul>
-<li class='click-menu'>
-<a href='index-2.html'>Home</a>
-</li>
-<li class='click-menu'>
-<a href='about.html'>About Us</a>
-</li>
-<li class='click-menu'>
-<a href='menu.html'>Menu</a>
-</li>
-<li class='click-menu'>
-<a href='gallery.html'>Gallery</a>
-</li>
-<li class='click-menu'><a href='#'>Blog<div class='ti-plus right'></div></a>
-<ul>
-<li>
-<a href='blog.html'>Blog</a>
-<a href='blog_details.html'>Blog Details</a>
-<a href='elements.html'>Elements</a>
-</li>
-</ul>
-</li>
-<li class='click-menu'>
-<a href='contact.html'>Contact us</a>
-</li>
-</ul>
-</nav>
-</div>
+                <div class="sidebar-social">
+                  <a href="https://www.fb.com/sai4ull"
+                    ><i class="fab fa-facebook"></i
+                  ></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="slider-area position-relative">
+        <div class="slider-active">
+          <div
+            class="single-slider slider-height2 hero-overly slider-bg2 d-flex align-items-end"
+          >
+            <div class="container position-relative">
+              <div class="row">
+                <div
+                  class="offset-xxl-1 col-xxl-5 col-xl-7 col-lg-7 col-md-9 col-sm-10"
+                >
+                  <div class="hero-caption hero-caption2">
+                    <h2 data-animation="pulse" data-delay=".2s">Our Menu</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<div class="menu-footer">
-<a href="#" class="btn_01 mb-30">Order Online</a>
-<p>+10 (88) 237 3782</p>
-<p>88/A, Green lane, Monaka
-CA 92032</p>
+      <section class="our-menu top-padding">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-8">
+              <div class="section-tittle mb-50 text-center">
+                <h2>Our Menu</h2>
+                <p>
+                  Duis congue sapien non mauris tristique, eu porttitor arcu
+                  feugiat. Quisque sit amet quam sodales, porttitor lectus
+                  vitae, consectetur.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-between">
+            <div
+              class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 offset-xxl-1"
+            >
+              <div class="small-tittle">
+                <h4>Coffee</h4>
+              </div>
 
-<div class="sidebar-social">
-<a href="https://www.fb.com/sai4ull"><i class="fab fa-facebook"></i></a>
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-linkedin-in"></i></a>
-</div>
-</div>
-</div>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>Proin risus erat ……………………<span>($5)</span></h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
-</div>
-</div>
-</div>
-</header>
-<main>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>
+                      Bacon, Ham, Cumberland, Sausage, Chorizo
+                      ……………………….………..<span>($5)</span>
+                    </h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
-<section class="slider-area position-relative">
-<div class="slider-active">
-<div class="single-slider slider-height2 hero-overly slider-bg2 d-flex align-items-end">
-<div class="container position-relative">
-<div class="row">
-<div class="offset-xxl-1 col-xxl-5 col-xl-7 col-lg-7 col-md-9 col-sm-10">
-<div class="hero-caption hero-caption2">
-<h2 data-animation="pulse" data-delay=".2s">Our Menu</h2>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>
+                      "Full" Paris Breakfast 17"……………………….………..<span>($5)</span>
+                    </h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>Proin risus erat……………………….………..<span>($5)</span></h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
-<section class="our-menu top-padding">
-<div class="container">
-<div class="row justify-content-center">
-<div class="col-xl-7 col-lg-8 col-md-8">
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>Three Egg Omelet 17……………………….………..<span>($5)</span></h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6">
+              <div class="small-tittle">
+                <h4>Drinks</h4>
+              </div>
 
-<div class="section-tittle mb-50 text-center">
-<h2>Our Menu</h2>
-<p>Duis congue sapien non mauris tristique, eu porttitor arcu feugiat. Quisque sit amet quam sodales, porttitor lectus vitae, consectetur.</p>
-</div>
-</div>
-</div>
-<div class="row justify-content-between">
-<div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 offset-xxl-1">
-<div class="small-tittle">
-<h4>Coffee</h4>
-</div>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>Proin risus erat ……………………<span>($5)</span></h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>Proin risus erat ……………………<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>
+                      Bacon, Ham, Cumberland, Sausage, Chorizo
+                      ……………………….………..<span>($5)</span>
+                    </h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>Bacon, Ham, Cumberland, Sausage, Chorizo ……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>
+                      "Full" Paris Breakfast 17"……………………….………..<span>($5)</span>
+                    </h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>"Full" Paris Breakfast 17"……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>Proin risus erat……………………….………..<span>($5)</span></h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
-<div class="menu-items">
-<div class="menu-left">
- <div class="menu-tittle">
-<h4>Proin risus erat……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>Three Egg Omelet 17……………………….………..<span>($5)</span></h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6">
+              <div class="small-tittle">
+                <h4>Fast Food</h4>
+              </div>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>Three Egg Omelet 17……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
-</div>
-<div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-<div class="small-tittle">
-<h4>Drinks</h4>
-</div>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>Proin risus erat ……………………<span>($5)</span></h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>Proin risus erat ……………………<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>
+                      Bacon, Ham, Cumberland, Sausage, Chorizo
+                      ……………………….………..<span>($5)</span>
+                    </h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>Bacon, Ham, Cumberland, Sausage, Chorizo ……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>
+                      "Full" Paris Breakfast 17"……………………….………..<span>($5)</span>
+                    </h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>"Full" Paris Breakfast 17"……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>Proin risus erat……………………….………..<span>($5)</span></h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>Proin risus erat……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+              <div class="menu-items">
+                <div class="menu-left">
+                  <div class="menu-tittle">
+                    <h4>Three Egg Omelet 17……………………….………..<span>($5)</span></h4>
+                  </div>
+                </div>
+                <div class="menu">
+                  <p>Sed ultrices nisl velit</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>Three Egg Omelet 17……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
-</div>
- <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 col-sm-6">
-<div class="small-tittle">
-<h4>Fast Food</h4>
-</div>
+        <div class="menu-shape d-none d-md-block">
+          <img src="assets/img/gallery/menu-shape.png" alt="" />
+        </div>
+      </section>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>Proin risus erat ……………………<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+      <div class="gallery-area gallery-area2 pt-90 pb-60">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 offset-xl-1 col-md-6 col-sm-6">
+              <div class="single-gallery mb-25">
+                <img
+                  src="assets/img/gallery/gallery1.jpg"
+                  alt=""
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5">
+              <div class="single-gallery mb-25">
+                <img
+                  src="assets/img/gallery/gallery2.jpg"
+                  alt=""
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+            <div class="col-lg-5 offset-xl-1 col-md-5 col-sm-5">
+              <div class="single-gallery mb-25">
+                <img
+                  src="assets/img/gallery/gallery3.jpg"
+                  alt=""
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="single-gallery mb-25">
+                <img
+                  src="assets/img/gallery/gallery4.jpg"
+                  alt=""
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-wrapper gray-bg">
+        <div class="footer-area footer-padding">
+          <div class="container">
+            <div class="row justify-content-between align-items-center">
+              <div
+                class="offset-xl-1 offset-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-6"
+              >
+                <div class="footer-tittle text-center mb-50">
+                  <h4>Contact Us</h4>
+                  <ul>
+                    <li><a href="#">+10 (88) 237 3782</a></li>
+                    <li><a href="#">88/A, Green lane, Monaka CA 92032</a></li>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>Bacon, Ham, Cumberland, Sausage, Chorizo ……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+                    <div class="footer-social pt-30">
+                      <a href="https://www.fb.com/sai4ull"
+                        ><i class="fab fa-facebook"></i
+                      ></a>
+                      <a href="#"><i class="fab fa-instagram"></i></a>
+                      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-5 col-sm-6">
+                <div class="single-footer-caption mb-50">
+                  <div class="single-footer-caption text-center mb-20">
+                    <div class="footer-logo mb-15">
+                      <a href="index.html"
+                        ><img src="assets/img/logo/logo2_footer.png" alt=""
+                      /></a>
+                    </div>
+                    <p
+                      style="line-height: 1.6; font-size: 14px; color: #636363"
+                    >
+                      Duis congue sapien non mauris tristique, eu porttitor arcu
+                      feugiat. Quisque sit amet quam sodales, porttitor lectus
+                      vitae, consectetur.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <div class="footer-tittle text-center mb-50">
+                  <h4>Navigation</h4>
+                  <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Contact</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>"Full" Paris Breakfast 17"……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+        <div class="footer-bottom-area">
+          <div class="container">
+            <div class="footer-border">
+              <div class="row">
+                <div class="col-xl-12">
+                  <div class="footer-copy-right text-center">
+                    <p>
+                      Copyright &copy;
+                      <script>
+                        document.write(new Date().getFullYear());
+                      </script>
+                      All rights reserved | <a href="">Salig Tech</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>Proin risus erat……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
+    <div id="back-top" class="">
+      <a title="Go to Top" href="#" class="">
+        <i class="fas fa-long-arrow-alt-up scroll-animate"></i
+      ></a>
+    </div>
 
-<div class="menu-items">
-<div class="menu-left">
-<div class="menu-tittle">
-<h4>Three Egg Omelet 17……………………….………..<span>($5)</span></h4>
-</div>
-</div>
-<div class="menu">
-<p>Sed ultrices nisl velit</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
-<div class="menu-shape d-none d-md-block">
-<img src="assets/img/gallery/menu-shape.png" alt="">
-</div>
-</section>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/slick.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
 
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
 
-<div class="gallery-area gallery-area2 pt-90 pb-60">
-<div class="container">
-<div class="row">
-<div class="col-lg-6 offset-xl-1 col-md-6 col-sm-6">
-<div class="single-gallery mb-25">
-<img src="assets/img/gallery/gallery1.jpg" alt="" class="img-fluid">
-</div>
-</div>
-<div class="col-lg-5 col-md-5 col-sm-5">
-<div class="single-gallery mb-25">
-<img src="assets/img/gallery/gallery2.jpg" alt="" class="img-fluid">
-</div>
-</div>
-<div class="col-lg-5 offset-xl-1 col-md-5 col-sm-5">
-<div class="single-gallery mb-25">
-<img src="assets/img/gallery/gallery3.jpg" alt="" class="img-fluid">
-</div>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6">
-<div class="single-gallery mb-25">
-<img src="assets/img/gallery/gallery4.jpg" alt="" class="img-fluid">
-</div>
-</div>
-</div>
-</div>
-</div>
+    <script src="assets/js/contact.js"></script>
+    <script src="assets/js/jquery.form.js"></script>
+    <script src="assets/js/jquery.validate.min.js"></script>
+    <script src="assets/js/mail-script.js"></script>
+    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
 
-</main>
-<footer>
-<div class="footer-wrapper gray-bg">
-<div class="footer-area footer-padding">
-<div class="container">
-<div class="row justify-content-between align-items-center">
-<div class="offset-xl-1 offset-xxl-2 col-xl-3 col-lg-3 col-md-4 col-sm-6">
-<div class="footer-tittle text-center mb-50">
-<h4>Contact Us</h4>
-<ul>
-<li><a href="#">+10 (88) 237 3782</a></li>
-<li><a href="#">88/A, Green lane, Monaka
-CA 92032</a></li>
-
-<div class="footer-social pt-30">
-<a href="https://www.fb.com/sai4ull"><i class="fab fa-facebook"></i></a>
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-linkedin-in"></i></a>
-</div>
-</ul>
-</div>
-</div>
-<div class="col-xl-4 col-lg-4 col-md-5 col-sm-6">
-<div class="single-footer-caption mb-50">
-<div class="single-footer-caption text-center mb-20">
-
-<div class="footer-logo mb-15">
-<a href="index-2.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
-</div>
-<p style="line-height: 1.6; font-size: 14px; color: #636363;">Duis congue sapien non mauris tristique, eu porttitor arcu feugiat. Quisque sit amet quam sodales, porttitor lectus vitae, consectetur.</p>
-</div>
-</div>
-</div>
-<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-<div class="footer-tittle text-center mb-50">
-<h4>Navigation</h4>
-<ul>
-<li><a href="#">About Us</a></li>
-<li><a href="#">Menu</a></li>
-<li><a href="#">Gallery</a></li>
-<li><a href="#">Contact</a></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<div class="footer-bottom-area">
-<div class="container">
-<div class="footer-border">
-<div class="row">
-<div class="col-xl-12 ">
-<div class="footer-copy-right text-center">
-<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com/" target="_blank" rel="nofollow noopener">Colorlib</a></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</footer>
-
-<div id="back-top" class="">
-<a title="Go to Top" href="#" class=""> <i class="fas fa-long-arrow-alt-up scroll-animate"></i></a>
-</div>
-
-
-<script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
-<script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/slick.min.js"></script>
-<script src="assets/js/jquery.slicknav.min.js"></script>
-
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/jquery.magnific-popup.js"></script>
-<script src="assets/js/jquery.nice-select.min.js"></script>
-<script src="assets/js/jquery.counterup.min.js"></script>
-<script src="assets/js/waypoints.min.js"></script>
-
-<script src="assets/js/contact.js"></script>
-<script src="assets/js/jquery.form.js"></script>
-<script src="assets/js/jquery.validate.min.js"></script>
-<script src="assets/js/mail-script.js"></script>
-<script src="assets/js/jquery.ajaxchimp.min.js"></script>
-
-<script src="assets/js/plugins.js"></script>
-<script src="assets/js/main.js"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816" integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw==" data-cf-beacon='{"rayId":"7c57b246da83045a","version":"2023.4.0","b":1,"token":"cd0b4b3a733644fc843ef0b185f98241","si":100}' crossorigin="anonymous"></script>
-</body>
-
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/v52afc6f149f6479b8c77fa569edb01181681764108816"
+      integrity="sha512-jGCTpDpBAYDGNYR5ztKt4BQPGef1P0giN6ZGVUi835kFF88FOmmn8jBQWNgrNd8g/Yu421NdgWhwQoaOPFflDw=="
+      data-cf-beacon='{"rayId":"7c57b246da83045a","version":"2023.4.0","b":1,"token":"cd0b4b3a733644fc843ef0b185f98241","si":100}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

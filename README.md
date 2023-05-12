@@ -2,6 +2,8 @@
 
 [Calbeans Coffee](https://www.facebook.com/calbeanscoffee) Business Website by Salig Tech (Final Project for WEBAPPS 2023)
 
+Website Link: https://calbeans.vercel.app
+
 ## GUIDELINES
 - General Backend Structure (Not FInal)
   - [MENU] ORDER > SEND TO DATABASE > PRINT AS IMAGE FOR WALK-IN ORDERS
