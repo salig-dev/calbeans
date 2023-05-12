@@ -454,8 +454,8 @@ hr {
 }
 .section-tittle h2 {
   color: #202738;
-  font-family: "Shippori Mincho", serif;
-  /* font-family: "Chivo", sans-serif; */
+  /* font-family: "Shippori Mincho", serif; */
+  font-family: "Chivo", sans-serif;
   font-size: 44px;
   display: block;
   font-weight: 600;
@@ -1213,7 +1213,8 @@ hr {
   background: #f6f1ea;
 }
 .about-area .about-caption h2 {
-  font-family: "Shippori Mincho", serif;
+  /* font-family: "Shippori Mincho", serif; */
+  font-family: "Chivo", sans-serif;
   font-size: 44px;
   display: block;
   font-weight: 300;
