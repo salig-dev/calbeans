@@ -40,6 +40,18 @@ p {
 .clear {
   clear: both;
 }
+
+.mx-auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.px-auto{
+  padding-left: auto;
+  padding-right: auto;
+
+}
+
 .mb-5 {
   margin-bottom: 5px;
 }
