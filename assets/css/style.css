@@ -1,6 +1,12 @@
 @import url(styles-color.css);
 @import url("https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700;900&amp;family=Shippori+Mincho:wght@400;500;600;700;800&amp;display=swap");
 
+/* INSERT HEADER FONT HERE */
+@font-face {
+  font-family: "Ade";
+  src: url("../fonts/Ade-Display.otf");
+}
+
 .gray-bg {
   background: #f1fbff;
 }
@@ -12,13 +18,26 @@ body {
   font-size: 16px;
 }
 h1,
-h2,
+h2 {
+  /* font-family: "Shippori Mincho", serif; */
+  /* font-family: "Chivo", serif; */
+  font-family: "Ade", "Chivo", sans-serif;
+  color: var(--default-temp_color-202738);
+  margin-top: 0px;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: normal;
+  letter-spacing: 0.1rem;
+}
+
 h3,
 h4,
 h5,
+h6,
 h6 {
   /* font-family: "Shippori Mincho", serif; */
-  font-family: "Chivo", serif;
+  /* font-family: "Chivo", serif; */
+  font-family: "Shippori Mincho", "Chivo", sans-serif;
   color: var(--default-temp_color-202738);
   margin-top: 0px;
   font-style: normal;
@@ -41,15 +60,14 @@ p {
   clear: both;
 }
 
-.mx-auto{
+.mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
 
-.px-auto{
+.px-auto {
   padding-left: auto;
   padding-right: auto;
-
 }
 
 .mb-5 {
