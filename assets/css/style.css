@@ -926,7 +926,7 @@ hr {
   transform: translateX(0);
 }
 .menu-body .off-can-menu {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 .menu-body .off-can-menu ul {
   padding: 0;
@@ -998,7 +998,7 @@ hr {
   margin: 11px 0 0;
 }
 .menu-footer {
-  padding-top: 130px;
+  padding-top: 100px;
   text-align: center;
 }
 .menu-footer p {
@@ -1010,7 +1010,7 @@ hr {
   padding-top: 10px;
 }
 .menu-footer .sidebar-social a {
-  color: var(--default-temp_color-202738);
+  color: var(--default-temp_color-c3d4e4);
   font-size: 16px;
   display: inline-block;
   text-align: center;
