@@ -998,11 +998,11 @@ hr {
   margin: 11px 0 0;
 }
 .menu-footer {
-  padding-top: 100px;
+  padding-top: 50px;
   text-align: center;
 }
 .menu-footer p {
-  color: var(--default-temp_color-202738);
+  color: var(--default-temp_color-c3d4e4);
   font-weight: 300;
   font-size: 15px;
 }
