@@ -863,7 +863,7 @@ hr {
   text-align: center;
   width: 300px;
   height: 100%;
-  background: var(--default-temp_color-202738);
+  background: var(--color-1);
   left: 0;
   z-index: 88;
   top: 0;
