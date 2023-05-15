@@ -1343,7 +1343,7 @@ hr {
   }
 }
 .about-area .support-caption .single-info .contents span {
-  font-family: "Shippori Mincho", serif;
+  font-family: "Chivo", "Shippori Mincho", sans-serif;
   color: var(--default-temp_color-636363);
   font-size: 18px;
   font-weight: 300;
