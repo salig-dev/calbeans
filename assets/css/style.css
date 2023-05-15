@@ -1,6 +1,12 @@
 @import url(styles-color.css);
 @import url("https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700;900&amp;family=Shippori+Mincho:wght@400;500;600;700;800&amp;display=swap");
 
+/* INSERT HEADER FONT HERE */
+@font-face {
+  font-family: "Ade";
+  src: url("../fonts/Ade-Display.otf");
+}
+
 .gray-bg {
   background: #f1fbff;
 }
@@ -12,13 +18,26 @@ body {
   font-size: 16px;
 }
 h1,
-h2,
+h2 {
+  /* font-family: "Shippori Mincho", serif; */
+  /* font-family: "Chivo", serif; */
+  font-family: "Ade", "Chivo", sans-serif;
+  color: var(--default-temp_color-202738);
+  margin-top: 0px;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: normal;
+  letter-spacing: 0.1rem;
+}
+
 h3,
 h4,
 h5,
+h6,
 h6 {
   /* font-family: "Shippori Mincho", serif; */
-  font-family: "Chivo", serif;
+  /* font-family: "Chivo", serif; */
+  font-family: "Shippori Mincho", "Chivo", sans-serif;
   color: var(--default-temp_color-202738);
   margin-top: 0px;
   font-style: normal;
@@ -40,6 +59,17 @@ p {
 .clear {
   clear: both;
 }
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.px-auto {
+  padding-left: auto;
+  padding-right: auto;
+}
+
 .mb-5 {
   margin-bottom: 5px;
 }
@@ -833,7 +863,7 @@ hr {
   text-align: center;
   width: 300px;
   height: 100%;
-  background: var(--default-temp_color-202738);
+  background: var(--color-1);
   left: 0;
   z-index: 88;
   top: 0;
@@ -896,7 +926,7 @@ hr {
   transform: translateX(0);
 }
 .menu-body .off-can-menu {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 .menu-body .off-can-menu ul {
   padding: 0;
@@ -946,7 +976,7 @@ hr {
 }
 .menu-body .off-can-menu ul li ul li a {
   font-size: 14px;
-  color: var(--default-temp_color-202738);
+  color: var(--default-temp_color-c3d4e4);
   font-family: 400;
   text-transform: uppercase;
   margin-bottom: 18px;
@@ -968,11 +998,11 @@ hr {
   margin: 11px 0 0;
 }
 .menu-footer {
-  padding-top: 130px;
+  padding-top: 50px;
   text-align: center;
 }
 .menu-footer p {
-  color: var(--default-temp_color-202738);
+  color: var(--default-temp_color-c3d4e4);
   font-weight: 300;
   font-size: 15px;
 }
@@ -980,7 +1010,7 @@ hr {
   padding-top: 10px;
 }
 .menu-footer .sidebar-social a {
-  color: var(--default-temp_color-202738);
+  color: var(--default-temp_color-c3d4e4);
   font-size: 16px;
   display: inline-block;
   text-align: center;
@@ -1313,7 +1343,7 @@ hr {
   }
 }
 .about-area .support-caption .single-info .contents span {
-  font-family: "Shippori Mincho", serif;
+  font-family: "Chivo", "Shippori Mincho", sans-serif;
   color: var(--default-temp_color-636363);
   font-size: 18px;
   font-weight: 300;

@@ -1,29 +1,35 @@
 :root {
   /* INSERT COLOR PALETTE HERE */
-  --color-1: #395144;
+  /* --color-1: #395144;
   --color-2: #4e6c50;
   --color-3: #aa8b56;
-  --color-4: #f0ebce;
+  --color-4: #f0ebce; */
+
+  /* TEST */
+  --color-1: #2c3639;
+  --color-2: #3f4e4f;
+  --color-3: #e8c07d;
+  --color-4: #dcd7c9;
 
   /* --default-temp_color-hexcode: #HEXCODE */
-  --black:#000;
-  --white:#fff;
-  --white-2:#eee;
-  
+  --black: #000;
+  --white: #fff;
+  --white-2: #eee;
+
   --default-temp_color-4cd3e3: #4cd3e3;
   --default-temp_color-415094: #415094;
   --default-temp_color-828bb2: #828bb2;
 
-  --default-temp_color-202738:#202738;
-  --default-temp_color-c46b48:#c46b48;
-  --default-temp_color-d6a04c:#d6a04c;
+  --default-temp_color-202738: #202738;
+  --default-temp_color-c46b48: #c46b48;
+  --default-temp_color-d6a04c: #d6a04c;
 
   /* Neutral */
-  --default-temp_color-777777:#777777;
-  --default-temp_color-888888:#888888;
-  --default-temp_color-999999:#999999;
-  --default-temp_color-777:#777;
-  --default-temp_color-636363:#636363;
+  --default-temp_color-777777: #777777;
+  --default-temp_color-888888: #888888;
+  --default-temp_color-999999: #999999;
+  --default-temp_color-777: #777;
+  --default-temp_color-636363: #636363;
   --default-temp_color-f1f1f1: #f1f1f1;
   --default-temp_color-f9f9ff: #f9f9ff;
   --default-temp_color-c3d4e4: #c3d4e4;
