@@ -119,10 +119,26 @@
                       <a href="index.html">Home</a>
                     </li>
                     <li class="click-menu">
+                      <a href="about.html">About Us</a>
+                    </li>
+                    <li class="click-menu">
                       <a href="menu.html">Menu</a>
                     </li>
                     <li class="click-menu">
-                      <a href="events.html">Events</a>
+                      <a href="gallery.html">Gallery</a>
+                    </li>
+                    <li class="click-menu">
+                      <a href="#"
+                        >Blog
+                        <div class="ti-plus right"></div>
+                      </a>
+                      <ul>
+                        <li>
+                          <a href="blog.html">Blog</a>
+                          <a href="blog_details.html">Blog Details</a>
+                          <a href="elements.html">Elements</a>
+                        </li>
+                      </ul>
                     </li>
                     <li class="click-menu">
                       <a href="contact.html">Contact us</a>
@@ -715,8 +731,7 @@
         </div>
       </section>
       <!-- END OF MENU -->
-      <!-- START OF GALLERY SECTION -->
-      <!-- <div class="gallery-area gallery-area2 pt-90 pb-60">
+      <div class="gallery-area gallery-area2 pt-90 pb-60">
         <div class="container">
           <div class="row">
             <div class="col-lg-6 offset-xl-1 col-md-6 col-sm-6">
@@ -757,18 +772,28 @@
             </div>
           </div>
         </div>
-      </div> -->
-      <!-- END OF GALLERY SECTION -->
+      </div>
     </main>
 
     <!-- START OF FOOTER -->
     <footer>
+     
       <div class="footer-wrapper gray-bg">
         <div class="footer-area footer-padding">
           <div class="container">
             <div class="row justify-content-between align-items-center">
               <section class="offset-xl-1 col-xl-3 col-lg-3 col-md-4 col-sm-8">
                 <div class="footer-tittle text-center mb-50">
+
+                  <form action="calphp.php" method="post">
+                    <p>Order Here:</p>
+                    <p>Enter menu Item: <input type="text" name="order"></p>
+                    <p>Enter name : <input type="text" name="name"></p>
+                    <p>Enter Address : <input type="text" name="address"></p>
+                    <p>Other message : <textarea name="message" cols="30" rows="10"></textarea></p>
+                    <p><input type="submit" value="submit"></p>
+                  </form>
+                  <br>
                   <h4>Contact Us</h4>
 
                   <ul>
