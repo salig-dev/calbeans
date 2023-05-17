@@ -2,10 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700;900&amp;family=Shippori+Mincho:wght@400;500;600;700;800&amp;display=swap");
 
 /* INSERT HEADER FONT HERE */
-@font-face {
+/* @font-face {
   font-family: "Ade";
   src: url("../fonts/Ade-Display.otf");
-}
+} */
 
 .gray-bg {
   background: #f1fbff;

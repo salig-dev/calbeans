@@ -119,26 +119,10 @@
                       <a href="index.html">Home</a>
                     </li>
                     <li class="click-menu">
-                      <a href="about.html">About Us</a>
-                    </li>
-                    <li class="click-menu">
                       <a href="menu.html">Menu</a>
                     </li>
                     <li class="click-menu">
-                      <a href="gallery.html">Gallery</a>
-                    </li>
-                    <li class="click-menu">
-                      <a href="#"
-                        >Blog
-                        <div class="ti-plus right"></div>
-                      </a>
-                      <ul>
-                        <li>
-                          <a href="blog.html">Blog</a>
-                          <a href="blog_details.html">Blog Details</a>
-                          <a href="elements.html">Elements</a>
-                        </li>
-                      </ul>
+                      <a href="events.html">Events</a>
                     </li>
                     <li class="click-menu">
                       <a href="contact.html">Contact us</a>
@@ -207,6 +191,8 @@
                   ingredients and expert craftsmanship that will leave you
                   craving for more.
                 </p>
+                <br>
+                <a href="#order" class="genric-btn primary-border e-large">ORDER NOW</a> 
               </div>
             </div>
           </div>
@@ -725,13 +711,86 @@
             <!-- END OF PASTA -->
           </div>
         </div>
-
         <div class="menu-shape d-none d-md-block">
           <img src="assets/img/gallery/menu-shape.png" alt="" />
         </div>
       </section>
+
+      <section class="contact-section" id="order">
+        <div class="container">
+
+            <div class="offset-xxl-1 col-lg-11">
+              <h2 class="contact-title">Send Us Your Orders!
+                </h2>
+            </div>
+            <div class="offset-xl-1 col-lg-7">
+              <form
+                class="form-contact"
+                action="order.php" method="POST"
+  
+              >
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        name="name"
+                        id="name"
+                        type="text"
+                        onblur="this.placeholder = 'Enter your name'"
+                        placeholder="Enter your name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        name="address"
+                        type="text"
+                        onblur="this.placeholder = 'Enter your address'"
+                        placeholder="Enter your address"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        name="order"
+                        id="subject"
+                        type="text"
+                        onblur="this.placeholder = 'Enter your order here'"
+                        placeholder="Enter your order here"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <textarea
+                        class="form-control w-100"
+                        name="message"
+                        id="message"
+                        cols="30"
+                        rows="9"
+                        onblur="this.placeholder = 'Enter Message'"
+                        placeholder=" Enter Message"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group mt-3">
+                  <button type="submit" class="genric-btn primary e-large">SEND</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
       <!-- END OF MENU -->
-      <div class="gallery-area gallery-area2 pt-90 pb-60">
+      <!-- START OF GALLERY -->
+      <!-- <div class="gallery-area gallery-area2 pt-90 pb-60">
         <div class="container">
           <div class="row">
             <div class="col-lg-6 offset-xl-1 col-md-6 col-sm-6">
@@ -772,7 +831,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </main>
 
     <!-- START OF FOOTER -->
