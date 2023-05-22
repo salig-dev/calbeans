@@ -8,6 +8,20 @@
 </head>
 <body>
 <?php
+
+$servername = "localhost";
+ $username = "root";
+ $password = "";
+ $database = "myshop";
+ 
+ //create connection
+ $conn = mysqli_connect($servername,$username,$password,$database);
+
+ //Check connection
+ if(!$conn){
+  die("Connection failed: ".mysqli_connect_error());
+}
+
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Retrieve form data
@@ -15,6 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $name = $_POST['name'];
   $email = $_POST['email'];
   $subject = $_POST['subject'];
+
+  $sql = "INSERT INTO contacts (message, name, email, subject)" .
+                    "VALUES ('$message', '$name', '$email', '$subject')";
+            $result = $conn->query($sql);
 
   // Display submitted order details
   echo "<h2>Customer Feedback Details:</h2>";
