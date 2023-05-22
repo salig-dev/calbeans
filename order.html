@@ -180,81 +180,76 @@
               </h2>
             </div>
             <div class="offset-xl-1 col-lg-7">
-              <form class="form-contact">
-                <label for="customer-name">Customer Name:</label>
-                <input
-                  class="single-input-primary"
-                  type="text"
-                  id="customer-name"
-                  name="customer-name"
-                  required
-                /><br />
-
-                <label for="date">Date:</label>
-                <input
-                  class="single-input-primary"
-                  type="date"
-                  id="date"
-                  name="date"
-                  required
-                /><br />
-
-                <label for="phone-number">Phone Number:</label>
-                <input
-                  class="single-input-primary"
-                  type="tel"
-                  id="phone-number"
-                  name="phone-number"
-                  required
-                /><br />
-
-                <label for="email">Email:</label>
-                <input
-                  class="single-input-primary"
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                /><br />
-                <div class="default-select">
-                  <label for="category">Category:</label>
-                  <select
-                    id="category"
-                    name="category"
-                    onchange="showItems(this.value)"
-                    required
-                  >
-                    <option value="" selected disabled>
-                      Select a category
-                    </option>
-                    <option value="coffee-based">Coffee Based</option>
-                    <option value="bites">Bites</option>
-                    <option value="coffee-beans">Coffee Beans or Ground</option>
-                    <option value="matcha-series">Matcha Series</option></select
-                  ><br />
+              <form class="form-contact" action="order.php" method="POST">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        name="customer-name"
+                        id="customer-name"
+                        type="text"
+                        placeholder="Enter your name"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        name="address"
+                        type="text"
+                        placeholder="Enter your address"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="category">Category:</label>
+                      <select
+                        class="form-control"
+                        id="category"
+                        name="category"
+                        onchange="showItems(this.value)"
+                        required
+                      >
+                        <option value="" selected disabled>
+                          Select a category
+                        </option>
+                        <option value="coffee-based">Coffee Based</option>
+                        <option value="bites">Bites</option>
+                        <option value="coffee-beans">
+                          Coffee Beans or Ground
+                        </option>
+                        <option value="matcha-series">Matcha Series</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group" id="item-options">
+                      <!-- The item options will be displayed here based on the selected category -->
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <textarea
+                        class="form-control w-100"
+                        name="additional-notes"
+                        id="additional-notes"
+                        cols="30"
+                        rows="9"
+                        placeholder="Enter Message"
+                      ></textarea>
+                    </div>
+                  </div>
                 </div>
-
-                <div id="item-options">
-                  <!-- The item options will be displayed here based on the selected category -->
+                <div class="form-group mt-3">
+                  <button type="submit" class="genric-btn primary e-large">
+                    SUBMIT ORDER
+                  </button>
                 </div>
-
-                <div class="form-group">
-                  <h3>Additional Notes:</h3>
-                  <textarea
-                    class="form-control w-100"
-                    id="additional-notes"
-                    name="additional-notes"
-                    cols="30"
-                    rows="9"
-                    onblur="this.placeholder = 'Enter Message'"
-                    placeholder=" Enter Message"
-                  ></textarea
-                  ><br />
-                </div>
-
-                <button type="submit" class="genric-btn primary-border e-large">
-                  SUBMIT ORDER
-                </button>
               </form>
             </div>
             <!-- <div class="col-lg-3 offset-lg-1">
@@ -300,88 +295,96 @@
 
           if (category === "coffee-based") {
             itemOptions.innerHTML = `
-          <h3>Coffee Based</h3>
-          <h4>Espresso</h4>
-          <input type="checkbox" id="single-shot" name="single-shot">
-          <label for="single-shot">Single Shot (8 oz)</label><br>
+          <div class="form-group">
+            <h3>Coffee Based</h3>
+            <h4>Espresso</h4>
+            <input type="checkbox" class="primary-checkbox" id="single-shot" name="single-shot">
+            <label for="single-shot">Single Shot (8 oz)</label><br>
 
-          <input type="checkbox" id="double-shot" name="double-shot">
-          <label for="double-shot">Double Shot (8 oz)</label><br>
+            <input type="checkbox" class="form-control" id="double-shot" name="double-shot">
+            <label for="double-shot">Double Shot (16 oz)</label><br>
 
-          <h4>Fresh Black Coffee or Cold Brew</h4>
-          <input type="checkbox" id="hot-coffee" name="hot-coffee">
-          <label for="hot-coffee">Hot Coffee (12 oz)</label><br>
+            <h4>Fresh Black Coffee or Cold Brew</h4>
+            <input type="checkbox" class="form-control" id="black-coffee-8oz" name="black-coffee-8oz">
+            <label for="black-coffee-8oz">8 oz</label><br>
 
-          <input type="checkbox" id="iced-coffee" name="iced-coffee">
-          <label for="iced-coffee">Iced Coffee (12 oz)</label><br>
+            <input type="checkbox" class="form-control" id="black-coffee-12oz" name="black-coffee-12oz">
+            <label for="black-coffee-12oz">12 oz</label><br>
 
-          <input type="checkbox" id="cold-brew" name="cold-brew">
-          <label for="cold-brew">Cold Brew (12 oz)</label><br>
+            <input type="checkbox" class="form-control" id="black-coffee-16oz" name="black-coffee-16oz">
+            <label for="black-coffee-16oz">16 oz</label><br>
 
-          <input type="checkbox" id="nitro-cold-brew" name="nitro-cold-brew">
-          <label for="nitro-cold-brew">Nitro Cold Brew (12 oz)</label><br>
+            <h4>Non Coffee</h4>
+            <input type="checkbox" class="form-control" id="herbal-tea" name="herbal-tea">
+            <label for="herbal-tea">Herbal Tea (12 oz)</label><br>
 
-          <h4>Non Coffee</h4>
-          <input type="checkbox" id="herbal-tea" name="herbal-tea">
-          <label for="herbal-tea">Herbal Tea (12 oz)</label><br>
+            <input type="checkbox" class="form-control" id="green-tea" name="green-tea">
+            <label for="green-tea">Green Tea (12 oz)</label><br>
 
-          <input type="checkbox" id="green-tea" name="green-tea">
-          <label for="green-tea">Green Tea (12 oz)</label><br>
+            <input type="checkbox" class="form-control" id="matcha-latte" name="matcha-latte">
+            <label for="matcha-latte">Matcha Latte (12 oz)</label><br>
 
-          <input type="checkbox" id="matcha-latte" name="matcha-latte">
-          <label for="matcha-latte">Matcha Latte (12 oz)</label><br>
-
-          <input type="checkbox" id="hot-chocolate" name="hot-chocolate">
-          <label for="hot-chocolate">Hot Chocolate (12 oz)</label><br>
+            <input type="checkbox" class="form-control" id="hot-chocolate" name="hot-chocolate">
+            <label for="hot-chocolate">Hot Chocolate (12 oz)</label><br>
+          </div>
         `;
           } else if (category === "bites") {
             itemOptions.innerHTML = `
-          <h3>Bites</h3>
-          <h4>Sandwich</h4>
-          <input type="checkbox" id="ham-cheese" name="ham-cheese">
-          <label for="ham-cheese">Ham and Cheese</label><br>
+          <div class="form-group">
+            <h3>Bites</h3>
+            <h4>Sandwich</h4>
+            <input type="checkbox" class="form-control" id="ham-cheese" name="ham-cheese">
+            <label for="ham-cheese">Ham and Cheese</label><br>
 
-          <input type="checkbox" id="veggie-delight" name="veggie-delight">
-          <label for="veggie-delight">Veggie Delight</label><br>
+            <input type="checkbox" class="form-control" id="veggie-delight" name="veggie-delight">
+            <label for="veggie-delight">Veggie Delight</label><br>
 
-          <h4>Pastries</h4>
-          <input type="checkbox" id="croissant" name="croissant">
-          <label for="croissant">Croissant</label><br>
+            <h4>Pastries</h4>
+            <input type="checkbox" class="form-control" id="croissant" name="croissant">
+            <label for="croissant">Croissant</label><br>
 
-          <input type="checkbox" id="muffin" name="muffin">
-          <label for="muffin">Muffin</label><br>
+            <input type="checkbox" class="form-control" id="muffin" name="muffin">
+            <label for="muffin">Muffin</label><br>
 
-          <h4>Pasta</h4>
-          <input type="checkbox" id="carbonara" name="carbonara">
-          <label for="carbonara">Carbonara</label><br>
+            <h4>Pasta</h4>
+            <input type="checkbox" class="form-control" id="carbonara" name="carbonara">
+            <label for="carbonara">Carbonara</label><br>
 
-          <input type="checkbox" id="pesto" name="pesto">
-          <label for="pesto">Pesto</label><br>
+            <input type="checkbox" class="form-control" id="pesto" name="pesto">
+            <label for="pesto">Pesto</label><br>
 
-          <h4>Starters</h4>
-          <input type="checkbox" id="chicken-wings" name="chicken-wings">
-          <label for="chicken-wings">Chicken Wings</label><br>
+            <h4>Starters</h4>
+            <input type="checkbox" class="form-control" id="chicken-wings" name="chicken-wings">
+            <label for="chicken-wings">Chicken Wings</label><br>
 
-          <input type="checkbox" id="mozzarella-sticks" name="mozzarella-sticks">
-          <label for="mozzarella-sticks">Mozzarella Sticks</label><br>
+            <input type="checkbox" class="form-control" id="potato-wedges" name="potato-wedges">
+            <label for="potato-wedges">Potato Wedges</label><br>
+          </div>
         `;
           } else if (category === "coffee-beans") {
             itemOptions.innerHTML = `
-          <h3>Coffee Beans or Ground</h3>
-          <input type="checkbox" id="whole-beans" name="whole-beans">
-          <label for="whole-beans">Whole Beans (250g)</label><br>
+          <div class="form-group">
+            <h3>Coffee Beans or Ground</h3>
+            <input type="checkbox" class="form-control" id="coffee-beans" name="coffee-beans">
+            <label for="coffee-beans">Coffee Beans</label><br>
 
-          <input type="checkbox" id="ground-coffee" name="ground-coffee">
-          <label for="ground-coffee">Ground Coffee (250g)</label><br>
+            <input type="checkbox" class="form-control" id="ground-coffee" name="ground-coffee">
+            <label for="ground-coffee">Ground Coffee</label><br>
+          </div>
         `;
           } else if (category === "matcha-series") {
             itemOptions.innerHTML = `
-          <h3>Matcha Series</h3>
-          <input type="checkbox" id="matcha-latte-series" name="matcha-latte-series">
-          <label for="matcha-latte-series">Matcha Latte (12 oz)</label><br>
+          <div class="form-group">
+            <h3>Matcha Series</h3>
+            <input type="checkbox" class="form-control" id="matcha-latte" name="matcha-latte">
+            <label for="matcha-latte">Matcha Latte (12 oz)</label><br>
 
-          <input type="checkbox" id="matcha-frappuccino" name="matcha-frappuccino">
-          <label for="matcha-frappuccino">Matcha Frappuccino (16 oz)</label><br>
+            <input type="checkbox" class="form-control" id="matcha-frappe" name="matcha-frappe">
+            <label for="matcha-frappe">Matcha Frappe (12 oz)</label><br>
+
+            <input type="checkbox" class="form-control" id="matcha-smoothie" name="matcha-smoothie">
+            <label for="matcha-smoothie">Matcha Smoothie (12 oz)</label><br>
+          </div>
         `;
           }
         }
