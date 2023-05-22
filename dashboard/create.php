@@ -3,7 +3,7 @@
  $username = "root";
  $password = "";
  $database = "myshop";
- 
+
  //create connection
  $conn = mysqli_connect($servername,$username,$password,$database);
 
@@ -47,7 +47,7 @@
 
             $successMessage = "Client added correctly";
 
-            header("location: /calbeans php/index.php");
+            header("location: /calbeans/dashboard/index.php");
             exit;
             
         }while(false);
@@ -132,7 +132,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-sm-3 d-grid">
-                    <a class="btn btn-outline-primary" href="/calbeans php/index.php" role="button">Cancel</a>
+                    <a class="btn btn-outline-primary" href="/calbeans/dashboard/index.php" role="button">Cancel</a>
                 </div>
             </div>
         </form>

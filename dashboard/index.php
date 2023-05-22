@@ -10,7 +10,7 @@
 <body>
     <div class="container my-5">
         <h2>List of Clients</h2>
-        <a class="btn btn-primary" href="/calbeans php/create.php" role="button">New Client</a>
+        <a class="btn btn-primary" href="/calbeans/dashboard/create.php" role="button">New Client</a>
         <br>
         <table class="table">
             <thead>
@@ -60,8 +60,69 @@
                             <td>$row[address]</td>
                             <td>$row[created_at]</td>
                             <td>
-                                <a class='btn btn-primary btn-sm' href='/calbeans php/edit.php?id=$row[id]'>Edit</a>
-                                <a class='btn btn-danger btn-sm' href='/calbeans php/delete.php?id=$row[id]'>Delete</a>
+                                <a class='btn btn-primary btn-sm' href='/calbeans/dashboard/edit.php?id=$row[id]'>Edit</a>
+                                <a class='btn btn-danger btn-sm' href='/calbeans/dashboard/delete.php?id=$row[id]'>Delete</a>
+                            </td>
+                        </tr>
+                    ";
+                        
+                    }
+
+                ?>
+                <!--END OF PHP!-->
+            </tbody>
+        </table>
+    </div>
+    <div class="container my-5">
+        <h2>List of Contacts</h2>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Message</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Created at</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- PHP !-->
+                <?php
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $database = "myshop";
+                    
+                    //create connection
+                    $conn = mysqli_connect($servername,$username,$password,$database);
+
+                    //Check connection
+                    if(!$conn){
+                         die("Connection failed: ".mysqli_connect_error());
+                    }
+                    //read all row from database table
+                    $sql = "SELECT * FROM contacts";
+                    $result = $conn->query($sql);
+
+                    if(!$result){
+                        die("Invalid query: " . $conn->error);
+                    }
+
+                    //read data of each row
+                    while($row = $result->fetch_assoc()){
+                        echo "
+                        <tr>
+                            <td>$row[id]</td>
+                            <td>$row[name]</td>
+                            <td>$row[message]</td>
+                            <td>$row[email]</td>
+                            <td>$row[subject]</td>
+                            <td>$row[created_at]</td>
+                            <td>
+                                <a class='btn btn-danger btn-sm' href='/calbeans/dashboard/delcontacts.php?id=$row[id]'>Delete</a>
                             </td>
                         </tr>
                     ";

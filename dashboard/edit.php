@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     //GET method: Show the data of the client
 
     if (!isset($_GET["id"])){
-        header("location: /calbeans php/index.php");
+        header("location: /calbeans/dashboard/index.php");
         exit;
     }
 
@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $row = $result->fetch_assoc();
 
     if(!$row){
-        header("location: /calbeans php/index.php");
+        header("location: /calbeans/dashboard/index.php");
         exit;
     }
 
@@ -72,7 +72,7 @@ else{
 
         $successMessage = "Client updated correctly";
 
-        header("location: /calbeans php/index.php");
+        header("location: /calbeans/dashboard/index.php");
         exit;
 
     } while(false);
@@ -158,7 +158,7 @@ else{
             </div>
             <div class="row mb-3">
                 <div class="col-sm-3 d-grid">
-                    <a class="btn btn-outline-primary" href="/calbeans php/index.php" role="button">Cancel</a>
+                    <a class="btn btn-outline-primary" href="calbeans/dashboard/index.php" role="button">Cancel</a>
                 </div>
             </div>
         </form>
