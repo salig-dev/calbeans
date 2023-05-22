@@ -199,16 +199,16 @@
 
           <!-- SELECTION MENU-->
           <section class="__menu-select-ctn d-flex justify-content-center mb-50 mx-auto" style="width:350px">
-            <select class="__menu-select-sub-ctn">
-              <option value="selected disabled">Select a category</option>
-              <option value="menu-opt-0">All</option>
-              <option value="menu-opt-1">Espresso</option>
-              <option value="menu-opt-2">Fresh Black Coffee / Cold Brew</option>
-              <option value="menu-opt-3">Non-Coffee Drinks</option>
-              <option value="menu-opt-4">Sandwich</option>
-              <option value="menu-opt-5">Pastries</option>
-              <option value="menu-opt-6">Pasta</option>
-              <option value="menu-opt-7">Starters</option>
+            <select class="__menu-select-sub-ctn" id="menu-combobox" onchange="main();">
+              <option disabled value="disabled">Select a category</option>
+              <option value="All">All</option>
+              <option value="Espresso">Espresso</option>
+              <option value="Fresh Black Coffee / Cold Brew">Fresh Black Coffee / Cold Brew</option>
+              <option value="Non-Coffee Drinks">Non-Coffee Drinks</option>
+              <option value="Sandwich">Sandwich</option>
+              <option value="Pastries">Pastries</option>
+              <option value="Pasta">Pasta</option>
+              <option value="Starters">Starters</option>
             </select>
           </section>
 
