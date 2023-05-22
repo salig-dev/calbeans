@@ -28,10 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $message = $_POST['message'];
   $name = $_POST['name'];
   $email = $_POST['email'];
+  $contactnum = $_POST['contactnum'];
   $subject = $_POST['subject'];
 
-  $sql = "INSERT INTO contacts (message, name, email, subject)" .
-                    "VALUES ('$message', '$name', '$email', '$subject')";
+  $sql = "INSERT INTO contacts (message, name, email, contactnum, subject)" .
+                    "VALUES ('$message', '$name', '$email', '$contactnum', '$subject')";
             $result = $conn->query($sql);
 
   // Display submitted order details
@@ -39,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   echo "<p><strong>Message: </strong> $message</p>";
   echo "<p><strong>Name: </strong> $email</p>";
   echo "<p><strong>Email Address: </strong> $name</p>";
+  echo "<p><strong>Contact Number: </strong> $contactnum</p>";
   echo "<p><strong>Subject: </strong> $subject</p>";
 }
 ?>
