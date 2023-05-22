@@ -60,13 +60,8 @@ p {
   clear: both;
 }
 
-
-.d-none{
-  display: none;
-}
-
 .d-unset{
-  display: unset;
+  display: unset !important;
 }
 
 .mx-auto {
@@ -3656,4 +3651,18 @@ del {
 }
 .switch-wrap {
   margin-bottom: 10px;
+}
+
+.__menu-main-ctn > div, .__menu-sub-ctn {
+  transition: opacity 0.4s ease-in-out;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
