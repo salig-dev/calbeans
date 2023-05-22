@@ -122,7 +122,7 @@
                             <td>$row[subject]</td>
                             <td>$row[created_at]</td>
                             <td>
-                                <a class='btn btn-danger btn-sm' href='/calbeans/dashboard/delete.php?id=$row[id]'>Delete</a>
+                                <a class='btn btn-danger btn-sm' href='/calbeans/dashboard/delcontacts.php?id=$row[id]'>Delete</a>
                             </td>
                         </tr>
                     ";
