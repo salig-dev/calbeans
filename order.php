@@ -8,6 +8,20 @@
 </head>
 <body>
 <?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "myshop";
+
+//create connection
+$conn = mysqli_connect($servername,$username,$password,$database);
+
+//Check connection
+if(!$conn){
+  die("Connection failed: ".mysqli_connect_error());
+}
+
 // Get the submitted form data
 $customerName = $_POST['customer-name'];
 $phone = $_POST['phone'];
