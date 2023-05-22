@@ -189,7 +189,7 @@
                         name="customer-name"
                         id="customer-name"
                         type="text"
-                        placeholder="Enter your name"
+                        placeholder="Enter Name"
                         required
                       />
                     </div>
@@ -198,9 +198,20 @@
                     <div class="form-group">
                       <input
                         class="form-control"
-                        name="address"
-                        type="text"
-                        placeholder="Enter your address"
+                        name="phone"
+                        type="tel"
+                        placeholder="Enter Phone Number"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <input
+                        class="form-control"
+                        name="email"
+                        type="email"
+                        placeholder="Enter Email Address"
                         required
                       />
                     </div>
@@ -219,9 +230,13 @@
                           Select a category
                         </option>
                         <option value="coffee-based">Coffee Based</option>
-                        <option value="bites">Bites</option>
+                        <option value="non-coffee">Non Coffee</option>
+                        <option value="sandwich">Sandwich</option>
+                        <option value="pastries">Pastries</option>
+                        <option value="pasta">Pasta</option>
+                        <option value="starters">Starters</option>
                         <option value="coffee-beans">
-                          Coffee Beans or Ground
+                          Coffee Beans and Ground
                         </option>
                         <option value="matcha-series">Matcha Series</option>
                       </select>
@@ -293,97 +308,149 @@
           var itemOptions = document.getElementById("item-options");
           itemOptions.innerHTML = ""; // Clear the previous item options
 
+          // Start of Coffe Based Drinks
           if (category === "coffee-based") {
             itemOptions.innerHTML = `
+          <br> 
           <div class="form-group">
             <h3>Coffee Based</h3>
-            <h4>Espresso</h4>
-            <input type="checkbox" class="primary-checkbox" id="single-shot" name="single-shot">
-            <label for="single-shot">Single Shot (8 oz)</label><br>
 
-            <input type="checkbox" class="form-control" id="double-shot" name="double-shot">
-            <label for="double-shot">Double Shot (16 oz)</label><br>
+            <h4>Espresso</h4>
+            <input type="checkbox" class="primary-checkbox" id="americano" name="items[]" value="Americano (8 oz)">
+            <label for="americano">Americano (8 oz)</label><br>
 
             <h4>Fresh Black Coffee or Cold Brew</h4>
-            <input type="checkbox" class="form-control" id="black-coffee-8oz" name="black-coffee-8oz">
-            <label for="black-coffee-8oz">8 oz</label><br>
+            <input type="checkbox" class="primary-checkbox" id="vanilla-hot" name="items[]" value="Vanilla Hot (12 oz)">
+            <label for="vanilla-hot">Vanilla Hot (12 oz)</label><br>
 
-            <input type="checkbox" class="form-control" id="black-coffee-12oz" name="black-coffee-12oz">
-            <label for="black-coffee-12oz">12 oz</label><br>
-
-            <input type="checkbox" class="form-control" id="black-coffee-16oz" name="black-coffee-16oz">
-            <label for="black-coffee-16oz">16 oz</label><br>
-
-            <h4>Non Coffee</h4>
-            <input type="checkbox" class="form-control" id="herbal-tea" name="herbal-tea">
-            <label for="herbal-tea">Herbal Tea (12 oz)</label><br>
-
-            <input type="checkbox" class="form-control" id="green-tea" name="green-tea">
-            <label for="green-tea">Green Tea (12 oz)</label><br>
-
-            <input type="checkbox" class="form-control" id="matcha-latte" name="matcha-latte">
-            <label for="matcha-latte">Matcha Latte (12 oz)</label><br>
-
-            <input type="checkbox" class="form-control" id="hot-chocolate" name="hot-chocolate">
-            <label for="hot-chocolate">Hot Chocolate (12 oz)</label><br>
+            <input type="checkbox" class="primary-checkbox" id="vanilla-cold" name="items[]" value="Vanilla Cold Brew (16 oz)">
+            <label for="vanilla-cold">Vanilla Cold Brew (16 oz)</label><br>
           </div>
         `;
-          } else if (category === "bites") {
+          } else if (category === "non-coffee") {
             itemOptions.innerHTML = `
+          <br> 
           <div class="form-group">
-            <h3>Bites</h3>
-            <h4>Sandwich</h4>
-            <input type="checkbox" class="form-control" id="ham-cheese" name="ham-cheese">
-            <label for="ham-cheese">Ham and Cheese</label><br>
+            <h3>Non Coffee</h3>
 
-            <input type="checkbox" class="form-control" id="veggie-delight" name="veggie-delight">
-            <label for="veggie-delight">Veggie Delight</label><br>
+            <h4>Espresso</h4>
+            <input type="checkbox" class="primary-checkbox" id="americano" name="items[]" value="Americano (8 oz)">
+            <label for="americano">Americano (8 oz)</label><br>
 
-            <h4>Pastries</h4>
-            <input type="checkbox" class="form-control" id="croissant" name="croissant">
-            <label for="croissant">Croissant</label><br>
+            <h4>Fresh Black Coffee or Cold Brew</h4>
+            <input type="checkbox" class="primary-checkbox" id="vanilla-hot" name="items[]" value="Vanilla Hot (12 oz)">
+            <label for="vanilla-hot">Vanilla Hot (12 oz)</label><br>
 
-            <input type="checkbox" class="form-control" id="muffin" name="muffin">
-            <label for="muffin">Muffin</label><br>
+            <input type="checkbox" class="primary-checkbox" id="vanilla-cold" name="items[]" value="Vanilla Cold Brew (16 oz)">
+            <label for="vanilla-cold">Vanilla Cold Brew (16 oz)</label><br>
+          </div>
+        `;
+          } else if (category === "sandwich") {
+            itemOptions.innerHTML = `
+          <br> 
+          <div class="form-group">
+            <h3>Sandwich</h3>
 
-            <h4>Pasta</h4>
-            <input type="checkbox" class="form-control" id="carbonara" name="carbonara">
-            <label for="carbonara">Carbonara</label><br>
+            <h4>Espresso</h4>
+            <input type="checkbox" class="primary-checkbox" id="americano" name="items[]" value="Americano (8 oz)">
+            <label for="americano">Americano (8 oz)</label><br>
 
-            <input type="checkbox" class="form-control" id="pesto" name="pesto">
-            <label for="pesto">Pesto</label><br>
+            <h4>Fresh Black Coffee or Cold Brew</h4>
+            <input type="checkbox" class="primary-checkbox" id="vanilla-hot" name="items[]" value="Vanilla Hot (12 oz)">
+            <label for="vanilla-hot">Vanilla Hot (12 oz)</label><br>
 
-            <h4>Starters</h4>
-            <input type="checkbox" class="form-control" id="chicken-wings" name="chicken-wings">
-            <label for="chicken-wings">Chicken Wings</label><br>
+            <input type="checkbox" class="primary-checkbox" id="vanilla-cold" name="items[]" value="Vanilla Cold Brew (16 oz)">
+            <label for="vanilla-cold">Vanilla Cold Brew (16 oz)</label><br>
+          </div>
+        `;
+          } else if (category === "pastries") {
+            itemOptions.innerHTML = `
+          <br> 
+          <div class="form-group">
+            <h3>Pastries</h3>
 
-            <input type="checkbox" class="form-control" id="potato-wedges" name="potato-wedges">
-            <label for="potato-wedges">Potato Wedges</label><br>
+            <h4>Espresso</h4>
+            <input type="checkbox" class="primary-checkbox" id="americano" name="items[]" value="Americano (8 oz)">
+            <label for="americano">Americano (8 oz)</label><br>
+
+            <h4>Fresh Black Coffee or Cold Brew</h4>
+            <input type="checkbox" class="primary-checkbox" id="vanilla-hot" name="items[]" value="Vanilla Hot (12 oz)">
+            <label for="vanilla-hot">Vanilla Hot (12 oz)</label><br>
+
+            <input type="checkbox" class="primary-checkbox" id="vanilla-cold" name="items[]" value="Vanilla Cold Brew (16 oz)">
+            <label for="vanilla-cold">Vanilla Cold Brew (16 oz)</label><br>
+          </div>
+        `;
+          } else if (category === "pasta") {
+            itemOptions.innerHTML = `
+          <br> 
+          <div class="form-group">
+            <h3>Pasta</h3>
+
+            <h4>Espresso</h4>
+            <input type="checkbox" class="primary-checkbox" id="americano" name="items[]" value="Americano (8 oz)">
+            <label for="americano">Americano (8 oz)</label><br>
+
+            <h4>Fresh Black Coffee or Cold Brew</h4>
+            <input type="checkbox" class="primary-checkbox" id="vanilla-hot" name="items[]" value="Vanilla Hot (12 oz)">
+            <label for="vanilla-hot">Vanilla Hot (12 oz)</label><br>
+
+            <input type="checkbox" class="primary-checkbox" id="vanilla-cold" name="items[]" value="Vanilla Cold Brew (16 oz)">
+            <label for="vanilla-cold">Vanilla Cold Brew (16 oz)</label><br>
+          </div>
+        `;
+          } else if (category === "starters") {
+            itemOptions.innerHTML = `
+          <br> 
+          <div class="form-group">
+            <h3>Starters</h3>
+
+            <h4>Espresso</h4>
+            <input type="checkbox" class="primary-checkbox" id="americano" name="items[]" value="Americano (8 oz)">
+            <label for="americano">Americano (8 oz)</label><br>
+
+            <h4>Fresh Black Coffee or Cold Brew</h4>
+            <input type="checkbox" class="primary-checkbox" id="vanilla-hot" name="items[]" value="Vanilla Hot (12 oz)">
+            <label for="vanilla-hot">Vanilla Hot (12 oz)</label><br>
+
+            <input type="checkbox" class="primary-checkbox" id="vanilla-cold" name="items[]" value="Vanilla Cold Brew (16 oz)">
+            <label for="vanilla-cold">Vanilla Cold Brew (16 oz)</label><br>
           </div>
         `;
           } else if (category === "coffee-beans") {
             itemOptions.innerHTML = `
+          <br> 
           <div class="form-group">
             <h3>Coffee Beans or Ground</h3>
-            <input type="checkbox" class="form-control" id="coffee-beans" name="coffee-beans">
-            <label for="coffee-beans">Coffee Beans</label><br>
 
-            <input type="checkbox" class="form-control" id="ground-coffee" name="ground-coffee">
-            <label for="ground-coffee">Ground Coffee</label><br>
+            <h4>Espresso</h4>
+            <input type="checkbox" class="primary-checkbox" id="americano" name="items[]" value="Americano (8 oz)">
+            <label for="americano">Americano (8 oz)</label><br>
+
+            <h4>Fresh Black Coffee or Cold Brew</h4>
+            <input type="checkbox" class="primary-checkbox" id="vanilla-hot" name="items[]" value="Vanilla Hot (12 oz)">
+            <label for="vanilla-hot">Vanilla Hot (12 oz)</label><br>
+
+            <input type="checkbox" class="primary-checkbox" id="vanilla-cold" name="items[]" value="Vanilla Cold Brew (16 oz)">
+            <label for="vanilla-cold">Vanilla Cold Brew (16 oz)</label><br>
           </div>
         `;
           } else if (category === "matcha-series") {
             itemOptions.innerHTML = `
+          <br> 
           <div class="form-group">
             <h3>Matcha Series</h3>
-            <input type="checkbox" class="form-control" id="matcha-latte" name="matcha-latte">
-            <label for="matcha-latte">Matcha Latte (12 oz)</label><br>
 
-            <input type="checkbox" class="form-control" id="matcha-frappe" name="matcha-frappe">
-            <label for="matcha-frappe">Matcha Frappe (12 oz)</label><br>
+            <h4>Espresso</h4>
+            <input type="checkbox" class="primary-checkbox" id="americano" name="items[]" value="Americano (8 oz)">
+            <label for="americano">Americano (8 oz)</label><br>
 
-            <input type="checkbox" class="form-control" id="matcha-smoothie" name="matcha-smoothie">
-            <label for="matcha-smoothie">Matcha Smoothie (12 oz)</label><br>
+            <h4>Fresh Black Coffee or Cold Brew</h4>
+            <input type="checkbox" class="primary-checkbox" id="vanilla-hot" name="items[]" value="Vanilla Hot (12 oz)">
+            <label for="vanilla-hot">Vanilla Hot (12 oz)</label><br>
+
+            <input type="checkbox" class="primary-checkbox" id="vanilla-cold" name="items[]" value="Vanilla Cold Brew (16 oz)">
+            <label for="vanilla-cold">Vanilla Cold Brew (16 oz)</label><br>
           </div>
         `;
           }
