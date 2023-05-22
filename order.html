@@ -220,7 +220,7 @@
                     <div class="form-group">
                       <label for="category">Category:</label>
                       <select
-                        class="form-control"
+                        class="form-control form-select nice-select"
                         id="category"
                         name="category"
                         onchange="showItems(this.value)"
@@ -317,7 +317,8 @@
 
             <h4>Espresso</h4>
             <input type="checkbox" class="primary-checkbox" id="americano" name="items[]" value="Hot Americano (8 oz | P69.00)">
-            <label for="americano">Hot Americano (8 oz | P69.00)</label><br>
+            <label for="americano">Hot Americano (8 oz | P69.00) </label>
+            <input type="number" style="width: 25%; display: inline;" class="form-control" id="americano-quantity" name="quantity[]" placeholder="Quantity" min="1" required><br>
 
             <input type="checkbox" class="primary-checkbox" id="cortado" name="items[]" value="Cold Cortado (12 oz | P95.00)">
             <label for="cortado">Cold Cortado (12 oz | P95.00)</label><br>

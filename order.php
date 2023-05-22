@@ -8,31 +8,49 @@
 </head>
 <body>
 <?php
-// Check if form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Retrieve form data
-  $customerName = $_POST['customer-name'];
-  $phone = $_POST['phone'];
-  $email = $_POST['email'];
-  $category = $_POST['category'];
-  $items = $_POST['items'];
-  $additionalNotes = $_POST['additional-notes'];
+// Get the submitted form data
+$customerName = $_POST['customer-name'];
+$phone = $_POST['phone'];
+$email = $_POST['email'];
+$category = $_POST['category'];
+$items = $_POST['items'];
+$quantities = $_POST['quantity'];
+$additionalNotes = $_POST['additional-notes'];
 
-  // Display submitted order details
-  echo "<h2>Order Details:</h2>";
-  echo "<p><strong>Customer Name:</strong> $customerName</p>";
-  echo "<p><strong>Phone Number:</strong> $phone</p>";
-  echo "<p><strong>Email Address:</strong> $email</p>";
-  echo "<p><strong>Category:</strong> $category</p>";
-  echo "<p><strong>Items:</strong></p>";
-  echo "<ul>";
-  foreach ($items as $item) {
-    echo "<li>$item</li>";
-  }
-  echo "</ul>";
-  echo "<p><strong>Additional Notes:</strong> $additionalNotes</p>";
+// Fixed prices for each item
+$itemPrices = array(
+  "Americano (8 oz)" => 69.00,
+  "Vanilla Hot (12 oz)" => 69.00,
+  "Vanilla Cold Brew (16 oz)" => 100.00,
+  // Add more items and prices here for other categories
+);
+
+// Calculate the total price
+$totalPrice = 0;
+for ($i = 0; $i < count($items); $i++) {
+  $item = $items[$i];
+  $quantity = $quantities[$i];
+  $price = $itemPrices[$item];
+  $totalPrice += $price * $quantity;
 }
+
+// Display the order summary
+echo "Order Summary:<br>";
+echo "Customer Name: " . $customerName . "<br>";
+echo "Phone: " . $phone . "<br>";
+echo "Email: " . $email . "<br>";
+echo "Category: " . $category . "<br>";
+echo "Items:<br>";
+for ($i = 0; $i < count($items); $i++) {
+  $item = $items[$i];
+  $quantity = $quantities[$i];
+  $price = $itemPrices[$item];
+  echo $item . " - Quantity: " . $quantity . " - Price: $" . $price . "<br>";
+}
+echo "Total Price: $" . $totalPrice . "<br>";
+echo "Additional Notes: " . $additionalNotes;
 ?>
+
 
 </body>
 </html>
