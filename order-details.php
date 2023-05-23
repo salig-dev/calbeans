@@ -178,20 +178,23 @@
               </h2>
             </div>
             <!-- SECTION -->
+
+          <!-- PHP -->
             <div class="offset-xl-1 col-lg-7">
-              <?php
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $database = "myshop";
+    <?php
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $database = "myshop";
 
-//create connection
-// $conn = mysqli_connect($servername,$username,$password,$database);
+      //create connection
+      $conn = mysqli_connect($servername,$username,$password,$database);
 
-//Check connection
-// if(!$conn){
-//   die("Connection failed: ".mysqli_connect_error());
-// }
+//        Check connection
+      if(!$conn){
+         die("Connection failed: ".mysqli_connect_error());
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 // Get the submitted form data
 $customerName = $_POST['customer-name'];
@@ -201,6 +204,12 @@ $category = $_POST['category'];
 $items = $_POST['items'];
 // $quantities = $_POST['quantity'];
 $additionalNotes = $_POST['additional-notes'];
+//makes array go to database
+$serializedItems = serialize($items);
+
+$sql = "INSERT INTO clients (name, user_order, email, phone, `additional-notes`)" .
+                    "VALUES ('$customerName', '$serializedItems', '$email', '$phone', '$additionalNotes')";
+            $result = $conn->query($sql);
 
 // Fixed prices for each item
 // $itemPrices = array(
@@ -235,7 +244,7 @@ for ($i = 0; $i < count($items); $i++) {
 }
 // echo "Total Price: $" . $totalPrice . "<br>";
 echo "Additional Notes: " . $additionalNotes;
-?>
+}?>
             </div>
             <div class="col-lg-3 offset-lg-1">
               <div class="media contact-info">

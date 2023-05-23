@@ -47,9 +47,10 @@
                     if(!$result){
                         die("Invalid query: " . $conn->error);
                     }
-
+                    
                     //read data of each row
                     while($row = $result->fetch_assoc()){
+                        
                         echo "
                         <tr>
                             <td>$row[id]</td>
