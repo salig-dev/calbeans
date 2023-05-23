@@ -1,10 +1,20 @@
-@import url(styles-color.css);
+@import url("styles-color.css");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700;900&amp;family=Shippori+Mincho:wght@400;500;600;700;800&amp;display=swap");
 
-/* INSERT HEADER FONT HERE */
+/* INSERT FONTS */
 /* @font-face {
-  font-family: "Ade";
-  src: url("../fonts/Ade-Display.otf");
+  font-family: "Roxborough";
+  src: url("../fonts/RoxboroughCF-Regular.otf");
+} */
+
+@font-face {
+  font-family: "Brice";
+  src: url("../fonts/Brice-RegularSemiExpanded.ttf");
+}
+
+/* @font-face {
+  font-family: "The Seasons";
+  src: url("../fonts/Fontspring-DEMO-theseasons-reg.otf");
 } */
 
 .gray-bg {
@@ -21,7 +31,7 @@ h1,
 h2 {
   /* font-family: "Shippori Mincho", serif; */
   /* font-family: "Chivo", serif; */
-  font-family: "Ade", "Chivo", sans-serif;
+  font-family: "Brice", "Chivo", sans-serif;
   color: var(--default-temp_color-202738);
   margin-top: 0px;
   font-style: normal;
@@ -60,7 +70,7 @@ p {
   clear: both;
 }
 
-.d-unset{
+.d-unset {
   display: unset !important;
 }
 
@@ -3653,7 +3663,8 @@ del {
   margin-bottom: 10px;
 }
 
-.__menu-main-ctn > div, .__menu-sub-ctn {
+.__menu-main-ctn > div,
+.__menu-sub-ctn {
   transition: opacity 0.4s ease-in-out;
   animation: fadeIn 0.4s ease-in-out;
 }
