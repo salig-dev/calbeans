@@ -152,7 +152,7 @@
       <section class="slider-area position-relative">
         <div class="slider-active">
           <div
-            class="single-slider slider-height2 hero-overly slider-bg2 d-flex align-items-end"
+            class="single-slider slider-height2 hero-overly slider-bg2 order-header d-flex align-items-end"
           >
             <div class="container position-relative">
               <div class="row">

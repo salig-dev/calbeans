@@ -1106,11 +1106,32 @@ hr {
   }
 }
 .slider-bg1 {
-  background-image: url(../img/hero/hero-bg.png);
+  background-image: url("../img/hero/hero.png");
 }
 .slider-bg2 {
-  background-image: url(../img/hero/hero-bg.png);
+  background-image: url("../img/hero/about-banner.png");
 }
+
+/* START OF PAGE HEADERS */
+
+.about-header {
+  background-image: url("../img/hero/about_h2.png");
+}
+
+.menu-header {
+  background-image: url("../img/hero/menu_h2.png");
+}
+
+.contact-header {
+  background-image: url("../img/hero/contact_h2.png");
+}
+
+.order-header {
+  background-image: url("../img/hero/order_h2.png");
+}
+
+/* END OF PAGE HEADERS */
+
 .slider-area {
   background-color: #1e1e1e;
 }

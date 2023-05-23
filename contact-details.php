@@ -153,7 +153,7 @@
   <main>
     <section class="slider-area position-relative">
       <div class="slider-active">
-        <div class="single-slider slider-height2 hero-overly slider-bg2 d-flex align-items-end">
+        <div class="single-slider slider-height2 hero-overly slider-bg2 contact-header d-flex align-items-end">
           <div class="container position-relative">
             <div class="row">
               <div class="offset-xxl-1 col-xxl-5 col-xl-7 col-lg-7 col-md-9 col-sm-10">
