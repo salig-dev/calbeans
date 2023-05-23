@@ -492,8 +492,8 @@ hr {
 }
 .section-tittle h2 {
   color: var(--default-temp_color-202738);
-  /* font-family: "Shippori Mincho", serif; */
-  font-family: "Chivo", sans-serif;
+  /* font-family: "Chivo", sans-serif; */
+  font-family: "Brice", sans-serif;
   font-size: 44px;
   display: block;
   font-weight: 600;
