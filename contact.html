@@ -131,9 +131,9 @@
               </div>
 
               <div class="menu-footer">
-                <a href="#" class="btn_01 mb-30">Order Online</a>
-                <p>+10 (88) 237 3782</p>
-                <p>88/A, Green lane, Monaka CA 92032</p>
+                <a href="order.html" class="btn_01 mb-50">Order Online</a>
+                <p class="">+63 977 779 7552</p>
+                <p>133-F 13th Avenue East Rembo, Makati, Philippines</p>
 
                 <div class="sidebar-social">
                   <a href="https://www.fb.com/sai4ull"
@@ -152,7 +152,7 @@
       <section class="slider-area position-relative">
         <div class="slider-active">
           <div
-            class="single-slider slider-height2 hero-overly slider-bg2 d-flex align-items-end"
+            class="single-slider slider-height2 hero-overly slider-bg2 contact-header d-flex align-items-end"
           >
             <div class="container position-relative">
               <div class="row">
@@ -196,25 +196,22 @@
             </div>
             <div class="offset-xl-1 col-lg-7">
               <form
-                class="form-contact contact_form"
-                action=""
+                class="form-contact"
+                action="contact-details.php"
                 method="post"
-                id="contactForm"
-                novalidate="novalidate"
               >
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
-                      <textarea
-                        class="form-control w-100"
-                        name="message"
-                        id="message"
-                        cols="30"
-                        rows="9"
+                      <input
+                        class="form-control"
+                        name="subject"
+                        id="subject"
+                        type="text"
                         onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter Message'"
-                        placeholder=" Enter Message"
-                      ></textarea>
+                        onblur="this.placeholder = 'Enter Subject'"
+                        placeholder="Enter Subject"
+                      />
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -225,8 +222,8 @@
                         id="name"
                         type="text"
                         onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter your name'"
-                        placeholder="Enter your name"
+                        onblur="this.placeholder = 'Enter Name'"
+                        placeholder="Enter Name"
                       />
                     </div>
                   </div>
@@ -238,8 +235,21 @@
                         id="email"
                         type="email"
                         onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter email address'"
-                        placeholder="Email"
+                        onblur="this.placeholder = 'Enter Email Address'"
+                        placeholder="Enter Email Address"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <input
+                        class="form-control valid"
+                        name="contactnum"
+                        id="contactnum"
+                        type="tel"
+                        onfocus="this.placeholder = ''"
+                        onblur="this.placeholder = 'Enter Contact Number'"
+                        placeholder="Enter Contact number"
                       />
                     </div>
                   </div>
@@ -254,6 +264,20 @@
                         onblur="this.placeholder = 'Enter Subject'"
                         placeholder="Enter Subject"
                       />
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <textarea
+                        class="form-control w-100"
+                        name="message"
+                        id="message"
+                        cols="30"
+                        rows="9"
+                        onfocus="this.placeholder = ''"
+                        onblur="this.placeholder = 'Enter Message'"
+                        placeholder=" Enter Message"
+                      ></textarea>
                     </div>
                   </div>
                 </div>
@@ -286,7 +310,7 @@
                 <div class="media-body">
                   <h3>
                     <a
-                      href="https://preview.colorlib.com/cdn-cgi/l/email-protection"
+                      href=""
                       class="__cf_email__"
                       data-cfemail="483b3d3838273a3c082b2724273a24212a662b2725"
                       >[email&#160;protected]</a
@@ -295,10 +319,31 @@
                   <p>Send us your query anytime!</p>
                 </div>
               </div>
+              <div class="about-shape d-none d-lg-block">
+                <img
+                  src="assets/img/gallery/shape (2).png"
+                  alt=""
+                  style="width: 125%; float: right px-auto mx-auto"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      <div class="compay-img fix">
+        <div class="container-fluid p-0">
+          <div class="row">
+            <div class="col-lg-12">
+              <img
+                src="assets/img/gallery/contact_section.png"
+                alt=""
+                class="w-100"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- START OF FOOTER -->

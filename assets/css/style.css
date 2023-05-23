@@ -1,10 +1,20 @@
-@import url(styles-color.css);
+@import url("styles-color.css");
 @import url("https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700;900&amp;family=Shippori+Mincho:wght@400;500;600;700;800&amp;display=swap");
 
-/* INSERT HEADER FONT HERE */
+/* INSERT FONTS */
 /* @font-face {
-  font-family: "Ade";
-  src: url("../fonts/Ade-Display.otf");
+  font-family: "Roxborough";
+  src: url("../fonts/RoxboroughCF-Regular.otf");
+} */
+
+@font-face {
+  font-family: "Brice";
+  src: url("../fonts/Brice-RegularSemiExpanded.ttf");
+}
+
+/* @font-face {
+  font-family: "The Seasons";
+  src: url("../fonts/Fontspring-DEMO-theseasons-reg.otf");
 } */
 
 .gray-bg {
@@ -21,7 +31,7 @@ h1,
 h2 {
   /* font-family: "Shippori Mincho", serif; */
   /* font-family: "Chivo", serif; */
-  font-family: "Ade", "Chivo", sans-serif;
+  font-family: "Brice", "Chivo", sans-serif;
   color: var(--default-temp_color-202738);
   margin-top: 0px;
   font-style: normal;
@@ -58,6 +68,10 @@ p {
 }
 .clear {
   clear: both;
+}
+
+.d-unset {
+  display: unset !important;
 }
 
 .mx-auto {
@@ -328,7 +342,7 @@ hr {
 }
 .nice-select {
   line-height: 30px;
-  border: 1px solid #eaeaea;
+  border: 2px solid #d4d4d4;
   height: 50px;
   width: 100%;
   color: #071112;
@@ -338,8 +352,8 @@ hr {
   border-radius: 25px;
 }
 .nice-select::after {
-  border-bottom: 2px solid #a3a3a3;
-  border-right: 2px solid #a3a3a3;
+  border-bottom: 2.5px solid #a3a3a3;
+  border-right: 2.5px solid #a3a3a3;
   height: 7px;
   right: 41px;
   width: 7px;
@@ -478,8 +492,8 @@ hr {
 }
 .section-tittle h2 {
   color: var(--default-temp_color-202738);
-  /* font-family: "Shippori Mincho", serif; */
-  font-family: "Chivo", sans-serif;
+  /* font-family: "Chivo", sans-serif; */
+  font-family: "Brice", sans-serif;
   font-size: 44px;
   display: block;
   font-weight: 600;
@@ -1092,11 +1106,32 @@ hr {
   }
 }
 .slider-bg1 {
-  background-image: url(../img/hero/hero-bg.png);
+  background-image: url("../img/hero/hero.png");
 }
 .slider-bg2 {
-  background-image: url(../img/hero/hero-bg.png);
+  background-image: url("../img/hero/about-banner.png");
 }
+
+/* START OF PAGE HEADERS */
+
+.about-header {
+  background-image: url("../img/hero/about_h2.png");
+}
+
+.menu-header {
+  background-image: url("../img/hero/menu_h2.png");
+}
+
+.contact-header {
+  background-image: url("../img/hero/contact_h2.png");
+}
+
+.order-header {
+  background-image: url("../img/hero/order_h2.png");
+}
+
+/* END OF PAGE HEADERS */
+
 .slider-area {
   background-color: #1e1e1e;
 }
@@ -3647,4 +3682,19 @@ del {
 }
 .switch-wrap {
   margin-bottom: 10px;
+}
+
+.__menu-main-ctn > div,
+.__menu-sub-ctn {
+  transition: opacity 0.4s ease-in-out;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

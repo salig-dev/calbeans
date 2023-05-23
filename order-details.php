@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Events | Calbeans Coffee</title>
+    <title>Order Details | Calbeans Coffee</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -121,17 +121,17 @@
                       <a href="menu.html">Menu</a>
                     </li>
                     <li class="click-menu">
-                      <a href="events.html">Events</a>
+                      <a href="about.html">About Us</a>
                     </li>
                     <li class="click-menu">
-                      <a href="contact.html">Contact us</a>
+                      <a href="contact.html">Contact Us</a>
                     </li>
                   </ul>
                 </nav>
               </div>
 
               <div class="menu-footer">
-                <a href="#" class="btn_01 mb-30">Order Online</a>
+                <a href="order.html" class="btn_01 mb-30">Order Online</a>
                 <p>+10 (88) 237 3782</p>
                 <p>88/A, Green lane, Monaka CA 92032</p>
 
@@ -152,7 +152,7 @@
       <section class="slider-area position-relative">
         <div class="slider-active">
           <div
-            class="single-slider slider-height2 hero-overly slider-bg2 d-flex align-items-end"
+            class="single-slider slider-height2 hero-overly slider-bg2 order-header d-flex align-items-end"
           >
             <div class="container position-relative">
               <div class="row">
@@ -160,7 +160,7 @@
                   class="offset-xxl-1 col-xxl-5 col-xl-7 col-lg-7 col-md-9 col-sm-10"
                 >
                   <div class="hero-caption hero-caption2">
-                    <h2 data-animation="pulse" data-delay=".2s">EVENTS</h2>
+                    <h2 data-animation="pulse" data-delay=".2s">Order Details</h2>
                   </div>
                 </div>
               </div>
@@ -171,87 +171,78 @@
 
       <section class="contact-section">
         <div class="container">
-
+          <div class="row">
             <div class="offset-xxl-1 col-lg-11">
-              <h2 class="contact-title">Unforgettable Moments Brewed to Perfection<br>
-                Host Your Next Event with Calbeans Coffee</h2>
+              <h2 class="contact-title pt-20">
+                Lock in Your Cravings
+              </h2>
             </div>
+            <!-- SECTION -->
             <div class="offset-xl-1 col-lg-7">
-              <form
-                class="form-contact contact_form"
-                action=""
-                id="contactForm"
-                novalidate="novalidate"
-              >
-                <div class="row">
-                  <div class="col-12">
-                    <div class="form-group">
-                      <textarea
-                        class="form-control w-100"
-                        name="message"
-                        id="message"
-                        cols="30"
-                        rows="9"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter Message'"
-                        placeholder=" Enter Message"
-                      ></textarea>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <input
-                        class="form-control valid"
-                        name="name"
-                        id="name"
-                        type="text"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter your name'"
-                        placeholder="Enter your name"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <input
-                        class="form-control valid"
-                        name="email"
-                        id="email"
-                        type="email"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter email address'"
-                        placeholder="Email"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="form-group">
-                      <input
-                        class="form-control"
-                        name="subject"
-                        id="subject"
-                        type="text"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter Subject'"
-                        placeholder="Enter Subject"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group mt-3">
-                  <button type="submit" class="button button-contactForm btn_1">
-                    Send
-                  </button>
-                </div>
-              </form>
+              <?php
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $database = "myshop";
+
+//create connection
+// $conn = mysqli_connect($servername,$username,$password,$database);
+
+//Check connection
+// if(!$conn){
+//   die("Connection failed: ".mysqli_connect_error());
+// }
+
+// Get the submitted form data
+$customerName = $_POST['customer-name'];
+$phone = $_POST['phone'];
+$email = $_POST['email'];
+$category = $_POST['category'];
+$items = $_POST['items'];
+// $quantities = $_POST['quantity'];
+$additionalNotes = $_POST['additional-notes'];
+
+// Fixed prices for each item
+// $itemPrices = array(
+//   "Americano (8 oz)" => 69.00,
+//   "Vanilla Hot (12 oz)" => 69.00,
+//   "Vanilla Cold Brew (16 oz)" => 100.00,
+//   // Add more items and prices here for other categories
+// );
+
+// Calculate the total price
+// $totalPrice = 0;
+// for ($i = 0; $i < count($items); $i++) {
+//   $item = $items[$i];
+//   $quantity = $quantities[$i];
+//   $price = $itemPrices[$item];
+//   $totalPrice += $price * $quantity;
+// }
+
+// Display the order summary
+echo "<h3>Order Summary:</h3><br>";
+echo "Customer Name: " . $customerName . "<br>";
+echo "Phone: " . $phone . "<br>";
+echo "Email: " . $email . "<br>";
+echo "Category: " . $category . "<br>";
+echo "Items:<br>";
+for ($i = 0; $i < count($items); $i++) {
+  $item = $items[$i];
+//   $quantity = $quantities[$i];
+//   $price = $itemPrices[$item];
+  echo $item . "<br>";
+//   echo $item . " - Quantity: " . $quantity . " - Price: $" . $price . "<br>";
+}
+// echo "Total Price: $" . $totalPrice . "<br>";
+echo "Additional Notes: " . $additionalNotes;
+?>
             </div>
-            <!-- START OF CONTACT SECTION -->
-            <!-- <div class="col-lg-3 offset-lg-1">
+            <div class="col-lg-3 offset-lg-1">
               <div class="media contact-info">
                 <span class="contact-info__icon"><i class="ti-home"></i></span>
                 <div class="media-body">
-                  <h3>Buttonwood, California.</h3>
-                  <p>Rosemead, CA 91770</p>
+                  <h3>133-F 13th Avenue East Rembo</h3>
+                  <p>Makati, Philippines</p>
                 </div>
               </div>
               <div class="media contact-info">
@@ -259,8 +250,8 @@
                   ><i class="ti-tablet"></i
                 ></span>
                 <div class="media-body">
-                  <h3>+1 253 565 2365</h3>
-                  <p>Mon to Fri 9am to 6pm</p>
+                  <h3>(+63) 0977-779-7552</h3>
+                  <p>Mon to Sun 6pm to 11pm</p>
                 </div>
               </div>
               <div class="media contact-info">
@@ -277,8 +268,7 @@
                   <p>Send us your query anytime!</p>
                 </div>
               </div>
-            </div> -->
-            <!-- END OF CONTACT SECTION -->
+            </div>
           </div>
         </div>
       </section>
@@ -324,7 +314,7 @@
                   <div class="single-footer-caption text-center mb-20">
                     <div class="footer-logo mb-15">
                       <a href="index.html"
-                        ><img src="assets/img/logo/logo.png" alt="" width="100%"
+                        ><img src="assets/img/logo/logo.png" alt="" width="50%"
                       /></a>
                     </div>
                     <p
@@ -346,11 +336,8 @@
                   <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="menu.html">Menu</a></li>
-                    <li><a href="#">Event</a></li>
-                    <!-- TODO: Webpage does not exist -->
-                    <!-- <li><a href="gallery.html">Gallery</a></li> -->
-                    <li><a href="contact.html">Contacts</a></li>
-                    <!-- <li><a href="#">About Us</a></li> TODO: Webpage does not exist -->
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                   </ul>
                 </div>
               </section>
