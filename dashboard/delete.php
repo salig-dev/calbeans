@@ -15,6 +15,6 @@ $conn = new mysqli($servername,$username,$password,$database);
     $conn->query($sql);
 }
 
-header("location: /calbeans php/index.php");
+header("location: /calbeans/dashboard/index.php");
 exit;
 ?>
