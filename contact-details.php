@@ -140,7 +140,7 @@
               <p>133-F 13th Avenue East Rembo, Makati, Philippines</p>
 
               <div class="sidebar-social">
-                <a href="https://www.fb.com/sai4ull"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.facebook.com/calbeanscoffee"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-linkedin-in"></i></a>
               </div>
@@ -175,18 +175,18 @@
               Stay Connected: Your Contact Information
             </h2>
             <?php
-            // $servername = "localhost";
-            // $username = "root";
-            // $password = "";
-            // $database = "myshop";
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $database = "myshop";
 
-            //create connection
-            // $conn = mysqli_connect($servername, $username, $password, $database);
+            // create connection
+            $conn = mysqli_connect($servername, $username, $password, $database);
 
-            //Check connection
-            // if (!$conn) {
-            //   die("Connection failed: " . mysqli_connect_error());
-            // }
+            // Check connection
+            if (!$conn) {
+              die("Connection failed: " . mysqli_connect_error());
+            }
 
             // Check if form is submitted
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
