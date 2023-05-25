@@ -3698,3 +3698,7 @@ del {
     opacity: 1;
   }
 }
+
+.menu-indent-items{
+  margin-left: 16px;
+}
