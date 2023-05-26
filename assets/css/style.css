@@ -3677,6 +3677,11 @@ del {
 .mb-30 {
   margin-bottom: 30px;
 }
+
+.mt-12{
+  margin-top: 12px;
+}
+
 .mt-30 {
   margin-top: 30px;
 }
@@ -3701,4 +3706,13 @@ del {
 
 .menu-indent-items{
   margin-left: 16px;
+}
+
+.__shade-text{
+  opacity: 0.8;
+}
+
+.__menu-select-ctn{
+  min-width: 250px;
+  max-width: 450px;
 }
