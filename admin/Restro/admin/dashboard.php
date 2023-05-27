@@ -8,7 +8,7 @@ require_once('partials/_analytics.php');
 ?>
 
 <body>
-<!-- For more projects: Visit codeastro.com  -->
+<!--  -->
   <!-- Sidenav -->
   <?php
   require_once('partials/_sidebar.php');
@@ -33,7 +33,7 @@ require_once('partials/_analytics.php');
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Customers</h5>
                       <span class="h2 font-weight-bold mb-0"><?php echo $customers; ?></span>
-                    </div><!-- For more projects: Visit codeastro.com  -->
+                    </div><!--   -->
                     <div class="col-auto">
                       <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
                         <i class="fas fa-users"></i>
@@ -43,7 +43,7 @@ require_once('partials/_analytics.php');
                 </div>
               </div>
             </div>
-			<!-- For more projects: Visit codeastro.com  -->
+			<!--   -->
             <div class="col-xl-3 col-lg-6">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
@@ -118,7 +118,7 @@ require_once('partials/_analytics.php');
               <!-- Projects table -->
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
-                  <tr><!-- For more projects: Visit codeastro.com  -->
+                  <tr><!-- -->
                     <th class="text-success" scope="col"><b>Code</b></th>
                     <th scope="col"><b>Customer</b></th>
                     <th class="text-success" scope="col"><b>Product</b></th>
@@ -160,7 +160,7 @@ require_once('partials/_analytics.php');
           </div>
         </div>
       </div>
-		<!-- For more projects: Visit codeastro.com  -->
+		<!--   -->
       <div class="row mt-5">
         <div class="col-xl-12">
           <div class="card shadow">
@@ -219,5 +219,5 @@ require_once('partials/_analytics.php');
   require_once('partials/_scripts.php');
   ?>
 </body>
-<!-- For more projects: Visit codeastro.com  -->
+<!-- -->
 </html>

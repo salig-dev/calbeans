@@ -4,27 +4,46 @@ include('config/config.php');
 include('config/checklogin.php');
 check_login();
 require_once('partials/_head.php');
+// Update Order Status
+if (isset($_POST['update_status'])) {
+    $order_id = $_POST['order_id'];
+    $new_status = $_POST['new_status'];
+
+    $stmt = $mysqli->prepare("UPDATE rpos_orders SET order_status = ? WHERE order_id = ?");
+    $stmt->bind_param("si", $new_status, $order_id);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        $_SESSION['success'] = "Order status updated successfully";
+    } else {
+        $_SESSION['error'] = "Failed to update order status";
+    }
+}
+
 ?>
 
 <body>
-    <!-- Sidenav --><!-- For more projects: Visit codeastro.com  -->
+    <!-- Sidenav -->
     <?php
     require_once('partials/_sidebar.php');
     ?>
+
     <!-- Main content -->
     <div class="main-content">
         <!-- Top navbar -->
         <?php
         require_once('partials/_topnav.php');
         ?>
+
         <!-- Header -->
-        <div style="background-image: url(assets/img/theme/restro00.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
-        <span class="mask bg-gradient-dark opacity-8"></span>
+        <div style="background-image: url(assets/img/theme/restro00.jpg); background-size: cover;" class="header pb-8 pt-5 pt-md-8">
+            <span class="mask bg-gradient-dark opacity-8"></span>
             <div class="container-fluid">
                 <div class="header-body">
                 </div>
             </div>
         </div>
+
         <!-- Page content -->
         <div class="container-fluid mt--8">
             <!-- Table -->
@@ -33,7 +52,7 @@ require_once('partials/_head.php');
                     <div class="card shadow">
                         <div class="card-header border-0">
                             Orders Records
-                        </div><!-- For more projects: Visit codeastro.com  -->
+                        </div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
@@ -46,17 +65,17 @@ require_once('partials/_head.php');
                                         <th scope="col">Total Price</th>
                                         <th scop="col">Status</th>
                                         <th scope="col">Date</th>
+                                        <th scope="col">Action</th> <!-- New column for action -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret = "SELECT * FROM  rpos_orders ORDER BY `created_at` DESC  ";
+                                    $ret = "SELECT * FROM rpos_orders ORDER BY `created_at` DESC";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();
                                     while ($order = $res->fetch_object()) {
                                         $total = ($order->prod_price * $order->prod_qty);
-
                                     ?>
                                         <tr>
                                             <th class="text-success" scope="row"><?php echo $order->order_code; ?></th>
@@ -65,12 +84,25 @@ require_once('partials/_head.php');
                                             <td>$ <?php echo $order->prod_price; ?></td>
                                             <td class="text-success"><?php echo $order->prod_qty; ?></td>
                                             <td>$ <?php echo $total; ?></td>
-                                            <td><?php if ($order->order_status == '') {
+                                            <td>
+                                                <?php
+                                                if ($order->order_status == '') {
                                                     echo "<span class='badge badge-danger'>Not Paid</span>";
                                                 } else {
                                                     echo "<span class='badge badge-success'>$order->order_status</span>";
-                                                } ?></td>
+                                                }
+                                                ?>
+                                            </td>
                                             <td><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
+                                            <td>
+                                                <!-- Edit Status Form -->
+                                            <form action="order_summary.php" method="POST" target="order_summary.php">
+                                                <input type="hidden" name="order_id" value="<?php echo $order->order_id; ?>">
+                                                <td>
+                                                    <button type="submit" name="view_order" class="btn btn-primary btn-sm">View Order</button>
+                                                </td>
+                                            </form>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -78,17 +110,19 @@ require_once('partials/_head.php');
                         </div>
                     </div>
                 </div>
-            </div><!-- For more projects: Visit codeastro.com  -->
+            </div>
+
             <!-- Footer -->
             <?php
             require_once('partials/_footer.php');
             ?>
         </div>
     </div>
+
     <!-- Argon Scripts -->
     <?php
     require_once('partials/_scripts.php');
     ?>
 </body>
-<!-- For more projects: Visit codeastro.com  -->
+
 </html>
