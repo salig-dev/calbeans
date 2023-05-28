@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="MartDevelopers Inc">
-    <title>Restaurant Point Of Sale </title>
+    <title>Calbeans </title>
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32x32.png">
