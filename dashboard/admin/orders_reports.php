@@ -90,9 +90,9 @@ if (isset($_POST['update_status'])) {
                                             <td rowspan="<?php echo $num_orders; ?>" class="text-success" scope="row"><?php echo $order_codes[0]; ?></td>
                                             <td rowspan="<?php echo $num_orders; ?>"><?php echo $row->customer_name; ?></td>
                                             <td class="text-success"><?php echo $prod_names[0]; ?></td>
-                                            <td>$ <?php echo $prod_prices[0]; ?></td>
+                                            <td>₱ <?php echo $prod_prices[0]; ?></td>
                                             <td class="text-success"><?php echo $prod_quantities[0]; ?></td>
-                                            <td rowspan="<?php echo $num_orders; ?>">$ <?php echo array_sum($prod_prices); ?></td>
+                                            <td rowspan="<?php echo $num_orders; ?>">₱ <?php echo array_sum($prod_prices); ?></td>
                                             <td rowspan="<?php echo $num_orders; ?>">
                                                 <?php
                                                 if ($order_statuses[0] == '') {
@@ -120,7 +120,7 @@ if (isset($_POST['update_status'])) {
                                         ?>
                                             <tr>
                                                 <td class="text-success"><?php echo $prod_names[$i]; ?></td>
-                                                <td>$ <?php echo $prod_prices[$i]; ?></td>
+                                                <td>₱ <?php echo $prod_prices[$i]; ?></td>
                                                 <td class="text-success"><?php echo $prod_quantities[$i]; ?></td>
                                             </tr>
                                         <?php
