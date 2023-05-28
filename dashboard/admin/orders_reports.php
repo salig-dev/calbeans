@@ -4,6 +4,7 @@ include('config/config.php');
 include('config/checklogin.php');
 check_login();
 require_once('partials/_head.php');
+
 // Update Order Status
 if (isset($_POST['update_status'])) {
     $order_id = $_POST['order_id'];
@@ -20,20 +21,30 @@ if (isset($_POST['update_status'])) {
     }
 }
 
+// Delete Order
+if (isset($_POST['delete_order'])) {
+    $order_id = $_POST['order_id'];
+
+    $stmt = $mysqli->prepare("DELETE FROM rpos_orders WHERE order_id = ?");
+    $stmt->bind_param("i", $order_id);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        $_SESSION['success'] = "Order deleted successfully";
+    } else {
+        $_SESSION['error'] = "Failed to delete order";
+    }
+}
 ?>
 
 <body>
     <!-- Sidenav -->
-    <?php
-    require_once('partials/_sidebar.php');
-    ?>
+    <?php require_once('partials/_sidebar.php'); ?>
 
     <!-- Main content -->
     <div class="main-content">
         <!-- Top navbar -->
-        <?php
-        require_once('partials/_topnav.php');
-        ?>
+        <?php require_once('partials/_topnav.php'); ?>
 
         <!-- Header -->
         <div style="background-image: url(assets/img/theme/restro00.jpg); background-size: cover;" class="header pb-8 pt-5 pt-md-8">
@@ -63,7 +74,7 @@ if (isset($_POST['update_status'])) {
                                         <th scope="col">Unit Price</th>
                                         <th class="text-success" scope="col">#</th>
                                         <th scope="col">Total Price</th>
-                                        <th scop="col">Status</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col">Date</th>
                                         <th scope="col">Action</th> <!-- New column for action -->
                                     </tr>
@@ -85,50 +96,42 @@ if (isset($_POST['update_status'])) {
 
                                         // Get the total number of orders made by the customer
                                         $num_orders = count($order_ids);
-                                    ?>
-                                        <tr>
-                                            <td rowspan="<?php echo $num_orders; ?>" class="text-success" scope="row"><?php echo $order_codes[0]; ?></td>
-                                            <td rowspan="<?php echo $num_orders; ?>"><?php echo $row->customer_name; ?></td>
-                                            <td class="text-success"><?php echo $prod_names[0]; ?></td>
-                                            <td>₱ <?php echo $prod_prices[0]; ?></td>
-                                            <td class="text-success"><?php echo $prod_quantities[0]; ?></td>
-                                            <td rowspan="<?php echo $num_orders; ?>">₱ <?php echo array_sum($prod_prices); ?></td>
-                                            <td rowspan="<?php echo $num_orders; ?>">
-                                                <?php
-                                                if ($order_statuses[0] == '') {
-                                                    echo "<span class='badge badge-danger'>Not Paid</span>";
-                                                } else {
-                                                    echo "<span class='badge badge-success'>$order_statuses[0]</span>";
-                                                }
-                                                ?>
-                                            </td>
-                                            <td rowspan="<?php echo $num_orders; ?>"><?php echo date('d/M/Y g:i', strtotime($created_dates[0])); ?></td>
-                                            <td rowspan="<?php echo $num_orders; ?>">
-                                                <!-- Edit Status Form -->
-                                                <form action="order_summary.php" method="POST" target="_self">
-                                                    <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
-                                                    <button type="submit" name="view_order" class="btn btn-primary btn-sm">View Order</button>
-                                                </form>
-                                                <!-- <form action="order_summary.php" method="POST" target="order_summary.php">
-                                                    <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
-                                                    <button type="submit" name="update_status" class="btn btn-success btn-sm">Update Status</button>
-                                                </form> -->
-                                            </td>
-                                        </tr>
-                                        <?php
-                                        for ($i = 1; $i < $num_orders; $i++) {
                                         ?>
+                                        <?php for ($i = 0; $i < $num_orders; $i++) { ?>
                                             <tr>
+                                                <?php if ($i === 0) { ?>
+                                                    <td rowspan="<?php echo $num_orders; ?>" class="text-success" scope="row"><?php echo $order_codes[0]; ?></td>
+                                                    <td rowspan="<?php echo $num_orders; ?>"><?php echo $row->customer_name; ?></td>
+                                                <?php } ?>
                                                 <td class="text-success"><?php echo $prod_names[$i]; ?></td>
                                                 <td>₱ <?php echo $prod_prices[$i]; ?></td>
                                                 <td class="text-success"><?php echo $prod_quantities[$i]; ?></td>
+                                                <?php if ($i === 0) { ?>
+                                                    <td rowspan="<?php echo $num_orders; ?>">₱ <?php echo array_sum($prod_prices); ?></td>
+                                                    <td rowspan="<?php echo $num_orders; ?>">
+                                                        <?php if ($order_statuses[0] == '') { ?>
+                                                            <span class='badge badge-danger'>Not Paid</span>
+                                                        <?php } else { ?>
+                                                            <span class='badge badge-success'><?php echo $order_statuses[0]; ?></span>
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td rowspan="<?php echo $num_orders; ?>"><?php echo date('d/M/Y g:i', strtotime($created_dates[0])); ?></td>
+                                                    <td rowspan="<?php echo $num_orders; ?>">
+                                                        <!-- View Order Form -->
+                                                        <form action="order_summary.php" method="POST" target="_self" style="display: inline-block;">
+                                                            <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
+                                                            <button type="submit" name="view_order" class="btn btn-primary btn-sm">View Order</button>
+                                                        </form>
+                                                        <!-- Delete Order Form -->
+                                                        <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?')" style="display: inline-block;">
+                                                            <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
+                                                            <button type="submit" name="delete_order" class="btn btn-danger btn-sm">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                <?php } ?>
                                             </tr>
-                                        <?php
-                                        }
-                                        ?>
-                                    <?php
-                                    }
-                                    ?>
+                                        <?php } ?>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -137,16 +140,12 @@ if (isset($_POST['update_status'])) {
             </div>
 
             <!-- Footer -->
-            <?php
-            require_once('partials/_footer.php');
-            ?>
+            <?php require_once('partials/_footer.php'); ?>
         </div>
     </div>
 
     <!-- Argon Scripts -->
-    <?php
-    require_once('partials/_scripts.php');
-    ?>
+    <?php require_once('partials/_scripts.php'); ?>
 </body>
 
 </html>
