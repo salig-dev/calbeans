@@ -105,7 +105,7 @@ if (isset($_POST['update_status'])) {
                                             <td rowspan="<?php echo $num_orders; ?>"><?php echo date('d/M/Y g:i', strtotime($created_dates[0])); ?></td>
                                             <td rowspan="<?php echo $num_orders; ?>">
                                                 <!-- Edit Status Form -->
-                                                <form action="order_summary.php" method="POST" target="order_summary.php">
+                                                <form action="order_summary.php" method="POST" target="_self">
                                                     <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
                                                     <button type="submit" name="view_order" class="btn btn-primary btn-sm">View Order</button>
                                                 </form>
