@@ -7,7 +7,6 @@ check_login();
 require_once('partials/_head.php');
 require_once('partials/_analytics.php');
 ?>
-<!-- For more projects: Visit codeastro.com  -->
 <body>
   <!-- Sidenav -->
   <?php
@@ -34,7 +33,7 @@ require_once('partials/_analytics.php');
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">Available Items</h5>
                         <span class="h2 font-weight-bold mb-0"><?php echo $products; ?></span>
-                      </div><!-- For more projects: Visit codeastro.com  -->
+                      </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-purple text-white rounded-circle shadow">
                           <i class="fas fa-utensils"></i>
@@ -44,7 +43,7 @@ require_once('partials/_analytics.php');
                   </div>
                 </div>
               </a>
-            </div><!-- For more projects: Visit codeastro.com  -->
+            </div>
             <div class="col-xl-4 col-lg-6">
               <a href="orders_reports.php">
                 <div class="card card-stats mb-4 mb-xl-0">
@@ -62,7 +61,7 @@ require_once('partials/_analytics.php');
                     </div>
                   </div>
                 </div>
-              </a><!-- For more projects: Visit codeastro.com  -->
+              </a>
             </div>
             <div class="col-xl-4 col-lg-6">
               <a href="payments_reports.php">
@@ -77,7 +76,7 @@ require_once('partials/_analytics.php');
                         <div class="icon icon-shape bg-green text-white rounded-circle shadow">
                           <i class="fas fa-wallet"></i>
                         </div>
-                      </div><!-- For more projects: Visit codeastro.com  -->
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -85,7 +84,7 @@ require_once('partials/_analytics.php');
             </div>
           </div>
         </div>
-      </div><!-- For more projects: Visit codeastro.com  -->
+      </div>
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--7">
@@ -106,7 +105,7 @@ require_once('partials/_analytics.php');
               <!-- Projects table -->
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
-                  <tr><!-- For more projects: Visit codeastro.com  -->
+                  <tr>
                     <th class="text-success" scope="col">Code</th>
                     <th scope="col">Customer</th>
                     <th class="text-success" scope="col">Product</th>
@@ -149,7 +148,6 @@ require_once('partials/_analytics.php');
           </div>
         </div>
       </div>
-		<!-- For more projects: Visit codeastro.com  -->
       <div class="row mt-5">
         <div class="col-xl-12">
           <div class="card shadow">
@@ -208,5 +206,4 @@ require_once('partials/_analytics.php');
   require_once('partials/_scripts.php');
   ?>
 </body>
-<!-- For more projects: Visit codeastro.com  -->
 </html>

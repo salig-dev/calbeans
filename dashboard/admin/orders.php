@@ -25,7 +25,7 @@ require_once('partials/_head.php');
         <div class="header-body">
         </div>
       </div>
-    </div><!-- For more projects: Visit codeastro.com  -->
+    </div>
     <!-- Page content -->
     <div class="container-fluid mt--8">
       <!-- Table -->
@@ -45,7 +45,7 @@ require_once('partials/_head.php');
                     <th scope="col"><b>Price</b></th>
                     <th scope="col"><b>Action</b></th>
                   </tr>
-                </thead><!-- For more projects: Visit codeastro.com  -->
+                </thead>
                 <tbody>
                   <?php
                   $ret = "SELECT * FROM  rpos_products ";
@@ -95,5 +95,4 @@ require_once('partials/_head.php');
   require_once('partials/_scripts.php');
   ?>
 </body>
-<!-- For more projects: Visit codeastro.com  -->
 </html>

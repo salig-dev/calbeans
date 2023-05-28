@@ -87,11 +87,11 @@ while ($admin = $res->fetch_object()) {
               <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="hrm.php">
               <i class="fas fa-user-tie text-primary"></i> HRM
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="customes.php">
               <i class="fas fa-users text-primary"></i> Customers
@@ -107,16 +107,16 @@ while ($admin = $res->fetch_object()) {
               <i class="ni ni-cart text-primary"></i> Orders
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="payments.php">
               <i class="ni ni-credit-card text-primary"></i> Payments
             </a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link" href="receipts.php">
               <i class="fas fa-file-invoice-dollar text-primary"></i> Receipts
             </a>
-          </li>
+          </li> -->
         </ul>
         <!-- Divider -->
         <hr class="my-3">
@@ -129,11 +129,11 @@ while ($admin = $res->fetch_object()) {
               <i class="fas fa-shopping-basket"></i> Orders
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="payments_reports.php">
               <i class="fas fa-funnel-dollar"></i> Payments
             </a>
-          </li>
+          </li> -->
         </ul>
         <hr class="my-3">
         <ul class="navbar-nav mb-md-3">

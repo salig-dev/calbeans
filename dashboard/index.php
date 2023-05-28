@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<!-- For more projects: Visit codeastro.com  -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,7 +64,6 @@
         }
     </style>
 </head>
-<!-- For more projects: Visit codeastro.com  -->
 <body>
     <div class="flex-center position-ref full-height">
         <div class="content">
@@ -74,7 +72,6 @@
             </div>
 
             <div class="links">
-			<!-- For more projects: Visit codeastro.com  -->
                 <a href="../dashboard/admin/">Admin Log In</a>
                 <!-- <a href="Restro/cashier/">Cashier Log In</a> -->
                 <a href="../dashboard/customer/">Customer Log In</a>
@@ -82,5 +79,4 @@
         </div>
     </div>
 </body>
-<!-- For more projects: Visit codeastro.com  -->
 </html>

@@ -3,7 +3,6 @@ session_start();
 include('config/config.php');
 include('config/checklogin.php');
 include('config/code-generator.php');
-//Visit codeastro.com for more projects
 check_login();
 //Add Customer
 if (isset($_POST['addCustomer'])) {
@@ -31,12 +30,10 @@ if (isset($_POST['addCustomer'])) {
     }
   }
 }
-//Visit codeastro.com for more projects
 require_once('partials/_head.php');
 ?>
 
 <body>
-<!-- For more projects: Visit codeastro.com  -->
   <!-- Sidenav -->
   <?php
   require_once('partials/_sidebar.php');
@@ -63,7 +60,7 @@ require_once('partials/_head.php');
           <div class="card shadow">
             <div class="card-header border-0">
               <h3>Please Fill All Fields</h3>
-            </div><!-- For more projects: Visit codeastro.com  -->
+            </div>
             <div class="card-body">
               <form method="POST">
                 <div class="form-row">
@@ -88,7 +85,7 @@ require_once('partials/_head.php');
                     <input type="password" name="customer_password" class="form-control" value="">
                   </div>
                 </div>
-                <br><!-- For more projects: Visit codeastro.com  -->
+                <br>
                 <div class="form-row">
                   <div class="col-md-6">
                     <input type="submit" name="addCustomer" value="Add Customer" class="btn btn-success" value="">
@@ -99,7 +96,7 @@ require_once('partials/_head.php');
           </div>
         </div>
       </div>
-      <!-- Footer --><!-- For more projects: Visit codeastro.com  -->
+      <!-- Footer -->
       <?php
       require_once('partials/_footer.php');
       ?>
