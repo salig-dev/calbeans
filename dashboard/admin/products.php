@@ -63,7 +63,7 @@ require_once('partials/_head.php');
                 </thead><!-- For more projects: Visit codeastro.com  -->
                 <tbody>
                   <?php
-                  $ret = "SELECT * FROM  rpos_products ";
+                  $ret = "SELECT * FROM  rpos_products ORDER BY prod_name";
                   $stmt = $mysqli->prepare($ret);
                   $stmt->execute();
                   $res = $stmt->get_result();
