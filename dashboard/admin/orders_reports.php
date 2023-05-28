@@ -123,9 +123,10 @@ if (isset($_POST['delete_order'])) {
                                                     ?>
                                                     <td rowspan="<?php echo $num_orders; ?>"><?php echo $date; ?></td>
                                                     <td class="text-success"><?php echo $time; ?></td>
+                                                    <td>
                                                         <!-- View Order Form -->
                                                         <form action="order_summary.php" method="POST" target="_self" style="display: inline-block;">
-                                                            <td rowspan="<input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
+                                                            <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
                                                             <button type="submit" name="view_order" class="btn btn-primary btn-sm">View Order</button>
                                                         </form>
                                                         <!-- Delete Order Form -->
@@ -133,7 +134,8 @@ if (isset($_POST['delete_order'])) {
                                                             <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
                                                             <button type="submit" name="delete_order" class="btn btn-danger btn-sm">Delete</button>
                                                         </form>
-                                                    </td>
+                                                        </td>
+                                                        </td>
                                                 <?php } ?>
                                             </tr>
                                         <?php } ?>
