@@ -126,7 +126,8 @@ require_once('partials/_analytics.php');
                     <th class="text-success" scope="col"><b>Qty</b></th>
                     <th scope="col"><b>Total</b></th>
                     <th scop="col"><b>Status</b></th>
-                    <th class="text-success" scope="col"><b>Date</b></th>
+                    <th class="text-success" scope="col"><b>Order Date</b></th>
+                    <th class="text-success" scope="col"><b>Order Time</b></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -151,7 +152,8 @@ require_once('partials/_analytics.php');
                           } else {
                             echo "<span class='badge badge-success'>$order->order_status</span>";
                           } ?></td>
-                      <td class="text-success"><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
+                      <td class="text-success"><?php echo date('d/M/Y', strtotime($order->created_at)); ?></td>
+                      <td class="text-success"><?php echo date('g:i', strtotime($order->created_at)); ?></td>
                     </tr>
                   <?php } ?>
                 </tbody>
