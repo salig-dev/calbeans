@@ -121,7 +121,8 @@ require_once('partials/_analytics.php');
                                     <th class="text-success" scope="col">#</th>
                                     <th scope="col">Total Price</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Date</th>
+                                    <th scope="col">Order Date</th>
+                                    <th scope="col">Order Time</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -160,7 +161,13 @@ require_once('partials/_analytics.php');
                                                         <span class='badge badge-success'><?php echo $order_statuses[0]; ?></span>
                                                     <?php } ?>
                                                 </td>
-                                                <td rowspan="<?php echo $num_orders; ?>"><?php echo date('d/M/Y g:i', strtotime($created_dates[0])); ?></td>
+                                                <?php
+                                                $firstCreatedDateTime = strtotime($created_dates[0]);
+                                                $date = date('d/M/Y', $firstCreatedDateTime);
+                                                $time = date('g:i', $firstCreatedDateTime);
+                                                ?>
+                                                  <td rowspan="<?php echo $num_orders; ?>"><?php echo $date; ?></td>
+                                                  <td class="text-success"><?php echo $time; ?></td>
                                             <?php } ?>
                                         </tr>
                                     <?php } ?>

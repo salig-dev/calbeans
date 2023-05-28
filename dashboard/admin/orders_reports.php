@@ -75,7 +75,8 @@ if (isset($_POST['delete_order'])) {
                                         <th class="text-success" scope="col">#</th>
                                         <th scope="col">Total Price</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Date</th>
+                                        <th scope="col">Order Date</th>
+                                        <th scope="col">Order Time</th>
                                         <th scope="col">Action</th> <!-- New column for action -->
                                     </tr>
                                 </thead>
@@ -115,11 +116,16 @@ if (isset($_POST['delete_order'])) {
                                                             <span class='badge badge-success'><?php echo $order_statuses[0]; ?></span>
                                                         <?php } ?>
                                                     </td>
-                                                    <td rowspan="<?php echo $num_orders; ?>"><?php echo date('d/M/Y g:i', strtotime($created_dates[0])); ?></td>
-                                                    <td rowspan="<?php echo $num_orders; ?>">
+                                                    <?php
+                                                    $firstCreatedDateTime = strtotime($created_dates[0]);
+                                                    $date = date('d/M/Y', $firstCreatedDateTime);
+                                                    $time = date('g:i', $firstCreatedDateTime);
+                                                    ?>
+                                                    <td rowspan="<?php echo $num_orders; ?>"><?php echo $date; ?></td>
+                                                    <td class="text-success"><?php echo $time; ?></td>
                                                         <!-- View Order Form -->
                                                         <form action="order_summary.php" method="POST" target="_self" style="display: inline-block;">
-                                                            <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
+                                                            <td rowspan="<input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
                                                             <button type="submit" name="view_order" class="btn btn-primary btn-sm">View Order</button>
                                                         </form>
                                                         <!-- Delete Order Form -->
