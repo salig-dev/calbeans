@@ -70,41 +70,65 @@ if (isset($_POST['update_status'])) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $ret = "SELECT * FROM rpos_orders ORDER BY `created_at` DESC";
+                                    $ret = "SELECT customer_name, GROUP_CONCAT(order_id SEPARATOR ',') AS order_ids, GROUP_CONCAT(order_code SEPARATOR ',') AS order_codes, GROUP_CONCAT(prod_name SEPARATOR ',') AS prod_names, GROUP_CONCAT(prod_price SEPARATOR ',') AS prod_prices, GROUP_CONCAT(prod_qty SEPARATOR ',') AS prod_quantities, GROUP_CONCAT(order_status SEPARATOR ',') AS order_statuses, GROUP_CONCAT(created_at SEPARATOR ',') AS created_dates FROM rpos_orders GROUP BY customer_name ORDER BY `created_at` DESC";
                                     $stmt = $mysqli->prepare($ret);
                                     $stmt->execute();
                                     $res = $stmt->get_result();
-                                    while ($order = $res->fetch_object()) {
-                                        $total = ($order->prod_price * $order->prod_qty);
+                                    while ($row = $res->fetch_object()) {
+                                        $order_ids = explode(',', $row->order_ids);
+                                        $order_codes = explode(',', $row->order_codes);
+                                        $prod_names = explode(',', $row->prod_names);
+                                        $prod_prices = explode(',', $row->prod_prices);
+                                        $prod_quantities = explode(',', $row->prod_quantities);
+                                        $order_statuses = explode(',', $row->order_statuses);
+                                        $created_dates = explode(',', $row->created_dates);
+
+                                        // Get the total number of orders made by the customer
+                                        $num_orders = count($order_ids);
                                     ?>
                                         <tr>
-                                            <th class="text-success" scope="row"><?php echo $order->order_code; ?></th>
-                                            <td><?php echo $order->customer_name; ?></td>
-                                            <td class="text-success"><?php echo $order->prod_name; ?></td>
-                                            <td>$ <?php echo $order->prod_price; ?></td>
-                                            <td class="text-success"><?php echo $order->prod_qty; ?></td>
-                                            <td>$ <?php echo $total; ?></td>
-                                            <td>
+                                            <td rowspan="<?php echo $num_orders; ?>" class="text-success" scope="row"><?php echo $order_codes[0]; ?></td>
+                                            <td rowspan="<?php echo $num_orders; ?>"><?php echo $row->customer_name; ?></td>
+                                            <td class="text-success"><?php echo $prod_names[0]; ?></td>
+                                            <td>$ <?php echo $prod_prices[0]; ?></td>
+                                            <td class="text-success"><?php echo $prod_quantities[0]; ?></td>
+                                            <td rowspan="<?php echo $num_orders; ?>">$ <?php echo array_sum($prod_prices); ?></td>
+                                            <td rowspan="<?php echo $num_orders; ?>">
                                                 <?php
-                                                if ($order->order_status == '') {
+                                                if ($order_statuses[0] == '') {
                                                     echo "<span class='badge badge-danger'>Not Paid</span>";
                                                 } else {
-                                                    echo "<span class='badge badge-success'>$order->order_status</span>";
+                                                    echo "<span class='badge badge-success'>$order_statuses[0]</span>";
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
-                                            <td>
+                                            <td rowspan="<?php echo $num_orders; ?>"><?php echo date('d/M/Y g:i', strtotime($created_dates[0])); ?></td>
+                                            <td rowspan="<?php echo $num_orders; ?>">
                                                 <!-- Edit Status Form -->
-                                            <form action="order_summary.php" method="POST" target="order_summary.php">
-                                                <input type="hidden" name="order_id" value="<?php echo $order->order_id; ?>">
-                                                <td>
+                                                <form action="order_summary.php" method="POST" target="order_summary.php">
+                                                    <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
                                                     <button type="submit" name="view_order" class="btn btn-primary btn-sm">View Order</button>
-                                                </td>
-                                            </form>
+                                                </form>
+                                                <!-- <form action="order_summary.php" method="POST" target="order_summary.php">
+                                                    <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
+                                                    <button type="submit" name="update_status" class="btn btn-success btn-sm">Update Status</button>
+                                                </form> -->
                                             </td>
                                         </tr>
-                                    <?php } ?>
+                                        <?php
+                                        for ($i = 1; $i < $num_orders; $i++) {
+                                        ?>
+                                            <tr>
+                                                <td class="text-success"><?php echo $prod_names[$i]; ?></td>
+                                                <td>$ <?php echo $prod_prices[$i]; ?></td>
+                                                <td class="text-success"><?php echo $prod_quantities[$i]; ?></td>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    <?php
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
