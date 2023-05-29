@@ -136,7 +136,7 @@ require_once('partials/_head.php');
                                             </div>
 
                                             <div class="mt-4 col-md-12 ">
-                                                <input style="width:50%; margin-left:auto; margin-right:auto;" type="submit" name="make" value="Make Order" class="btn btn-success" value="">
+                                                <input style="width:50%;" type="submit" name="make" value="Make Order" class="btn btn-success" value="">
                                             </div>
                                         </div>
                                     </div>
