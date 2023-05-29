@@ -98,19 +98,39 @@ require_once('partials/_head.php');
                                 while ($prod = $res->fetch_object()) {
                                 ?>
                                     <div class="form-row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label>Product Price ($)</label>
                                             <input type="text" readonly name="prod_price" value="$ <?php echo $prod->prod_price; ?>" class="form-control">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                             <label>Product Quantity</label>
                                             <input type="text" name="prod_qty" class="form-control" value="">
+                                </div>
+                                <div class="col-md-12">
+                                            <label>Product Size</label>
+                                            <select id="prod_size" name="prod_size" class="form-control">
+                                                <option value="8oz">8oz</option>
+                                                <option value="12oz">12oz</option>
+                                            </select>  
+                                        </div> 
+                                        <div class="col-md-12">
+                                            <label>Hot/Cold</label>
+                                            <select id="hotorcold" name="hotorcold" class="form-control">
+                                                <option value="hot">Hot</option>
+                                                <option value="cold">Cold</option>
                                         </div>
+                                        <div class="col-md-12">
+                                        <tr> 
+                                            <th scope="col" > Description:</th>
+                                </tr>
+                                <td> <?php echo $prod->prod_desc; ?> </td>    
+                                        </div>                         
                                     </div>
                                 <?php } ?>
                                 <br>
+                                <br>
                                 <div class="form-row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <input type="submit" name="make" value="Make Order" class="btn btn-success" value="">
                                     </div>
                                 </div>
