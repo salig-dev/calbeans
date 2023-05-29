@@ -42,6 +42,7 @@ require_once('partials/_head.php');
                     <th scope="col">Image</th>
                     <th scope="col">Product Code</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Price</th>
                     <th scope="col">Action</th>
                   </tr>
@@ -66,8 +67,9 @@ require_once('partials/_head.php');
                         ?>
                       </td>
                       <td><?php echo $prod->prod_code; ?></td>
-                      <td><?php echo $prod->prod_name; ?></td>
-                      <td>₱ <?php echo $prod->prod_price; ?></td>
+                      <td class="__prod_name"><?php echo $prod->prod_name; ?></td>
+                      <td class="__prod_category"><?php echo $prod->prod_category; ?></td>
+                      <td class="__prod_price">₱ <?php echo $prod->prod_price; ?></td>
                       <td>
                         <a href="make_oder.php?prod_id=<?php echo $prod->prod_id; ?>&prod_name=<?php echo $prod->prod_name; ?>&prod_price=<?php echo $prod->prod_price; ?>">
                           <button class="btn btn-sm btn-warning">
