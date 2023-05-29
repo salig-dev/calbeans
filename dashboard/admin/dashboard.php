@@ -198,7 +198,7 @@ $_SESSION['total_sales'] = $total_sales;
                 </div>
             </div>
             <!-- Footer -->
-            <?php // require_once('partials/_footer.php'); ?>
+            <?php //require_once('partials/_footer.php'); ?>
         </div>
     </div>
     <!-- Argon Scripts -->
