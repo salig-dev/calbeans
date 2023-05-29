@@ -79,6 +79,22 @@ require_once('partials/_head.php');
                                         $res = $stmt->get_result();
                                         while ($cust = $res->fetch_object()) {
                                         ?>
+                                        <?php
+                                $prod_id = $_GET['prod_id'];
+                                $ret = "SELECT * FROM  rpos_products WHERE prod_id = '$prod_id'";
+                                $stmt = $mysqli->prepare($ret);
+                                $stmt->execute();
+                                $res = $stmt->get_result();
+                                while ($prod = $res->fetch_object()) {
+                                ?>
+                                        <div class="form-row mx-auto">
+                                            <div class="mt-4 col-md-12">
+                                                <tr>
+                                                    <th scope="col"> Name:</th>
+                                                </tr>
+                                                <td> <?php echo $prod->prod_name; ?> </td>
+                                            </div>
+                                            <?php } ?>
                                             <input class="form-control" readonly name="customer_name" value="<?php echo $cust->customer_name; ?>">
                                         <?php } ?>
                                         <input type="hidden" name="order_id" value="<?php echo $orderid; ?>" class="form-control">
