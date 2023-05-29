@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2023 at 11:43 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 29, 2023 at 03:02 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -68,6 +68,7 @@ INSERT INTO `rpos_customers` (`customer_id`, `customer_name`, `customer_phoneno`
 ('29c759d624f9', 'Trina L. Crowder', '5896321002', 'trina@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 13:16:18.927595'),
 ('35135b319ce3', 'Christine Moore', '7412569698', 'christine@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-04 16:29:45.133297'),
 ('3859d26cd9a5', 'Louise R. Holloman', '7856321000', 'holloman@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:38:12.149280'),
+('487e8fef4732', 'Andrew Tate', '09192639274', 'topg@gmail.com', 'a9d2f4c14695cd5e43957572a0d3dd4aabba3e6d', '2023-05-29 09:49:31.394663'),
 ('57b7541814ed', 'Howard W. Anderson', '8745554589', 'howard@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 08:35:10.959590'),
 ('7c8f2100d552', 'Melody E. Hance', '3210145550', 'melody@mail.com', 'a69681bcf334ae130217fea4505fd3c994f5683f', '2022-09-03 13:16:23.996068'),
 ('9c7fcc067bda', 'Delbert G. Campbell', '7850001256', 'delbert@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:38:56.944364'),
@@ -101,12 +102,12 @@ CREATE TABLE `rpos_orders` (
 --
 
 INSERT INTO `rpos_orders` (`order_id`, `order_code`, `customer_id`, `customer_name`, `prod_id`, `prod_name`, `prod_price`, `prod_qty`, `order_status`, `created_at`) VALUES
-('42fdc6327e', 'HOBQ-1608', 'fe6bb69bdd29', 'Brian S. Boucher', '0acceb7064', 'Sausage Sandwich', '80.00', '2', 'Pending', '2023-05-29 09:10:04.908356'),
-('4562882832', 'HKVQ-4921', '0e1ef1e5b7c7', 'clement', '6d24e7448b', 'Calbeans\' Cookie', '40.00', '3', 'Paid', '2023-05-29 08:27:51.507581'),
-('62d778a61f', 'TLBY-1605', '06549ea58afd', 'Ana J. Browne', '0c4b5c0604', 'Cortado (12oz|Hot)', '95.00', '2', 'Paid', '2023-05-29 00:02:46.429948'),
-('e0f06f3406', 'RHYC-1372', '0e1ef1e5b7c7', 'clement', 'b431559811', 'Banana Cake', '45.00', '3', 'Cancelled', '2023-05-29 04:28:57.091882'),
-('ed271e0744', 'AWUV-6359', 'fe6bb69bdd29', 'Brian S. Boucher', '0acceb7064', 'Sausage Sandwich', '80.00', '1', '', '2023-05-29 09:09:50.864520'),
-('f355e0d785', 'TDAQ-7314', '06549ea58afd', 'Ana J. Browne', '066614cccc', 'Carbonara', '100.00', '2', 'Cancelled', '2023-05-29 04:28:57.091882');
+('4562882832', 'HKVQ-4921', '0e1ef1e5b7c7', 'clement', '6d24e7448b', 'Calbeans\' Cookie', '40.00', '3', 'Paid', '2023-05-28 12:03:13.685130'),
+('5d41685be0', 'LOPM-2819', '487e8fef4732', 'Andrew Tate', '6d24e7448b', 'Calbeans\' Cookie', '40.00', '23', 'Paid', '2023-05-29 10:26:50.912433'),
+('62d778a61f', 'TLBY-1605', '06549ea58afd', 'Ana J. Browne', '0c4b5c0604', 'Cortado (12oz|Hot)', '95.00', '2', 'Paid', '2023-05-28 12:19:21.100158'),
+('e0f06f3406', 'RHYC-1372', '0e1ef1e5b7c7', 'clement', 'b431559811', 'Banana Cake', '45.00', '3', '', '2023-05-28 11:40:38.917291'),
+('e19d21255a', 'AYCZ-4615', '487e8fef4732', 'Andrew Tate', '6d24e7448b', 'Calbeans\' Cookie', '40.00', '2', '', '2023-05-29 11:21:28.674320'),
+('f355e0d785', 'TDAQ-7314', '06549ea58afd', 'Ana J. Browne', '066614cccc', 'Carbonara', '100.00', '2', '', '2023-05-28 12:19:00.885522');
 
 -- --------------------------------------------------------
 
@@ -176,73 +177,74 @@ CREATE TABLE `rpos_products` (
   `prod_img` varchar(200) NOT NULL,
   `prod_desc` longtext NOT NULL,
   `prod_price` varchar(200) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `prod_category` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `rpos_products`
 --
 
-INSERT INTO `rpos_products` (`prod_id`, `prod_code`, `prod_name`, `prod_img`, `prod_desc`, `prod_price`, `created_at`) VALUES
-('066614cccc', 'FEIP-2710', 'Carbonara', '', 'Creamy sauce infused with bacon, a luscious Italian pasta favorite.', '100.00', '2023-05-28 07:37:07.460368'),
-('06dc36c1be', 'FCWU-5762', 'Americano (8oz|Hot/Cold)', '', 'Bold, robust Americano: a classic black coffee with a kick.', '69.00', '2023-05-28 07:04:40.696020'),
-('0acceb7064', 'OECH-1420', 'Sausage Sandwich', '', 'Juicy, flavorful sausage in a toasted bun—satisfying and savory.', '80.00', '2023-05-28 07:31:44.819847'),
-('0c0a277431', 'ZLDP-0946', '500g Unconditional Sweetness of Mocha (arabica, robusta)', '', 'A harmonious blend of rich chocolate and aromatic coffee beans.', '290.00', '2023-05-28 08:05:25.055738'),
-('0c4b5c0604', 'JRZN-9518', 'Cortado (12oz|Hot)', '', 'Smooth, balanced cortado: a harmonious blend of espresso and milk.', '95.00', '2023-05-28 06:55:52.973707'),
-('108933eeb7', 'MNZX-2768', 'Tea (Green or Black) 12oz|Hot', '', 'Aromatic and soothing brew for moments of relaxation and refreshment.', '50.00', '2023-05-28 07:17:29.665690'),
-('14c7b6370e', 'QZHM-0391', 'Mocha (12oz|Hot)', '', 'Indulgent mocha magic: espresso meets chocolate for pure bliss.', '95.00', '2023-05-28 06:56:34.647441'),
-('194d986f01', 'PBEV-1456', 'Pesto', '', 'Fragrant basil, garlic, and pine nut sauce elevate any pasta.', '100.00', '2023-05-28 07:37:18.547685'),
-('1e0fa41eee', 'ICFU-1406', 'Mocha (16oz|Cold)', '', 'Indulgent mocha magic: espresso meets chocolate for pure bliss.', '100.00', '2023-05-28 06:57:01.798339'),
-('26a71f2775', 'EWIC-4967', '1000g Total Dark roast Barako (excelsa)', '', 'Intensely flavorful barako coffee grounds for a bold morning brew.', '290.00', '2023-05-28 08:02:18.833629'),
-('27ab65b2b4', 'LVCB-1093', 'Tuna Sandwich', '', 'Savor our irresistible tuna sandwich: Fresh, flavorful, and satisfying.', '80.00', '2023-05-28 07:27:22.963115'),
-('2b976e49a0', 'CEWV-9438', 'Caramel Macchiato * (12oz|Hot)', '', 'Caramel Macchiato: luscious espresso delight with a caramel swirl.', '100.00', '2023-05-28 06:58:24.593261'),
-('2fdec9bdfb', 'UJAK-9614', 'Caramel Macchiato * (16oz|Cold)', '', 'Caramel Macchiato: luscious espresso delight with a caramel swirl.', '120.00', '2023-05-28 06:58:54.452827'),
-('31dfcc94cf', 'SYQP-3710', 'Latte (12oz|Hot)', '', 'Creamy, velvety latte: espresso perfection with a frothy milk embrace.', '89.00', '2023-05-28 07:01:49.523616'),
-('3757db9c24', 'IXKM-2594', '500g Limited Premium Sagado Besao (arabica)', '', 'Distinctively smooth and earthy coffee from the highlands of Sagada.', '650.00', '2023-05-28 08:06:27.256098'),
-('3adfdee116', 'HIPF-5346', 'Latte (16oz|Cold)', '', 'Creamy, velvety latte: espresso perfection with a frothy milk embrace.', '95.00', '2023-05-28 07:02:11.591080'),
-('3d19e0bf27', 'EMBH-6714', 'Affogato (8oz|Hot/Cold)', '', 'Decadent affogato: espresso poured over creamy gelato for pure indulgence.', '90.00', '2023-05-28 07:04:29.093209'),
-('3ea71f32b6', 'SKPY-7285', '1000g Irresistible taste of Vanilla (arabica, robusta)', '', 'Smooth and aromatic vanilla-infused coffee grounds for a delightful cup.', '580.00', '2023-05-28 08:08:03.963845'),
-('4c15f296c2', 'KRJC-3085', '500g Total Dark roast Barako (excelsa)', '', 'Intensely flavorful barako coffee grounds for a bold morning brew.', '250.00', '2023-05-28 08:03:47.462030'),
-('4e68e0dd49', 'QLKW-0914', 'Choco Macchiato * (12oz|Hot)', '', 'Decadent chocolate-infused espresso topped with velvety milk foam.', '100.00', '2023-05-28 07:05:21.682288'),
-('5d374a39a5', 'AHUF-0428', 'Choco Bun', '', 'Decadent chocolate-filled bun, a blissful treat for chocolate enthusiasts.', '70.00', '2023-05-28 07:30:31.559620'),
-('5d66c79953', 'GOEW-9248', 'Choco Macchiato * (16oz|Cold)', '', 'Decadent chocolate-infused espresso topped with velvety milk foam.', '120.00', '2023-05-28 07:05:53.791586'),
-('6728b551b6', 'CWXN-6734', '250g Limited Premium Sagado Besao (arabica)', '', 'Distinctively smooth and earthy coffee from the highlands of Sagada.', '330.00', '2023-05-28 08:06:10.630129'),
-('6b9f4855d7', 'QPJX-1679', 'Choco (16oz|Cold)', '', 'Decadent and rich cocoa indulgence, crafted to satisfy chocolate lovers.', '95.00', '2023-05-28 07:18:20.327324'),
-('6d24e7448b', 'YMEJ-7285', 'Calbeans\' Cookie', '', 'Freshly baked cookies: warm, gooey perfection with every delicious bite.', '40.00', '2023-05-28 08:32:34.107513'),
-('6dfccfd66c', 'EDZK-5394', 'Choco (12oz|Hot)', '', 'Decadent and rich cocoa indulgence, crafted to satisfy chocolate lovers.', '65.00', '2023-05-28 07:18:04.029679'),
-('7d19b156ab', 'ZGSD-7918', 'Cream Cheese Bun', '', 'Creamy, indulgent, and irresistible cream cheese filling in a soft bun.', '80.00', '2023-05-28 07:27:45.692219'),
-('8149a695a0', 'MDQV-0921', 'Matcha Cream (12oz|Hot)', '', 'A satisfying blend of milky cream goodness and Matcha powder.', '90.00', '2023-05-28 07:18:53.654695'),
-('826e6f687f', 'AYFW-2683', 'Matcha Macchiato * (12oz|Hot)', '', 'A pleasing combination of Matcha and local espresso latte.', '120.00', '2023-05-28 07:06:37.002390'),
-('86176db9d7', 'NQKP-6857', '500g Perseverance of the aromatic Hazelnut (arabica, robusta)', '', 'Rich and nutty hazelnut-infused coffee grounds for a delightful brew.', '290.00', '2023-05-28 08:10:15.859896'),
-('9049286d19', 'GSFJ-2017', 'Nachos', '', 'Savory nacho delight: crispy chips layered with cheesy goodness.', '65.00', '2023-05-28 07:37:37.987221'),
-('91bd273ef5', 'WZPV-7930', 'Matcha Cream (16oz|Cold)', '', 'A satisfying blend of milky cream goodness and Matcha powder.', '105.00', '2023-05-28 07:19:12.771665'),
-('97972e8d63', 'CVWJ-6492', 'Matcha Macchiato * (16oz|Cold)', '', 'A pleasing combination of Matcha and local espresso latte.', '120.00', '2023-05-28 07:07:02.199488'),
-('9ab8f0ffe9', 'IDRZ-9401', '1000g Limited Premium Sagado Besao (arabica)', '', 'Distinctively smooth and earthy coffee from the highlands of Sagada.', '1,300.00', '2023-05-28 08:12:24.699921'),
-('a419f2ef1c', 'EPNX-3728', 'Vanilla (12oz|Hot)', '', 'Smooth and aromatic vanilla blend that delights the senses.', '69.00', '2023-05-28 07:10:02.737076'),
-('a585503287', 'AHSN-0879', '1000g Unconditional Sweetness of Mocha (arabica, robusta)', '', 'A harmonious blend of rich chocolate and aromatic coffee beans.', '580.00', '2023-05-28 08:05:46.651930'),
-('a5931158fe', 'ELQN-5204', 'Vanilla (16oz|Cold)', '', 'Smooth and aromatic vanilla blend that delights the senses.', '100.00', '2023-05-28 07:10:26.238500'),
-('a64b338943', 'TYFA-1628', 'Red Pasta', '', 'Rich tomato sauce with perfectly cooked noodles—a flavorful delight', '100.00', '2023-05-28 07:36:51.488985'),
-('b2f9c250fd', 'XNWR-2768', 'Hazelnut * (12oz|Hot)', '', 'Rich and nutty indulgence with a hint of toasted sweetness.', '69.00', '2023-05-28 07:11:09.815522'),
-('b431559811', 'ENTZ-1567', 'Banana Cake', '', 'Moist banana bliss: a slice of tropical sweetness awaits you.', '45.00', '2023-05-28 08:33:16.802314'),
-('bb9c2e17a4', 'EQOG-4531', '250g Unconditional Sweetness of Mocha (arabica, robusta)', '', 'A harmonious blend of rich chocolate and aromatic coffee beans.', '150.00', '2023-05-28 08:05:08.793226'),
-('bd200ef837', 'HEIY-6034', 'Hazelnut * (16oz|Cold)', '', 'Rich and nutty indulgence with a hint of toasted sweetness.', '100.00', '2023-05-28 07:11:28.006252'),
-('cc992bce1e', 'HOFR-6492', '250g Irresistible taste of Vanilla (arabica, robusta)', '', 'Smooth and aromatic vanilla-infused coffee grounds for a delightful cup.', '150.00', '2023-05-28 08:07:20.657502'),
-('cfe50ed94d', 'FEAZ-9625', 'Matcha Banana Smoothie (16oz|Cold)', '', 'A refreshing fusion of fresh banana and milky matcha.', '115.00', '2023-05-28 07:19:41.459442'),
-('cff0cb495a', 'ZOBW-2640', 'Vietnamese (12oz|Hot)', '', 'Bold and vibrant blend with a touch of exotic flair.', '69.00', '2023-05-28 07:12:14.800142'),
-('d186da4199', 'JPOK-7139', '250g Total Dark roast Barako (excelsa)', '', 'Intensely flavorful barako coffee grounds for a bold morning brew.', '130.00', '2023-05-28 08:01:33.298246'),
-('d217b0f20f', 'FTGL-9651', '500g Irresistible taste of Vanilla (arabica, robusta)', '', 'Smooth and aromatic vanilla-infused coffee grounds for a delightful cup.', '290.00', '2023-05-28 08:07:35.781979'),
-('d57cd89073', 'ZGQW-9480', 'Vietnamese (16oz|Cold)', '', 'Bold and vibrant blend with a touch of exotic flair.', '100.00', '2023-05-28 07:12:37.487702'),
-('d9aed17627', 'FIKD-9703', 'Irish Cream (12oz|Hot)', '', 'Velvety smooth blend with the enchanting flavors of Irish cream.', '69.00', '2023-05-28 07:13:07.831670'),
-('db5206ee2c', 'HNQD-0987', 'Cheesecake', '', 'Sinfully smooth cheesecake: a divine treat for coffee enthusiasts.', '110.00', '2023-05-28 07:35:28.833505'),
-('e2195f8190', 'HKCR-2178', 'Irish Cream (16oz|Cold)', '', 'Velvety smooth blend with the enchanting flavors of Irish cream.', '100.00', '2023-05-28 07:13:35.571025'),
-('e241704b97', 'BFWL-2704', 'Cheeseburger', '', 'Juicy beef patty, melted cheese, and fresh toppings in toasted bun.', '120.00', '2023-05-28 07:31:58.497955'),
-('e2af35d095', 'IDLC-7819', 'Black (12oz|Hot)', '', 'Bold and intense brew with a rich, robust flavor profile.', '55.00', '2023-05-28 07:14:11.353937'),
-('e769e274a3', 'AHRW-3894', 'Black (16oz|Cold)', '', 'Bold and intense brew with a rich, robust flavor profile.', '60.00', '2023-05-28 07:14:29.026348'),
-('ea557bdf5c', 'JQZY-4623', '250g Perseverance of the aromatic Hazelnut (arabica, robusta)', '', 'Rich and nutty hazelnut-infused coffee grounds for a delightful brew.', '150.00', '2023-05-28 08:09:38.837377'),
-('ec18c5a4f0', 'PQFV-7049', 'Flat White (16oz|Cold)', '', 'Creamy and velvety espresso with a delicate milk micro foam layer.', '80.00', '2023-05-28 07:15:08.882489'),
-('f4ce3927bf', 'EAHD-1980', 'Caramel (12oz|Hot)', '', 'Smooth and luscious blend infused with irresistible caramel sweetness. Smooth and luscious blend infused with irresistible caramel sweetness.', '69.00', '2023-05-28 07:15:57.826222'),
-('f9c2770a32', 'YXLA-2603', 'Caramel (16oz|Cold)', '', 'Smooth and luscious blend infused with irresistible caramel sweetness.', '100.00', '2023-05-28 07:16:22.162519'),
-('fc814cd29e', 'QFEO-0589', '1000g Perseverance of the aromatic Hazelnut (arabica, robusta)', '', 'Rich and nutty hazelnut-infused coffee grounds for a delightful brew.', '580.00', '2023-05-28 08:10:30.226179');
+INSERT INTO `rpos_products` (`prod_id`, `prod_code`, `prod_name`, `prod_img`, `prod_desc`, `prod_price`, `created_at`, `prod_category`) VALUES
+('066614cccc', 'FEIP-2710', 'Carbonara', '', 'Creamy sauce infused with bacon, a luscious Italian pasta favorite.', '100.00', '2023-05-29 12:30:52.071873', 'Pasta'),
+('06dc36c1be', 'FCWU-5762', 'Americano (8oz|Hot/Cold)', '', 'Bold, robust Americano: a classic black coffee with a kick.', '69.00', '2023-05-29 12:52:02.188823', 'Espresso'),
+('0acceb7064', 'OECH-1420', 'Sausage Sandwich', '', 'Juicy, flavorful sausage in a toasted bun—satisfying and savory.', '80.00', '2023-05-29 12:24:34.503281', 'Sandwich'),
+('0c0a277431', 'ZLDP-0946', '500g Unconditional Sweetness of Mocha (arabica, robusta)', '', 'A harmonious blend of rich chocolate and aromatic coffee beans.', '290.00', '2023-05-29 12:36:29.327879', 'Coffee Beans / Ground'),
+('0c4b5c0604', 'JRZN-9518', 'Cortado (12oz|Hot)', '', 'Smooth, balanced cortado: a harmonious blend of espresso and milk.', '95.00', '2023-05-29 12:53:02.343827', 'Espresso'),
+('108933eeb7', 'MNZX-2768', 'Tea (Green or Black) 12oz|Hot', '', 'Aromatic and soothing brew for moments of relaxation and refreshment.', '50.00', '2023-05-29 13:01:32.607979', 'Non-Coffee Drinks\n'),
+('14c7b6370e', 'QZHM-0391', 'Mocha (12oz|Hot)', '', 'Indulgent mocha magic: espresso meets chocolate for pure bliss.', '95.00', '2023-05-29 12:53:46.394941', 'Espresso'),
+('194d986f01', 'PBEV-1456', 'Pesto', '', 'Fragrant basil, garlic, and pine nut sauce elevate any pasta.', '100.00', '2023-05-29 12:30:36.946584', 'Pasta'),
+('1e0fa41eee', 'ICFU-1406', 'Mocha (16oz|Cold)', '', 'Indulgent mocha magic: espresso meets chocolate for pure bliss.', '100.00', '2023-05-29 12:53:48.759629', 'Espresso'),
+('26a71f2775', 'EWIC-4967', '1000g Total Dark roast Barako (excelsa)', '', 'Intensely flavorful barako coffee grounds for a bold morning brew.', '290.00', '2023-05-29 12:35:18.024442', 'Coffee Beans / Ground'),
+('27ab65b2b4', 'LVCB-1093', 'Tuna Sandwich', '', 'Savor our irresistible tuna sandwich: Fresh, flavorful, and satisfying.', '80.00', '2023-05-29 12:23:58.243563', 'Sandwich'),
+('2b976e49a0', 'CEWV-9438', 'Caramel Macchiato * (12oz|Hot)', '', 'Caramel Macchiato: luscious espresso delight with a caramel swirl.', '100.00', '2023-05-29 12:52:33.179212', 'Espresso'),
+('2fdec9bdfb', 'UJAK-9614', 'Caramel Macchiato * (16oz|Cold)', '', 'Caramel Macchiato: luscious espresso delight with a caramel swirl.', '120.00', '2023-05-29 12:52:35.330160', 'Espresso'),
+('31dfcc94cf', 'SYQP-3710', 'Latte (12oz|Hot)', '', 'Creamy, velvety latte: espresso perfection with a frothy milk embrace.', '89.00', '2023-05-29 12:53:27.007230', 'Espresso'),
+('3757db9c24', 'IXKM-2594', '500g Limited Premium Sagado Besao (arabica)', '', 'Distinctively smooth and earthy coffee from the highlands of Sagada.', '650.00', '2023-05-29 12:35:10.043815', 'Coffee Beans / Ground'),
+('3adfdee116', 'HIPF-5346', 'Latte (16oz|Cold)', '', 'Creamy, velvety latte: espresso perfection with a frothy milk embrace.', '95.00', '2023-05-29 12:53:24.481136', 'Espresso'),
+('3d19e0bf27', 'EMBH-6714', 'Affogato (8oz|Hot/Cold)', '', 'Decadent affogato: espresso poured over creamy gelato for pure indulgence.', '90.00', '2023-05-29 12:51:56.830592', 'Espresso'),
+('3ea71f32b6', 'SKPY-7285', '1000g Irresistible taste of Vanilla (arabica, robusta)', '', 'Smooth and aromatic vanilla-infused coffee grounds for a delightful cup.', '580.00', '2023-05-29 12:35:14.915577', 'Coffee Beans / Ground'),
+('4c15f296c2', 'KRJC-3085', '500g Total Dark roast Barako (excelsa)', '', 'Intensely flavorful barako coffee grounds for a bold morning brew.', '250.00', '2023-05-29 12:36:24.749901', 'Coffee Beans / Ground'),
+('4e68e0dd49', 'QLKW-0914', 'Choco Macchiato * (12oz|Hot)', '', 'Decadent chocolate-infused espresso topped with velvety milk foam.', '100.00', '2023-05-29 12:52:47.788299', 'Espresso'),
+('5d374a39a5', 'AHUF-0428', 'Choco Bun', '', 'Decadent chocolate-filled bun, a blissful treat for chocolate enthusiasts.', '70.00', '2023-05-29 12:24:23.362790', 'Sandwich'),
+('5d66c79953', 'GOEW-9248', 'Choco Macchiato * (16oz|Cold)', '', 'Decadent chocolate-infused espresso topped with velvety milk foam.', '120.00', '2023-05-29 12:52:50.235127', 'Espresso'),
+('6728b551b6', 'CWXN-6734', '250g Limited Premium Sagado Besao (arabica)', '', 'Distinctively smooth and earthy coffee from the highlands of Sagada.', '330.00', '2023-05-29 12:35:06.635083', 'Coffee Beans / Ground'),
+('6b9f4855d7', 'QPJX-1679', 'Choco (16oz|Cold)', '', 'Decadent and rich cocoa indulgence, crafted to satisfy chocolate lovers.', '95.00', '2023-05-29 12:33:14.952418', 'Espresso'),
+('6d24e7448b', 'YMEJ-7285', 'Calbeans\' Cookie', '', 'Freshly baked cookies: warm, gooey perfection with every delicious bite.', '40.00', '2023-05-29 12:28:31.661888', 'Pastries'),
+('6dfccfd66c', 'EDZK-5394', 'Choco (12oz|Hot)', '', 'Decadent and rich cocoa indulgence, crafted to satisfy chocolate lovers.', '65.00', '2023-05-29 12:33:13.006755', 'Espresso'),
+('7d19b156ab', 'ZGSD-7918', 'Cream Cheese Bun', '', 'Creamy, indulgent, and irresistible cream cheese filling in a soft bun.', '80.00', '2023-05-29 12:24:12.138586', 'Sandwich'),
+('8149a695a0', 'MDQV-0921', 'Matcha Cream (12oz|Hot)', '', 'A satisfying blend of milky cream goodness and Matcha powder.', '90.00', '2023-05-29 12:33:26.055228', 'Non-Coffee Drinks'),
+('826e6f687f', 'AYFW-2683', 'Matcha Macchiato * (12oz|Hot)', '', 'A pleasing combination of Matcha and local espresso latte.', '120.00', '2023-05-29 12:32:19.124802', 'Espresso'),
+('86176db9d7', 'NQKP-6857', '500g Perseverance of the aromatic Hazelnut (arabica, robusta)', '', 'Rich and nutty hazelnut-infused coffee grounds for a delightful brew.', '290.00', '2023-05-29 12:35:03.523215', 'Coffee Beans / Ground'),
+('9049286d19', 'GSFJ-2017', 'Nachos', '', 'Savory nacho delight: crispy chips layered with cheesy goodness.', '65.00', '2023-05-29 12:31:06.620599', 'Starters'),
+('91bd273ef5', 'WZPV-7930', 'Matcha Cream (16oz|Cold)', '', 'A satisfying blend of milky cream goodness and Matcha powder.', '105.00', '2023-05-29 12:53:33.721270', 'Espresso'),
+('97972e8d63', 'CVWJ-6492', 'Matcha Macchiato * (16oz|Cold)', '', 'A pleasing combination of Matcha and local espresso latte.', '120.00', '2023-05-29 12:32:21.766721', 'Espresso'),
+('9ab8f0ffe9', 'IDRZ-9401', '1000g Limited Premium Sagado Besao (arabica)', '', 'Distinctively smooth and earthy coffee from the highlands of Sagada.', '1,300.00', '2023-05-29 12:34:55.764572', 'Coffee Beans / Ground'),
+('a419f2ef1c', 'EPNX-3728', 'Vanilla (12oz|Hot)', '', 'Smooth and aromatic vanilla blend that delights the senses.', '69.00', '2023-05-29 12:14:48.751530', 'Fresh Black Coffee/Cold Brew'),
+('a585503287', 'AHSN-0879', '1000g Unconditional Sweetness of Mocha (arabica, robusta)', '', 'A harmonious blend of rich chocolate and aromatic coffee beans.', '580.00', '2023-05-29 12:34:58.898326', 'Coffee Beans / Ground'),
+('a5931158fe', 'ELQN-5204', 'Vanilla (16oz|Cold)', '', 'Smooth and aromatic vanilla blend that delights the senses.', '100.00', '2023-05-29 12:14:45.573342', 'Fresh Black Coffee/Cold Brew'),
+('a64b338943', 'TYFA-1628', 'Red Pasta', '', 'Rich tomato sauce with perfectly cooked noodles—a flavorful delight', '100.00', '2023-05-29 12:30:15.782260', 'Pasta'),
+('b2f9c250fd', 'XNWR-2768', 'Hazelnut * (12oz|Hot)', '', 'Rich and nutty indulgence with a hint of toasted sweetness.', '69.00', '2023-05-29 12:15:34.690251', 'Fresh Black Coffee/Cold Brew'),
+('b431559811', 'ENTZ-1567', 'Banana Cake', '', 'Moist banana bliss: a slice of tropical sweetness awaits you.', '45.00', '2023-05-29 12:29:39.171508', 'Pastries'),
+('bb9c2e17a4', 'EQOG-4531', '250g Unconditional Sweetness of Mocha (arabica, robusta)', '', 'A harmonious blend of rich chocolate and aromatic coffee beans.', '150.00', '2023-05-29 12:34:53.226143', 'Coffee Beans / Ground'),
+('bd200ef837', 'HEIY-6034', 'Hazelnut * (16oz|Cold)', '', 'Rich and nutty indulgence with a hint of toasted sweetness.', '100.00', '2023-05-29 12:15:32.821034', 'Fresh Black Coffee/Cold Brew'),
+('cc992bce1e', 'HOFR-6492', '250g Irresistible taste of Vanilla (arabica, robusta)', '', 'Smooth and aromatic vanilla-infused coffee grounds for a delightful cup.', '150.00', '2023-05-29 12:35:20.885536', 'Coffee Beans / Ground'),
+('cfe50ed94d', 'FEAZ-9625', 'Matcha Banana Smoothie (16oz|Cold)', '', 'A refreshing fusion of fresh banana and milky matcha.', '115.00', '2023-05-29 12:54:10.621889', 'Non-Coffee Drinks'),
+('cff0cb495a', 'ZOBW-2640', 'Vietnamese (12oz|Hot)', '', 'Bold and vibrant blend with a touch of exotic flair.', '69.00', '2023-05-29 12:14:39.411636', 'Fresh Black Coffee/Cold Brew'),
+('d186da4199', 'JPOK-7139', '250g Total Dark roast Barako (excelsa)', '', 'Intensely flavorful barako coffee grounds for a bold morning brew.', '130.00', '2023-05-29 12:35:22.479663', 'Coffee Beans / Ground'),
+('d217b0f20f', 'FTGL-9651', '500g Irresistible taste of Vanilla (arabica, robusta)', '', 'Smooth and aromatic vanilla-infused coffee grounds for a delightful cup.', '290.00', '2023-05-29 12:35:25.562290', 'Coffee Beans / Ground'),
+('d57cd89073', 'ZGQW-9480', 'Vietnamese (16oz|Cold)', '', 'Bold and vibrant blend with a touch of exotic flair.', '100.00', '2023-05-29 12:14:34.522752', 'Fresh Black Coffee/Cold Brew'),
+('d9aed17627', 'FIKD-9703', 'Irish Cream (12oz|Hot)', '', 'Velvety smooth blend with the enchanting flavors of Irish cream.', '69.00', '2023-05-29 12:15:08.695029', 'Fresh Black Coffee/Cold Brew'),
+('db5206ee2c', 'HNQD-0987', 'Cheesecake', '', 'Sinfully smooth cheesecake: a divine treat for coffee enthusiasts.', '110.00', '2023-05-29 12:28:21.423241', 'Pastries'),
+('e2195f8190', 'HKCR-2178', 'Irish Cream (16oz|Cold)', '', 'Velvety smooth blend with the enchanting flavors of Irish cream.', '100.00', '2023-05-29 12:15:06.153980', 'Fresh Black Coffee/Cold Brew'),
+('e241704b97', 'BFWL-2704', 'Cheeseburger', '', 'Juicy beef patty, melted cheese, and fresh toppings in toasted bun.', '120.00', '2023-05-29 12:27:58.849945', 'Sandwich'),
+('e2af35d095', 'IDLC-7819', 'Black (12oz|Hot)', '', 'Bold and intense brew with a rich, robust flavor profile.', '55.00', '2023-05-29 12:52:20.222888', 'Fresh Black Coffee/Cold Brew\n'),
+('e769e274a3', 'AHRW-3894', 'Black (16oz|Cold)', '', 'Bold and intense brew with a rich, robust flavor profile.', '60.00', '2023-05-29 12:14:11.484567', 'Fresh Black Coffee/Cold Brew'),
+('ea557bdf5c', 'JQZY-4623', '250g Perseverance of the aromatic Hazelnut (arabica, robusta)', '', 'Rich and nutty hazelnut-infused coffee grounds for a delightful brew.', '150.00', '2023-05-29 12:34:46.223243', 'Coffee Beans / Ground'),
+('ec18c5a4f0', 'PQFV-7049', 'Flat White (16oz|Cold)', '', 'Creamy and velvety espresso with a delicate milk micro foam layer.', '80.00', '2023-05-29 12:15:04.173678', 'Fresh Black Coffee/Cold Brew'),
+('f4ce3927bf', 'EAHD-1980', 'Caramel (12oz|Hot)', '', 'Smooth and luscious blend infused with irresistible caramel sweetness. Smooth and luscious blend infused with irresistible caramel sweetness.', '69.00', '2023-05-29 12:16:09.356163', 'Fresh Black Coffee/Cold Brew'),
+('f9c2770a32', 'YXLA-2603', 'Caramel (16oz|Cold)', '', 'Smooth and luscious blend infused with irresistible caramel sweetness.', '100.00', '2023-05-29 12:16:03.413172', 'Fresh Black Coffee/Cold Brew'),
+('fc814cd29e', 'QFEO-0589', '1000g Perseverance of the aromatic Hazelnut (arabica, robusta)', '', 'Rich and nutty hazelnut-infused coffee grounds for a delightful brew.', '580.00', '2023-05-29 12:34:43.884392', 'Coffee Beans / Ground');
 
 -- --------------------------------------------------------
 
