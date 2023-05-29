@@ -105,7 +105,7 @@ require_once('partials/_head.php');
             </div>
             <!-- Footer -->
             <?php
-            require_once('partials/_footer.php');
+            // require_once('partials/_footer.php');
             ?>
         </div>
     </div>

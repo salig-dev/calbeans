@@ -108,7 +108,7 @@ require_once('config/code-generator.php');
     </div>
     <!-- Footer -->
     <?php
-    require_once('partials/_footer.php');
+    // require_once('partials/_footer.php');
     ?>
     <!-- Argon Scripts -->
     <?php
