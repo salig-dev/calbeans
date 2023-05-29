@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2022 at 06:41 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: May 29, 2023 at 11:43 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -31,7 +32,7 @@ CREATE TABLE `rpos_admin` (
   `admin_name` varchar(200) NOT NULL,
   `admin_email` varchar(200) NOT NULL,
   `admin_password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `rpos_admin`
@@ -52,8 +53,8 @@ CREATE TABLE `rpos_customers` (
   `customer_phoneno` varchar(200) NOT NULL,
   `customer_email` varchar(200) NOT NULL,
   `customer_password` varchar(200) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `rpos_customers`
@@ -61,6 +62,7 @@ CREATE TABLE `rpos_customers` (
 
 INSERT INTO `rpos_customers` (`customer_id`, `customer_name`, `customer_phoneno`, `customer_email`, `customer_password`, `created_at`) VALUES
 ('06549ea58afd', 'Ana J. Browne', '4589698780', 'anaj@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:39:48.523820'),
+('0e1ef1e5b7c7', 'clement', '123', 'customer@mail.com', '51cd91ab70d4dd85eddcd7cad6b396eeb5102c95', '2023-05-28 11:40:10.461376'),
 ('1fc1f694985d', 'Jane Doe', '2145896547', 'janed@mail.com', 'a69681bcf334ae130217fea4505fd3c994f5683f', '2022-09-03 13:39:13.076592'),
 ('27e4a5bc74c2', 'Tammy R. Polley', '4589654780', 'tammy@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:37:47.049438'),
 ('29c759d624f9', 'Trina L. Crowder', '5896321002', 'trina@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 13:16:18.927595'),
@@ -91,25 +93,20 @@ CREATE TABLE `rpos_orders` (
   `prod_price` varchar(200) NOT NULL,
   `prod_qty` varchar(200) NOT NULL,
   `order_status` varchar(200) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `rpos_orders`
 --
 
 INSERT INTO `rpos_orders` (`order_id`, `order_code`, `customer_id`, `customer_name`, `prod_id`, `prod_name`, `prod_price`, `prod_qty`, `order_status`, `created_at`) VALUES
-('019661e097', 'AEHM-0653', '06549ea58afd', 'Ana J. Browne', 'bd200ef837', 'Turkish Coffee', '8', '1', 'Paid', '2022-09-03 13:26:00.389027'),
-('49c1bd8086', 'IUSP-9453', 'fe6bb69bdd29', 'Brian S. Boucher', 'd57cd89073', 'Country Fried Steak', '10', '1', 'Paid', '2022-09-03 11:50:40.812796'),
-('514ada5047', 'OTEV-8532', '3859d26cd9a5', 'Louise R. Holloman', '0c4b5c0604', 'Spaghetti Bolognese', '15', '1', 'Paid', '2022-09-03 13:13:39.042869'),
-('6466fd5ee5', 'COXP-6018', '7c8f2100d552', 'Melody E. Hance', '31dfcc94cf', 'Buffalo Wings', '11', '2', 'Paid', '2022-09-03 12:17:44.680896'),
-('80ab270866', 'JFMB-0731', '35135b319ce3', 'Christine Moore', '97972e8d63', 'Irish Coffee', '11', '1', 'Paid', '2022-09-04 16:37:03.716697'),
-('8815e7edfc', 'QOEH-8613', '29c759d624f9', 'Trina L. Crowder', '2b976e49a0', 'Cheeseburger', '3', '3', 'Paid', '2022-09-03 12:02:32.985451'),
-('a27f1d87be', 'EJKA-4501', '35135b319ce3', 'Christine Moore', 'ec18c5a4f0', 'Corn Dogs', '4', '2', 'Paid', '2022-09-04 16:31:54.581984'),
-('a74337db7e', 'ZPXD-6951', 'e711dcc579d9', 'Julie R. Martin', 'a5931158fe', 'Pulled Pork', '8', '2', 'Paid', '2022-09-03 13:12:47.079248'),
-('af52d0022d', 'FNAB-9142', '35135b319ce3', 'Christine Moore', '2fdec9bdfb', 'Jambalaya', '9', '2', 'Paid', '2022-09-04 16:32:14.949302'),
-('c051fc38eb', 'ONSY-2465', '57b7541814ed', 'Howard W. Anderson', '826e6f687f', 'Margherita Pizza', '12', '1', 'Paid', '2022-09-03 08:35:50.570496'),
-('fc79a55455', 'INHG-0875', '9c7fcc067bda', 'Delbert G. Campbell', '3adfdee116', 'Enchiladas', '10', '1', 'Paid', '2022-09-04 16:35:22.539542');
+('42fdc6327e', 'HOBQ-1608', 'fe6bb69bdd29', 'Brian S. Boucher', '0acceb7064', 'Sausage Sandwich', '80.00', '2', 'Pending', '2023-05-29 09:10:04.908356'),
+('4562882832', 'HKVQ-4921', '0e1ef1e5b7c7', 'clement', '6d24e7448b', 'Calbeans\' Cookie', '40.00', '3', 'Paid', '2023-05-29 08:27:51.507581'),
+('62d778a61f', 'TLBY-1605', '06549ea58afd', 'Ana J. Browne', '0c4b5c0604', 'Cortado (12oz|Hot)', '95.00', '2', 'Paid', '2023-05-29 00:02:46.429948'),
+('e0f06f3406', 'RHYC-1372', '0e1ef1e5b7c7', 'clement', 'b431559811', 'Banana Cake', '45.00', '3', 'Cancelled', '2023-05-29 04:28:57.091882'),
+('ed271e0744', 'AWUV-6359', 'fe6bb69bdd29', 'Brian S. Boucher', '0acceb7064', 'Sausage Sandwich', '80.00', '1', '', '2023-05-29 09:09:50.864520'),
+('f355e0d785', 'TDAQ-7314', '06549ea58afd', 'Ana J. Browne', '066614cccc', 'Carbonara', '100.00', '2', 'Cancelled', '2023-05-29 04:28:57.091882');
 
 -- --------------------------------------------------------
 
@@ -123,8 +120,8 @@ CREATE TABLE `rpos_pass_resets` (
   `reset_token` varchar(200) NOT NULL,
   `reset_email` varchar(200) NOT NULL,
   `reset_status` varchar(200) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `rpos_pass_resets`
@@ -146,8 +143,8 @@ CREATE TABLE `rpos_payments` (
   `customer_id` varchar(200) NOT NULL,
   `pay_amt` varchar(200) NOT NULL,
   `pay_method` varchar(200) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `rpos_payments`
@@ -179,40 +176,73 @@ CREATE TABLE `rpos_products` (
   `prod_img` varchar(200) NOT NULL,
   `prod_desc` longtext NOT NULL,
   `prod_price` varchar(200) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `rpos_products`
 --
 
 INSERT INTO `rpos_products` (`prod_id`, `prod_code`, `prod_name`, `prod_img`, `prod_desc`, `prod_price`, `created_at`) VALUES
-('06dc36c1be', 'FCWU-5762', 'Philly Cheesesteak', 'cheesestk.jpg', 'A cheesesteak is a sandwich made from thinly sliced pieces of beefsteak and melted cheese in a long hoagie roll. A popular regional fast food, it has its roots in the U.S. city of Philadelphia, Pennsylvania.', '7', '2022-09-03 11:02:47.738370'),
-('0c4b5c0604', 'JRZN-9518', 'Spaghetti Bolognese', 'spaghetti_bolognese.jpg', 'Spaghetti bolognese consists of spaghetti (long strings of pasta) with an Italian ragÃ¹ (meat sauce) made with minced beef, bacon and tomatoes, served with Parmesan cheese. Spaghetti bolognese is one of the most popular pasta dishes eaten outside of Italy.', '15', '2022-09-03 10:43:27.610897'),
-('14c7b6370e', 'QZHM-0391', 'Reuben Sandwich', 'reubensandwich.jpg', 'The Reuben sandwich is a North American grilled sandwich composed of corned beef, Swiss cheese, sauerkraut, and Thousand Island dressing or Russian dressing, grilled between slices of rye bread. It is associated with kosher-style delicatessens, but is not kosher because it combines meat and cheese.', '8', '2022-09-03 10:58:04.069144'),
-('1e0fa41eee', 'ICFU-1406', 'Submarine Sandwich', 'submarine_sndwh.jpg', 'A submarine sandwich, commonly known as a sub, hoagie, hero, Italian, grinder, wedge, or a spuckie, is a type of American cold or hot sandwich made from a cylindrical bread roll split lengthwise and filled with meats, cheeses, vegetables, and condiments. It has many different names.', '8', '2022-09-03 10:55:23.020144'),
-('2b976e49a0', 'CEWV-9438', 'Cheeseburger', 'cheeseburgers.jpg', 'A cheeseburger is a hamburger topped with cheese. Traditionally, the slice of cheese is placed on top of the meat patty. The cheese is usually added to the cooking hamburger patty shortly before serving, which allows the cheese to melt. Cheeseburgers can include variations in structure, ingredients and composition.', '3', '2022-09-03 10:45:47.282634'),
-('2fdec9bdfb', 'UJAK-9614', 'Jambalaya', 'Jambalaya.jpg', 'Jambalaya is an American Creole and Cajun rice dish of French, African, and Spanish influence, consisting mainly of meat and vegetables mixed with rice.', '9', '2022-09-03 10:48:49.593618'),
-('31dfcc94cf', 'SYQP-3710', 'Buffalo Wings', 'buffalo_wings.jpg', 'A Buffalo wing in American cuisine is an unbreaded chicken wing section that is generally deep-fried and then coated or dipped in a sauce consisting of a vinegar-based cayenne pepper hot sauce and melted butter prior to serving.', '11', '2022-09-03 10:51:09.829079'),
-('3adfdee116', 'HIPF-5346', 'Enchiladas', 'enchiladas.jpg', 'An enchilada is a corn tortilla rolled around a filling and covered with a savory sauce. Originally from Mexican cuisine, enchiladas can be filled with various ingredients, including meats, cheese, beans, potatoes, vegetables, or combinations', '10', '2022-09-03 12:52:26.427554'),
-('3d19e0bf27', 'EMBH-6714', 'Cincinnati Chili', 'cincinnatichili.jpg', 'Cincinnati chili is a Mediterranean-spiced meat sauce used as a topping for spaghetti or hot dogs; both dishes were developed by immigrant restaurateurs in the 1920s. In 2013, Smithsonian named one local chili parlor one of the \"20 Most Iconic Food Destinations in America\".', '9', '2022-09-03 12:57:39.265554'),
-('4e68e0dd49', 'QLKW-0914', 'Caramel Macchiato', '', 'Steamed milk, espresso and caramel; what could be more enticing? This blissful flavor is a favorite of coffee lovers due to its deliciously bold taste of creamy caramel and strong coffee flavor. These', '4', '2022-09-03 08:55:51.237667'),
-('5d66c79953', 'GOEW-9248', 'Cheese Curd', 'cheesecurd.jpg', 'Cheese curds are moist pieces of curdled milk, eaten either alone or as a snack, or used in prepared dishes. These are chiefly found in Quebec, in the dish poutine, throughout Canada, and in the northeastern, midwestern, mountain, and Pacific Northwestern United States, especially in Wisconsin and Minnesota.', '6', '2022-09-03 11:22:25.639690'),
-('826e6f687f', 'AYFW-2683', 'Margherita Pizza', 'margherita-pizza0.jpg', 'Pizza margherita, as the Italians call it, is a simple pizza hailing from Naples. When done right, margherita pizza features a bubbly crust, crushed San Marzano tomato sauce, fresh mozzarella and basil, a drizzle of olive oil, and a sprinkle of salt.', '12', '2022-09-03 08:02:57.213354'),
-('97972e8d63', 'CVWJ-6492', 'Irish Coffee', 'irishcoffee.jpg', 'Irish coffee is a caffeinated alcoholic drink consisting of Irish whiskey, hot coffee, and sugar, stirred, and topped with cream The coffee is drunk through the cream', '11', '2022-09-03 13:08:19.157649'),
-('a419f2ef1c', 'EPNX-3728', 'Chicken Nugget', 'chicnuggets.jpeg', 'A chicken nugget is a food product consisting of a small piece of deboned chicken meat that is breaded or battered, then deep-fried or baked. Invented in the 1950s, chicken nuggets have become a very popular fast food restaurant item, as well as widely sold frozen for home use', '5', '2022-09-03 12:44:07.749371'),
-('a5931158fe', 'ELQN-5204', 'Pulled Pork', 'pulledprk.jpeg', 'Pulled pork is an American barbecue dish, more specifically a dish of the Southern U.S., based on shredded barbecued pork shoulder. It is typically slow-smoked over wood; indoor variations use a slow cooker. The meat is then shredded manually and mixed with a sauce', '8', '2022-09-03 13:04:12.191403'),
-('b2f9c250fd', 'XNWR-2768', 'Strawberry Rhubarb Pie', 'rhuharbpie.jpg', 'Rhubarb pie is a pie with a rhubarb filling. Popular in the UK, where rhubarb has been cultivated since the 1600s, and the leaf stalks eaten since the 1700s. Besides diced rhubarb, it almost always contains a large amount of sugar to balance the intense tartness of the plant', '7', '2022-09-03 13:06:28.235333'),
-('bd200ef837', 'HEIY-6034', 'Turkish Coffee', 'turkshcoffee.jpg', 'Turkish coffee is a style of coffee prepared in a cezve using very finely ground coffee beans without filtering.', '8', '2022-09-03 13:09:50.234898'),
-('cff0cb495a', 'ZOBW-2640', 'Americano', '', 'Many espresso-based drinks use milk, but not the cafÃ© Americano â€“ or simply \'Americano\'. The drink also uses espresso but is infused with hot water instead of milk. The result is a coffee beverage ', '3', '2022-09-03 08:56:18.824990'),
-('d57cd89073', 'ZGQW-9480', 'Country Fried Steak', 'country_fried_stk.jpg', 'Chicken-fried steak, also known as country-fried steak or CFS, is an American breaded cutlet dish consisting of a piece of beefsteak coated with seasoned flour and either deep-fried or pan-fried. It is sometimes associated with the Southern cuisine of the United States.', '10', '2022-09-03 11:00:05.523519'),
-('d9aed17627', 'FIKD-9703', 'Crab Cake', 'crabcakes.jpg', 'A crab cake is a variety of fishcake that is popular in the United States. It is composed of crab meat and various other ingredients, such as bread crumbs, mayonnaise, mustard, eggs, and seasonings. The cake is then sautÃ©ed, baked, grilled, deep fried, or broiled.', '16', '2022-09-03 12:54:52.120847'),
-('e2195f8190', 'HKCR-2178', 'Carbonara', 'carbonaraimgre.jpg', 'Carbonara is an Italian pasta dish from Rome made with eggs, hard cheese, cured pork, and black pepper. The dish arrived at its modern form, with its current name, in the middle of the 20th century. The cheese is usually Pecorino Romano, Parmigiano-Reggiano, or a combination of the two.', '16', '2022-09-03 10:23:06.266420'),
-('e2af35d095', 'IDLC-7819', 'Pepperoni Pizza', 'peperopizza.jpg', 'Pepperoni is an American variety of spicy salami made from cured pork and beef seasoned with paprika or other chili pepper. Prior to cooking, pepperoni is characteristically soft, slightly smoky, and bright red. Thinly sliced pepperoni is one of the most popular pizza toppings in American pizzerias.', '7', '2022-09-03 12:49:01.017677'),
-('e769e274a3', 'AHRW-3894', 'Frappuccino', 'frappuccino.jpg', 'Frappuccino is a line of blended iced coffee drinks sold by Starbucks. It consists of coffee or crÃ¨me base, blended with ice and ingredients such as flavored syrups and usually topped with whipped cream and or spices.', '3', '2022-09-03 13:11:30.109467'),
-('ec18c5a4f0', 'PQFV-7049', 'Corn Dogs', 'corndog.jpg', 'A corn dog is a sausage on a stick that has been coated in a thick layer of cornmeal batter and deep fried. It originated in the United States and is commonly found in American cuisine', '4', '2022-09-03 13:00:32.787354'),
-('f4ce3927bf', 'EAHD-1980', 'Hot Dog', 'hotdog0.jpg', 'A hot dog is a food consisting of a grilled or steamed sausage served in the slit of a partially sliced bun. The term hot dog can also refer to the sausage itself. The sausage used is a wiener or a frankfurter. The names of these sausages also commonly refer to their assembled dish.', '4', '2022-09-03 10:53:04.965223'),
-('f9c2770a32', 'YXLA-2603', 'Whipped Milk Shake', 'milkshake.jpeg', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,', '8', '2022-09-03 08:54:02.727645');
+('066614cccc', 'FEIP-2710', 'Carbonara', '', 'Creamy sauce infused with bacon, a luscious Italian pasta favorite.', '100.00', '2023-05-28 07:37:07.460368'),
+('06dc36c1be', 'FCWU-5762', 'Americano (8oz|Hot/Cold)', '', 'Bold, robust Americano: a classic black coffee with a kick.', '69.00', '2023-05-28 07:04:40.696020'),
+('0acceb7064', 'OECH-1420', 'Sausage Sandwich', '', 'Juicy, flavorful sausage in a toasted bun—satisfying and savory.', '80.00', '2023-05-28 07:31:44.819847'),
+('0c0a277431', 'ZLDP-0946', '500g Unconditional Sweetness of Mocha (arabica, robusta)', '', 'A harmonious blend of rich chocolate and aromatic coffee beans.', '290.00', '2023-05-28 08:05:25.055738'),
+('0c4b5c0604', 'JRZN-9518', 'Cortado (12oz|Hot)', '', 'Smooth, balanced cortado: a harmonious blend of espresso and milk.', '95.00', '2023-05-28 06:55:52.973707'),
+('108933eeb7', 'MNZX-2768', 'Tea (Green or Black) 12oz|Hot', '', 'Aromatic and soothing brew for moments of relaxation and refreshment.', '50.00', '2023-05-28 07:17:29.665690'),
+('14c7b6370e', 'QZHM-0391', 'Mocha (12oz|Hot)', '', 'Indulgent mocha magic: espresso meets chocolate for pure bliss.', '95.00', '2023-05-28 06:56:34.647441'),
+('194d986f01', 'PBEV-1456', 'Pesto', '', 'Fragrant basil, garlic, and pine nut sauce elevate any pasta.', '100.00', '2023-05-28 07:37:18.547685'),
+('1e0fa41eee', 'ICFU-1406', 'Mocha (16oz|Cold)', '', 'Indulgent mocha magic: espresso meets chocolate for pure bliss.', '100.00', '2023-05-28 06:57:01.798339'),
+('26a71f2775', 'EWIC-4967', '1000g Total Dark roast Barako (excelsa)', '', 'Intensely flavorful barako coffee grounds for a bold morning brew.', '290.00', '2023-05-28 08:02:18.833629'),
+('27ab65b2b4', 'LVCB-1093', 'Tuna Sandwich', '', 'Savor our irresistible tuna sandwich: Fresh, flavorful, and satisfying.', '80.00', '2023-05-28 07:27:22.963115'),
+('2b976e49a0', 'CEWV-9438', 'Caramel Macchiato * (12oz|Hot)', '', 'Caramel Macchiato: luscious espresso delight with a caramel swirl.', '100.00', '2023-05-28 06:58:24.593261'),
+('2fdec9bdfb', 'UJAK-9614', 'Caramel Macchiato * (16oz|Cold)', '', 'Caramel Macchiato: luscious espresso delight with a caramel swirl.', '120.00', '2023-05-28 06:58:54.452827'),
+('31dfcc94cf', 'SYQP-3710', 'Latte (12oz|Hot)', '', 'Creamy, velvety latte: espresso perfection with a frothy milk embrace.', '89.00', '2023-05-28 07:01:49.523616'),
+('3757db9c24', 'IXKM-2594', '500g Limited Premium Sagado Besao (arabica)', '', 'Distinctively smooth and earthy coffee from the highlands of Sagada.', '650.00', '2023-05-28 08:06:27.256098'),
+('3adfdee116', 'HIPF-5346', 'Latte (16oz|Cold)', '', 'Creamy, velvety latte: espresso perfection with a frothy milk embrace.', '95.00', '2023-05-28 07:02:11.591080'),
+('3d19e0bf27', 'EMBH-6714', 'Affogato (8oz|Hot/Cold)', '', 'Decadent affogato: espresso poured over creamy gelato for pure indulgence.', '90.00', '2023-05-28 07:04:29.093209'),
+('3ea71f32b6', 'SKPY-7285', '1000g Irresistible taste of Vanilla (arabica, robusta)', '', 'Smooth and aromatic vanilla-infused coffee grounds for a delightful cup.', '580.00', '2023-05-28 08:08:03.963845'),
+('4c15f296c2', 'KRJC-3085', '500g Total Dark roast Barako (excelsa)', '', 'Intensely flavorful barako coffee grounds for a bold morning brew.', '250.00', '2023-05-28 08:03:47.462030'),
+('4e68e0dd49', 'QLKW-0914', 'Choco Macchiato * (12oz|Hot)', '', 'Decadent chocolate-infused espresso topped with velvety milk foam.', '100.00', '2023-05-28 07:05:21.682288'),
+('5d374a39a5', 'AHUF-0428', 'Choco Bun', '', 'Decadent chocolate-filled bun, a blissful treat for chocolate enthusiasts.', '70.00', '2023-05-28 07:30:31.559620'),
+('5d66c79953', 'GOEW-9248', 'Choco Macchiato * (16oz|Cold)', '', 'Decadent chocolate-infused espresso topped with velvety milk foam.', '120.00', '2023-05-28 07:05:53.791586'),
+('6728b551b6', 'CWXN-6734', '250g Limited Premium Sagado Besao (arabica)', '', 'Distinctively smooth and earthy coffee from the highlands of Sagada.', '330.00', '2023-05-28 08:06:10.630129'),
+('6b9f4855d7', 'QPJX-1679', 'Choco (16oz|Cold)', '', 'Decadent and rich cocoa indulgence, crafted to satisfy chocolate lovers.', '95.00', '2023-05-28 07:18:20.327324'),
+('6d24e7448b', 'YMEJ-7285', 'Calbeans\' Cookie', '', 'Freshly baked cookies: warm, gooey perfection with every delicious bite.', '40.00', '2023-05-28 08:32:34.107513'),
+('6dfccfd66c', 'EDZK-5394', 'Choco (12oz|Hot)', '', 'Decadent and rich cocoa indulgence, crafted to satisfy chocolate lovers.', '65.00', '2023-05-28 07:18:04.029679'),
+('7d19b156ab', 'ZGSD-7918', 'Cream Cheese Bun', '', 'Creamy, indulgent, and irresistible cream cheese filling in a soft bun.', '80.00', '2023-05-28 07:27:45.692219'),
+('8149a695a0', 'MDQV-0921', 'Matcha Cream (12oz|Hot)', '', 'A satisfying blend of milky cream goodness and Matcha powder.', '90.00', '2023-05-28 07:18:53.654695'),
+('826e6f687f', 'AYFW-2683', 'Matcha Macchiato * (12oz|Hot)', '', 'A pleasing combination of Matcha and local espresso latte.', '120.00', '2023-05-28 07:06:37.002390'),
+('86176db9d7', 'NQKP-6857', '500g Perseverance of the aromatic Hazelnut (arabica, robusta)', '', 'Rich and nutty hazelnut-infused coffee grounds for a delightful brew.', '290.00', '2023-05-28 08:10:15.859896'),
+('9049286d19', 'GSFJ-2017', 'Nachos', '', 'Savory nacho delight: crispy chips layered with cheesy goodness.', '65.00', '2023-05-28 07:37:37.987221'),
+('91bd273ef5', 'WZPV-7930', 'Matcha Cream (16oz|Cold)', '', 'A satisfying blend of milky cream goodness and Matcha powder.', '105.00', '2023-05-28 07:19:12.771665'),
+('97972e8d63', 'CVWJ-6492', 'Matcha Macchiato * (16oz|Cold)', '', 'A pleasing combination of Matcha and local espresso latte.', '120.00', '2023-05-28 07:07:02.199488'),
+('9ab8f0ffe9', 'IDRZ-9401', '1000g Limited Premium Sagado Besao (arabica)', '', 'Distinctively smooth and earthy coffee from the highlands of Sagada.', '1,300.00', '2023-05-28 08:12:24.699921'),
+('a419f2ef1c', 'EPNX-3728', 'Vanilla (12oz|Hot)', '', 'Smooth and aromatic vanilla blend that delights the senses.', '69.00', '2023-05-28 07:10:02.737076'),
+('a585503287', 'AHSN-0879', '1000g Unconditional Sweetness of Mocha (arabica, robusta)', '', 'A harmonious blend of rich chocolate and aromatic coffee beans.', '580.00', '2023-05-28 08:05:46.651930'),
+('a5931158fe', 'ELQN-5204', 'Vanilla (16oz|Cold)', '', 'Smooth and aromatic vanilla blend that delights the senses.', '100.00', '2023-05-28 07:10:26.238500'),
+('a64b338943', 'TYFA-1628', 'Red Pasta', '', 'Rich tomato sauce with perfectly cooked noodles—a flavorful delight', '100.00', '2023-05-28 07:36:51.488985'),
+('b2f9c250fd', 'XNWR-2768', 'Hazelnut * (12oz|Hot)', '', 'Rich and nutty indulgence with a hint of toasted sweetness.', '69.00', '2023-05-28 07:11:09.815522'),
+('b431559811', 'ENTZ-1567', 'Banana Cake', '', 'Moist banana bliss: a slice of tropical sweetness awaits you.', '45.00', '2023-05-28 08:33:16.802314'),
+('bb9c2e17a4', 'EQOG-4531', '250g Unconditional Sweetness of Mocha (arabica, robusta)', '', 'A harmonious blend of rich chocolate and aromatic coffee beans.', '150.00', '2023-05-28 08:05:08.793226'),
+('bd200ef837', 'HEIY-6034', 'Hazelnut * (16oz|Cold)', '', 'Rich and nutty indulgence with a hint of toasted sweetness.', '100.00', '2023-05-28 07:11:28.006252'),
+('cc992bce1e', 'HOFR-6492', '250g Irresistible taste of Vanilla (arabica, robusta)', '', 'Smooth and aromatic vanilla-infused coffee grounds for a delightful cup.', '150.00', '2023-05-28 08:07:20.657502'),
+('cfe50ed94d', 'FEAZ-9625', 'Matcha Banana Smoothie (16oz|Cold)', '', 'A refreshing fusion of fresh banana and milky matcha.', '115.00', '2023-05-28 07:19:41.459442'),
+('cff0cb495a', 'ZOBW-2640', 'Vietnamese (12oz|Hot)', '', 'Bold and vibrant blend with a touch of exotic flair.', '69.00', '2023-05-28 07:12:14.800142'),
+('d186da4199', 'JPOK-7139', '250g Total Dark roast Barako (excelsa)', '', 'Intensely flavorful barako coffee grounds for a bold morning brew.', '130.00', '2023-05-28 08:01:33.298246'),
+('d217b0f20f', 'FTGL-9651', '500g Irresistible taste of Vanilla (arabica, robusta)', '', 'Smooth and aromatic vanilla-infused coffee grounds for a delightful cup.', '290.00', '2023-05-28 08:07:35.781979'),
+('d57cd89073', 'ZGQW-9480', 'Vietnamese (16oz|Cold)', '', 'Bold and vibrant blend with a touch of exotic flair.', '100.00', '2023-05-28 07:12:37.487702'),
+('d9aed17627', 'FIKD-9703', 'Irish Cream (12oz|Hot)', '', 'Velvety smooth blend with the enchanting flavors of Irish cream.', '69.00', '2023-05-28 07:13:07.831670'),
+('db5206ee2c', 'HNQD-0987', 'Cheesecake', '', 'Sinfully smooth cheesecake: a divine treat for coffee enthusiasts.', '110.00', '2023-05-28 07:35:28.833505'),
+('e2195f8190', 'HKCR-2178', 'Irish Cream (16oz|Cold)', '', 'Velvety smooth blend with the enchanting flavors of Irish cream.', '100.00', '2023-05-28 07:13:35.571025'),
+('e241704b97', 'BFWL-2704', 'Cheeseburger', '', 'Juicy beef patty, melted cheese, and fresh toppings in toasted bun.', '120.00', '2023-05-28 07:31:58.497955'),
+('e2af35d095', 'IDLC-7819', 'Black (12oz|Hot)', '', 'Bold and intense brew with a rich, robust flavor profile.', '55.00', '2023-05-28 07:14:11.353937'),
+('e769e274a3', 'AHRW-3894', 'Black (16oz|Cold)', '', 'Bold and intense brew with a rich, robust flavor profile.', '60.00', '2023-05-28 07:14:29.026348'),
+('ea557bdf5c', 'JQZY-4623', '250g Perseverance of the aromatic Hazelnut (arabica, robusta)', '', 'Rich and nutty hazelnut-infused coffee grounds for a delightful brew.', '150.00', '2023-05-28 08:09:38.837377'),
+('ec18c5a4f0', 'PQFV-7049', 'Flat White (16oz|Cold)', '', 'Creamy and velvety espresso with a delicate milk micro foam layer.', '80.00', '2023-05-28 07:15:08.882489'),
+('f4ce3927bf', 'EAHD-1980', 'Caramel (12oz|Hot)', '', 'Smooth and luscious blend infused with irresistible caramel sweetness. Smooth and luscious blend infused with irresistible caramel sweetness.', '69.00', '2023-05-28 07:15:57.826222'),
+('f9c2770a32', 'YXLA-2603', 'Caramel (16oz|Cold)', '', 'Smooth and luscious blend infused with irresistible caramel sweetness.', '100.00', '2023-05-28 07:16:22.162519'),
+('fc814cd29e', 'QFEO-0589', '1000g Perseverance of the aromatic Hazelnut (arabica, robusta)', '', 'Rich and nutty hazelnut-infused coffee grounds for a delightful brew.', '580.00', '2023-05-28 08:10:30.226179');
 
 -- --------------------------------------------------------
 
@@ -226,8 +256,8 @@ CREATE TABLE `rpos_staff` (
   `staff_number` varchar(200) NOT NULL,
   `staff_email` varchar(200) NOT NULL,
   `staff_password` varchar(200) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `rpos_staff`
@@ -294,11 +324,13 @@ ALTER TABLE `rpos_staff`
 --
 ALTER TABLE `rpos_pass_resets`
   MODIFY `reset_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `rpos_staff`
 --
 ALTER TABLE `rpos_staff`
   MODIFY `staff_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- Constraints for dumped tables
 --
@@ -309,6 +341,7 @@ ALTER TABLE `rpos_staff`
 ALTER TABLE `rpos_orders`
   ADD CONSTRAINT `CustomerOrder` FOREIGN KEY (`customer_id`) REFERENCES `rpos_customers` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ProductOrder` FOREIGN KEY (`prod_id`) REFERENCES `rpos_products` (`prod_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
