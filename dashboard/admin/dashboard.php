@@ -5,7 +5,23 @@ include('config/checklogin.php');
 check_login();
 require_once('partials/_head.php');
 require_once('partials/_analytics.php');
+
+// Calculate total sales
+$ret = "SELECT SUM(prod_price * prod_qty) AS total_sales FROM rpos_orders";
+$stmt = $mysqli->prepare($ret);
+$stmt->execute();
+$res = $stmt->get_result();
+$row = $res->fetch_object();
+$total_sales = $row->total_sales;
+
+// Store total sales value in session variable
+$_SESSION['total_sales'] = $total_sales;
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<?php require_once('partials/_head.php'); ?>
 
 <body>
     <!-- Sidenav -->
@@ -38,7 +54,6 @@ require_once('partials/_analytics.php');
                                 </div>
                             </div>
                         </div>
-                        <!--   -->
                         <div class="col-xl-3 col-lg-6">
                             <div class="card card-stats mb-4 mb-xl-0">
                                 <div class="card-body">
@@ -79,11 +94,11 @@ require_once('partials/_analytics.php');
                                     <div class="row">
                                         <div class="col">
                                             <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                                            <span class="h2 font-weight-bold mb-0">₱ <?php echo $sales; ?></span>
+                                            <span class="h2 font-weight-bold mb-0">₱ <?php echo number_format($_SESSION['total_sales'], 2); ?></span>
                                         </div>
                                         <div class="col-auto">
-                                            <div class="icon icon-shape bg-green text-white rounded-circle shadow">
-                                                <i class="fas fa-dollar-sign"></i>
+                                            <div class="icon icon-shape bg-success text-white rounded-circle shadow">
+                                                <i class="fas fa-chart-bar"></i>
                                             </div>
                                         </div>
                                     </div>
