@@ -28,7 +28,7 @@ require_once('partials/_head.php');
                 <div class="header-body text-center mb-7">
                     <div class="row justify-content-center">
                         <div class="col-lg-5 col-md-6">
-                            <h1 class="text-white">Restaurant Point Of Sale</h1>
+                            <h1 class="text-white">CALBEANS</h1>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@ require_once('partials/_head.php');
     </div>
     <!-- Footer -->
     <?php
-    require_once('partials/_footer.php');
+    //require_once('partials/_footer.php');
     ?>
     <!-- Argon Scripts -->
     <?php
