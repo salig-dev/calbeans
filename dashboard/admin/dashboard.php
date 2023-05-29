@@ -139,7 +139,7 @@ require_once('partials/_analytics.php');
                                         $prod_quantities = explode(',', $row->prod_quantities);
                                         $order_statuses = explode(',', $row->order_statuses);
                                         $created_dates = explode(',', $row->created_dates);
-
+                                        //lol
                                         // Get the total number of orders made by the customer
                                         $num_orders = count($order_ids);
                                         $total_price = 0;
