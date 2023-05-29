@@ -170,7 +170,7 @@ $_SESSION['total_sales'] = $total_sales;
                                                 <td class="text-success"><?php echo $prod_quantities[$i]; ?></td>
                                                 <?php if ($i === 0) { ?>
                                                     <?php for ($j = 0; $j < $num_orders; $j++) {
-                                                        $total_price += $prod_prices[$j] * $prod_quantities[$j];
+                                                        $total_price += (int)$prod_prices[$j] * (int)$prod_quantities[$j];
                                                     } ?>
                                                     <td rowspan="<?php echo $num_orders; ?>">₱ <?php echo $total_price; ?></td>
                                                     <td rowspan="<?php echo $num_orders; ?>">

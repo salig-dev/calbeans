@@ -106,7 +106,7 @@ require_once('partials/_analytics.php');
                   $stmt->execute();
                   $res = $stmt->get_result();
                   while ($order = $res->fetch_object()) {
-                    $total = ($order->prod_price * $order->prod_qty);
+                    $total = ((int)$order->prod_price * (int)$order->prod_qty); // convert the variables to integers in your code:
 
                   ?>
                     <tr>

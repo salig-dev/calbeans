@@ -110,7 +110,7 @@ if (isset($_POST['delete_order'])) {
                                     <?php if ($i === 0) {
                                         $total_price = 0;
                                         for ($j = 0; $j < $num_orders; $j++) {
-                                            $total_price += $prod_prices[$j] * $prod_quantities[$j];
+                                            $total_price += (int)$prod_prices[$j] * (int)$prod_quantities[$j];
                                         }
                                         ?>
                                         <td rowspan="<?php echo $num_orders; ?>">₱ <?php echo $total_price; ?></td>
