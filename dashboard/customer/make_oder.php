@@ -61,102 +61,113 @@ require_once('partials/_head.php');
             <div class="row">
                 <div class="col">
                     <div class="card shadow">
-                        <div class="card-header border-0">
+                        <div class="card-header border-0 pb-2">
                             <h3>Please Fill All Fields</h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body py-0">
                             <form method="POST" enctype="multipart/form-data">
-                                <div class="form-row">
 
-                                    <div class="col-md-6">
-                                        <label>Customer Name</label>
-                                        <?php
-                                        //Load All Customers
-                                        $customer_id = $_SESSION['customer_id'];
-                                        $ret = "SELECT * FROM  rpos_customers WHERE customer_id = '$customer_id' ";
+
+                                <div class="col-md-12">
+                                    <?php
+                                    //Load All Customers
+                                    $customer_id = $_SESSION['customer_id'];
+                                    $ret = "SELECT * FROM  rpos_customers WHERE customer_id = '$customer_id' ";
+                                    $stmt = $mysqli->prepare($ret);
+                                    $stmt->execute();
+                                    $res = $stmt->get_result();
+                                    while ($cust = $res->fetch_object()) {
+                                        $prod_id = $_GET['prod_id'];
+                                        $ret = "SELECT * FROM  rpos_products WHERE prod_id = '$prod_id'";
                                         $stmt = $mysqli->prepare($ret);
                                         $stmt->execute();
                                         $res = $stmt->get_result();
-                                        while ($cust = $res->fetch_object()) {
-                                        ?>
-                                        <?php
-                                $prod_id = $_GET['prod_id'];
-                                $ret = "SELECT * FROM  rpos_products WHERE prod_id = '$prod_id'";
-                                $stmt = $mysqli->prepare($ret);
-                                $stmt->execute();
-                                $res = $stmt->get_result();
-                                while ($prod = $res->fetch_object()) {
-                                ?>
-                                        <div class="form-row mx-auto">
-                                            <div class="mt-4 col-md-12">
-                                                <tr>
-                                                    <th scope="col"> Name:</th>
-                                                </tr>
-                                                <td> <?php echo $prod->prod_name; ?> </td>
+                                        while ($prod = $res->fetch_object()) {
+                                    ?>
+
+                                            <div class="form-row mx-auto">
+                                                <div class="col-md-12">
+                                                    <table>
+                                                        <tr>
+                                                            <th scope="col"> Name:</th>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td> <?php echo $prod->prod_name; ?> </td>
+                                                        </tr>
+                                                            <?php } ?> 
+                                                    </table>
+                                                </div>
+
+                                                <hr>
+
+                                                <div class="col-md-6">
+                                                    <label>Customer Name:</label>
+                                                    <input class="form-control" readonly name="customer_name" value="<?php echo $cust->customer_name;
+                                                                                                                    } ?>">
+                                                </div>
+
+                                                <input type="hidden" name="order_id" value="<?php echo $orderid; ?>" class="form-control">
+
+                                                <?php
+                                                $prod_id = $_GET['prod_id'];
+                                                $ret = "SELECT * FROM  rpos_products WHERE prod_id = '$prod_id'";
+                                                $stmt = $mysqli->prepare($ret);
+                                                $stmt->execute();
+                                                $res = $stmt->get_result();
+                                                while ($prod = $res->fetch_object()) {
+                                                ?>
+
+
+                                                    <div class="col-md-6">
+                                                        <label>Order Code</label>
+                                                        <input type="text" readonly name="order_code" value="<?php echo $alpha; ?>-<?php echo $beta; ?>" class="form-control" value="">
+                                                    </div>
                                             </div>
-                                            <?php } ?>
-                                            <input class="form-control" readonly name="customer_name" value="<?php echo $cust->customer_name; ?>">
-                                        <?php } ?>
-                                        <input type="hidden" name="order_id" value="<?php echo $orderid; ?>" class="form-control">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Order Code</label>
-                                        <input type="text" readonly name="order_code" value="<?php echo $alpha; ?>-<?php echo $beta; ?>" class="form-control" value="">
-                                    </div>
+
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <label>Product Price (₱)</label>
+                                                    <input type="text" readonly name="prod_price" value="$ <?php echo $prod->prod_price; ?>" class="form-control">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Product Quantity</label>
+                                                    <input type="text" name="prod_qty" class="form-control" value="">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <label>Product Size</label>
+                                                    <select id="prod_size" name="prod_size" class="form-control">
+                                                        <option value="8oz">8oz</option>
+                                                        <option value="12oz">12oz</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label>Hot/Cold</label>
+                                                    <select id="hotorcold" name="hotorcold" class="form-control">
+                                                        <option value="hot">Hot</option>
+                                                        <option value="cold">Cold</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="mt-4 col-md-12">
+                                                    <tr>
+                                                        <th scope="col"> Description:</th>
+                                                    </tr>
+                                                    <td> <?php echo $prod->prod_desc; ?> </td>
+                                                </div>
+
+                                                <div class="mt-4 col-md-12 mb-4 mx-auto">
+                                                    <input style="width:50%; margin-left:22.5%" type="submit" name="make" value="Make Order" class="btn btn-success" value="">
+                                                </div>
+                                            </div>
                                 </div>
-                                <hr>
-                                <?php
-                                $prod_id = $_GET['prod_id'];
-                                $ret = "SELECT * FROM  rpos_products WHERE prod_id = '$prod_id'";
-                                $stmt = $mysqli->prepare($ret);
-                                $stmt->execute();
-                                $res = $stmt->get_result();
-                                while ($prod = $res->fetch_object()) {
-                                ?>
-                                    <div>
-                                        <div class="form-row">
-                                            <div class="col-md-6">
-                                                <label>Product Price (₱)</label>
-                                                <input type="text" readonly name="prod_price" value="$ <?php echo $prod->prod_price; ?>" class="form-control">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Product Quantity</label>
-                                                <input type="text" name="prod_qty" class="form-control" value="">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
-                                            <div class="col-md-6">
-                                                <label>Product Size</label>
-                                                <select id="prod_size" name="prod_size" class="form-control">
-                                                    <option value="8oz">8oz</option>
-                                                    <option value="12oz">12oz</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <label>Hot/Cold</label>
-                                                <select id="hotorcold" name="hotorcold" class="form-control">
-                                                    <option value="hot">Hot</option>
-                                                    <option value="cold">Cold</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row mx-auto">
-                                            <div class="mt-4 col-md-12">
-                                                <tr>
-                                                    <th scope="col"> Description:</th>
-                                                </tr>
-                                                <td> <?php echo $prod->prod_desc; ?> </td>
-                                            </div>
-
-                                            <div class="mt-4 col-md-12 ">
-                                                <input style="width:50%;" type="submit" name="make" value="Make Order" class="btn btn-success" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
+                            <?php } ?>
 
                             </form>
                         </div>
