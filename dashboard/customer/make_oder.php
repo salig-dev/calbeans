@@ -85,7 +85,7 @@ require_once('partials/_head.php');
                                         while ($prod = $res->fetch_object()) {
                                     ?>
 
-                                            <div class="form-row mx-auto">
+                                            <div class="form-row">
                                                 <div class="col-md-12">
                                                     <table>
                                                         <tr>
