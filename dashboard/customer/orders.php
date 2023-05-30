@@ -7,11 +7,8 @@ check_login();
 require_once('partials/_head.php');
 ?>
 
-
 <link rel="stylesheet" href="../../assets/css/nice-select.css" />
 <link rel="stylesheet" href="../../assets/css/dashboard.css">
-
-</style>
 
 <body>
   <!-- Sidenav -->
