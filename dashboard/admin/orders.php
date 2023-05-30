@@ -35,6 +35,27 @@ require_once('partials/_head.php');
             <div class="card-header border-0">
               Select On Any Product To Make An Order
             </div>
+                                    <!-- SELECTION MENU-->
+                                    <section class="row mx-0 py-2">
+              <div class="card-header border-0 col-lg-5 col-md-6 col-11 text-md-left text-center mx-auto">Select On Any Product To Make An Order</div>
+
+              <div class="__menu-select-ctn col-lg-7 col-md-6 col-10  mx-auto d-flex justify-content-start align-items-center">
+                <select class="__menu-select-sub-ctn text-center w-75 mx-auto" id="menu-combobox" onchange="main();">
+                  <option disabled value="disabled">Select a category</option>
+                  <option value="All">All</option>
+                  <option value="Espresso">Espresso</option>
+                  <option value="Fresh Black Coffee/Cold Brew">Fresh Black Coffee/Cold Brew</option>
+                  <option value="Non-Coffee Drinks">Non-Coffee Drinks</option>
+                  <option value="Sandwich">Sandwich</option>
+                  <option value="Pastries">Pastries</option>
+                  <option value="Pasta">Pasta</option>
+                  <option value="Starters">Starters</option>
+                  <!-- <option value="Matcha Series">Matcha Series</option> Unavailable -->
+                  <option value="Coffee Beans / Ground">Coffee Beans / Ground</option>
+                </select>
+              </div>
+
+            </section>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
@@ -94,5 +115,17 @@ require_once('partials/_head.php');
   <?php
   require_once('partials/_scripts.php');
   ?>
+
+<script src="../../assets/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="../../assets/js/jquery.nice-select.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('select').niceSelect();
+  });
+</script>
+
+<script src="js/orders.js"></script>
+
 </body>
 </html>
