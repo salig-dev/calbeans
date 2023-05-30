@@ -7,7 +7,7 @@ include('config/code-generator.php');
 check_login();
 if (isset($_POST['UpdateProduct'])) {
   //Prevent Posting Blank Values
-  if (empty($_POST["prod_code"]) || empty($_POST["prod_name"]) || empty($_POST['prod_desc']) || empty($_POST['prod_price'])) {
+  if (empty($_POST["prod_code"]) || empty($_POST["prod_name"]) || empty($_POST['prod_desc']) || empty($_POST['prod_price']) || empty($_POST['prod_category'])) {
     $err = "Blank Values Not Accepted";
   } else {
     $update = $_GET['update'];
@@ -17,12 +17,13 @@ if (isset($_POST['UpdateProduct'])) {
     move_uploaded_file($_FILES["prod_img"]["tmp_name"], "assets/img/products/" . $_FILES["prod_img"]["name"]);
     $prod_desc = $_POST['prod_desc'];
     $prod_price = $_POST['prod_price'];
+    $prod_category = $_POST['prod_category'];
 
     //Insert Captured information to a database table
-    $postQuery = "UPDATE rpos_products SET prod_code =?, prod_name =?, prod_img =?, prod_desc =?, prod_price =? WHERE prod_id = ?";
+    $postQuery = "UPDATE rpos_products SET prod_code =?, prod_name =?, prod_img =?, prod_desc =?, prod_price =?, prod_category =? WHERE prod_id = ?";
     $postStmt = $mysqli->prepare($postQuery);
     //bind paramaters
-    $rc = $postStmt->bind_param('ssssss', $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price, $update);
+    $rc = $postStmt->bind_param('sssssss', $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price, $prod_category, $update);
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
@@ -75,6 +76,10 @@ require_once('partials/_head.php');
                     <div class="col-md-6">
                       <label>Product Name</label>
                       <input type="text" value="<?php echo $prod->prod_name; ?>" name="prod_name" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                      <label>Product Category</label>
+                      <input type="text" value="<?php echo $prod->prod_category; ?>" name="prod_category" class="form-control">
                     </div>
                     <div class="col-md-6">
                       <label>Product Code</label>
