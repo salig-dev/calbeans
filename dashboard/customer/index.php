@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Login | Calbeans Coffee</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../../assets/img/icon/favicon.png"
+    />
+
 <?php
 session_start();
 include('config/config.php');
@@ -35,8 +50,8 @@ require_once('partials/_head.php');
     <style>
         html,
         body {
-            height: 100vh;
             background-image: url("../../assets/img/hero/4.png");
+            height: 100%;
         }
     </style>
 </head>
