@@ -9,8 +9,6 @@ require_once('partials/_head.php');
 
 <link rel="stylesheet" href="../../assets/css/nice-select.css" />
 <link rel="stylesheet" href="../../assets/css/dashboard.css">
-<link rel="stylesheet" href="../../assets/css/nice-select.css" />
-<link rel="stylesheet" href="../../assets/css/dashboard.css">
 
 <body>
   <!-- Sidenav -->
@@ -72,7 +70,6 @@ require_once('partials/_head.php');
                   </tr>
                 </thead>
 
-
                 <tbody>
                   <?php
                   $ret = "SELECT * FROM  rpos_products ";
@@ -116,14 +113,7 @@ require_once('partials/_head.php');
 
   <script src="../../assets/js/vendor/jquery-1.12.4.min.js"></script>
   <script src="../../assets/js/jquery.nice-select.min.js"></script>
-  <script src="../../assets/js/vendor/jquery-1.12.4.min.js"></script>
-  <script src="../../assets/js/jquery.nice-select.min.js"></script>
 
-  <script>
-    $(document).ready(function() {
-      $('select').niceSelect();
-    });
-  </script>
   <script>
     $(document).ready(function() {
       $('select').niceSelect();
@@ -134,5 +124,5 @@ require_once('partials/_head.php');
 
 </body>
 
-
+</html>
 </html>
