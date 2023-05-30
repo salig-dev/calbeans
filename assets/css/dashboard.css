@@ -1,0 +1,66 @@
+/* // X-Small devices (portrait phones, less than 576px)
+// No media query for `xs` since this is the default in Bootstrap */
+.__prod_code, .__prod_name, .__prod_category, .__prod_price{
+  width: 0;
+}
+
+.__prod_name, .__prod_category{
+  white-space: break-spaces !important;
+}
+
+.main-content .col {
+  max-width: fit-content;
+}
+
+tr .__col-odd{
+  background: #b98b4010 ;
+}
+
+thead > tr .__col-odd{
+  background: #b98b4029 !important;
+}
+
+
+.__col-odd{
+  color: #b98b40 !important;
+}
+
+
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+  .__prod_name, .__prod_category{
+    width: 100px;
+  }
+
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+  .__prod_name, .__prod_category{
+    width: 200px;
+  }
+
+
+
+}
+
+/* // X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+  .__prod_name, .__prod_category{
+    width: 200px;
+  }
+
+}
+
+/* // XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+  .__prod_name{
+    width: 300px;
+  }
+
+}
