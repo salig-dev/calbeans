@@ -7,6 +7,15 @@ check_login();
 require_once('partials/_head.php');
 ?>
 
+<style>
+
+.__prod_name {
+  overflow-wrap: break-word;
+  white-space: break-spaces !important;
+  max-width: 140px;
+}
+
+</style>
 <body>
   <!-- Sidenav -->
   <?php
@@ -32,9 +41,6 @@ require_once('partials/_head.php');
       <div class="row">
         <div class="col">
           <div class="card shadow">
-            <div class="card-header border-0">
-              Select On Any Product To Make An Order
-            </div>
                                     <!-- SELECTION MENU-->
                                     <section class="row mx-0 py-2">
               <div class="card-header border-0 col-lg-5 col-md-6 col-11 text-md-left text-center mx-auto">Select On Any Product To Make An Order</div>
@@ -87,7 +93,7 @@ require_once('partials/_head.php');
                         ?>
                       </td>
                       <td><?php echo $prod->prod_code; ?></td>
-                      <td><?php echo $prod->prod_name; ?></td>
+                      <td class = "__prod_name"><?php echo $prod->prod_name; ?></td>
                       <td>₱ <?php echo $prod->prod_price; ?></td>
                       <td>
                         <a href="make_oder.php?prod_id=<?php echo $prod->prod_id; ?>&prod_name=<?php echo $prod->prod_name; ?>&prod_price=<?php echo $prod->prod_price; ?>">
