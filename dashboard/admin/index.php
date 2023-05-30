@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Admin | Calbeans Coffee</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../../assets/img/icon/favicon.png"
+    />
+
 <?php
 session_start();
 include('config/config.php');
@@ -22,14 +37,28 @@ if (isset($_POST['login'])) {
 require_once('partials/_head.php');
 ?>
 
-<body  class="bg-dark">
+    <!-- STYLES -->
+    <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+
+    <style>
+        html,
+        body {
+            background-image: url("../../assets/img/hero/3.png");
+            background-size: cover;
+            height: 100vh;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body  class="bg-dark hero-overly">
   <div class="main-content">
     <div class="header bg-gradient-primar py-7">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
-              <h1 class="text-white">CALBEANS ADMIN LOGIN</h1>
+              <h1 class="text-white">ADMIN LOGIN</h1>
             </div>
           </div>
         </div>
