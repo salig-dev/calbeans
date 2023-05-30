@@ -58,19 +58,20 @@ if (isset($_POST['view_order'])) {
                                     <p><strong>Quantity:</strong> <?php echo $order_row->prod_qty . ' ' . $order_row->prod_name; ?></p>
                                     <p><strong>Total Price:</strong> $<?php echo $order_row->prod_price * $order_row->prod_qty; ?></p>
                                     <p><strong>Status:</strong> <?php echo $order_row->order_status; ?></p>
+                                    <form action="update_order_status.php" method="POST">
+                                        <input type="hidden" name="order_id" value="<?php echo $order_row->order_id; ?>">
+                                        <input type="hidden" name="customer_name" value="<?php echo $order_row->customer_name; ?>">
+                                        <select name="new_status" class="form-control">
+                                            <option value="">Select Status</option>
+                                            <option value="Paid">Paid</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Cancelled">Cancelled</option>
+                                        </select>
+                                        <button type="submit" name="update_status" class="btn btn-primary">Update Status</button>
+                                    </form>
                                     <?php
                                 }
                                 ?>
-                                <form action="update_order_status.php" method="POST">
-                                    <input type="hidden" name="customer_name" value="<?php echo $order->customer_name; ?>">
-                                    <select name="new_status" class="form-control">
-                                        <option value="">Select Status</option>
-                                        <option value="Paid">Paid</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Cancelled">Cancelled</option>
-                                    </select>
-                                    <button type="submit" name="update_status" class="btn btn-primary">Update Status</button>
-                                </form>
                             </div>
                         </div>
                     </div>
