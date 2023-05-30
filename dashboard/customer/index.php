@@ -36,14 +36,6 @@ if (isset($_POST['login'])) {
 require_once('partials/_head.php');
 ?>
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Login | Calbeans Coffee</title>
-
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
 
