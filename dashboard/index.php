@@ -103,7 +103,7 @@
                 <button><i class="ti-close"></i></button>
               </div>
               <div class="logo">
-                <a href="index.html"
+                <a href="../index.html"
                   ><img
                     src="../assets/img/logo/calbeans-logo.png"
                     alt=""
