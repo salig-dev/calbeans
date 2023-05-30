@@ -101,6 +101,7 @@ require_once('partials/_head.php');
         </div>
       </div>
     </main>
+  </div>
 
     <!-- Footer -->
     <?php // require_once('partials/_footer.php'); 
@@ -120,7 +121,7 @@ require_once('partials/_head.php');
       });
     </script>
 
-    <script src="js/orders.js"></script>
+    <script src="../../../calbeans/assets/js/orders-combobox.js"></script>
 </body>
 
 </html>
