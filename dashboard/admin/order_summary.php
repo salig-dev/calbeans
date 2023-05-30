@@ -21,8 +21,6 @@ if (isset($_POST['view_order'])) {
         $stmt->bind_param("s", $order->customer_name);
         $stmt->execute();
         $orders_result = $stmt->get_result();
-
-        // Start HTML output
         ?>
         <html>
         <body>
@@ -50,40 +48,21 @@ if (isset($_POST['view_order'])) {
                         <div class="card shadow">
                             <div class="card-body">
                                 <h3>Orders Summary</h3>
-                                <p><strong>Customer:</strong> <?php echo $order->customer_name; ?></p>
-                                <hr>
-                                <p><strong>Products:</strong>
-                                    <?php while ($order_row = $orders_result->fetch_object()) { 
-                                        echo $order_row->prod_name . ', ';
-                                    } ?>
-                                </p>
-                                <p><strong>Unit Price:</strong>
-                                    <?php $orders_result->data_seek(0);
-                                    while ($order_row = $orders_result->fetch_object()) {
-                                        echo '$' . $order_row->prod_price . ', ';
-                                    } ?>
-                                </p>
-                                <p><strong>Quantity:</strong>
-                                    <?php $orders_result->data_seek(0);
-                                    while ($order_row = $orders_result->fetch_object()) {
-                                        echo $order_row->prod_qty . ' ' . $order_row->prod_name . ', ';
-                                    } ?>
-                                </p>
-                                <p><strong>Total Price:</strong>
-                                    <?php $orders_result->data_seek(0);
-                                    $total_price = 0;
-                                    while ($order_row = $orders_result->fetch_object()) {
-                                        $total_price += $order_row->prod_price * $order_row->prod_qty;
-                                    }
-                                    echo '$' . $total_price;
+                                <?php
+                                while ($order_row = $orders_result->fetch_object()) {
                                     ?>
-                                </p>
-                                <p><strong>Status:</strong>
-                                    <?php if ($order) {
-                                        echo $order->order_status;
-                                    } ?>
-                                </p>
-                                <form action="update_order_status.php?order_id=<?php echo $order->order_id; ?>" method="POST">
+                                    <p><strong>Customer:</strong> <?php echo $order_row->customer_name; ?></p>
+                                    <hr>
+                                    <p><strong>Products:</strong> <?php echo $order_row->prod_name; ?></p>
+                                    <p><strong>Unit Price:</strong> $<?php echo $order_row->prod_price; ?></p>
+                                    <p><strong>Quantity:</strong> <?php echo $order_row->prod_qty . ' ' . $order_row->prod_name; ?></p>
+                                    <p><strong>Total Price:</strong> $<?php echo $order_row->prod_price * $order_row->prod_qty; ?></p>
+                                    <p><strong>Status:</strong> <?php echo $order_row->order_status; ?></p>
+                                    <?php
+                                }
+                                ?>
+                                <form action="update_order_status.php" method="POST">
+                                    <input type="hidden" name="customer_name" value="<?php echo $order->customer_name; ?>">
                                     <select name="new_status" class="form-control">
                                         <option value="">Select Status</option>
                                         <option value="Paid">Paid</option>
