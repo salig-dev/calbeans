@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Place Order | Calbeans Coffee</title>
+    <title>Confirm Order | Calbeans Coffee</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
@@ -53,7 +53,7 @@ if (isset($_POST['make'])) {
             $postStmt->execute()
         ) {
             $success = "Order Submitted";
-           header("refresh:1; url=prompt.php?order_id=$order_id");
+           header("refresh:1; url=confirm_order.php?order_id=$order_id");
         } else {
             $err = "Please Try Again Or Try Later";
         }
