@@ -36,11 +36,6 @@ if (isset($_POST['view_order'])) {
     $order = $result->fetch_object();
 
     if ($order) {
-        // Fetch all the orders made by the customer
-        $stmt = $mysqli->prepare("SELECT * FROM rpos_orders WHERE customer_name = ?");
-        $stmt->bind_param("s", $order->customer_name);
-        $stmt->execute();
-        $orders_result = $stmt->get_result();
         ?>
         
         <body class="hero-overly">
@@ -118,32 +113,26 @@ if (isset($_POST['view_order'])) {
                         <h1></h1>
                         <div class="card shadow">
                             <div class="card-body">
-                                <?php
-                                while ($order_row = $orders_result->fetch_object()) {
-                                    ?>
-                                    <h1 class="title">ORDER SUMMARY</h1><hr>
-                                    <p><strong>Customer:</strong> <?php echo $order_row->customer_name; ?></p>
-                                    <p><strong>Products:</strong> <?php echo $order_row->prod_name; ?></p>
-                                    <p><strong>Unit Price:</strong> ₱<?php echo $order_row->prod_price; ?></p>
-                                    <p><strong>Quantity:</strong> <?php echo $order_row->prod_qty . ' ' . $order_row->prod_name; ?></p>
-                                    <p><strong>Total Price:</strong> ₱<?php echo $order_row->prod_price * $order_row->prod_qty; ?></p>
-                                    <p><strong>Status:</strong> <?php echo $order_row->order_status; ?></p>
+                                <h1 class="title">ORDER SUMMARY</h1><hr>
+                                <p><strong>Customer:</strong> <?php echo $order->customer_name; ?></p>
+                                <p><strong>Products:</strong> <?php echo $order->prod_name; ?></p>
+                                <p><strong>Unit Price:</strong> ₱<?php echo $order->prod_price; ?></p>
+                                <p><strong>Quantity:</strong> <?php echo $order->prod_qty . ' ' . $order->prod_name; ?></p>
+                                <p><strong>Total Price:</strong> ₱<?php echo $order->prod_price * $order->prod_qty; ?></p>
+                                <p><strong>Status:</strong> <?php echo $order->order_status; ?></p>
+                                <hr>
+                                <form action="update_order_status.php" method="POST">
+                                    <input type="hidden" name="order_id" value="<?php echo $order->order_id; ?>">
+                                    <input type="hidden" name="customer_name" value="<?php echo $order->customer_name; ?>">
+                                    <select name="new_status" class="form-control">
+                                        <option value="">Select Status</option>
+                                        <option value="Paid">Paid</option>
+                                        <option value="Pending">Pending</option>
+                                        <option value="Cancelled">Cancelled</option>
+                                    </select>
+                                    <button type="submit" name="update_status" class="btn btn-primary margin">Update Status</button>
                                     <hr>
-                                    <form action="update_order_status.php" method="POST">
-                                        <input type="hidden" name="order_id" value="<?php echo $order_row->order_id; ?>">
-                                        <input type="hidden" name="customer_name" value="<?php echo $order_row->customer_name; ?>">
-                                        <select name="new_status" class="form-control">
-                                            <option value="">Select Status</option>
-                                            <option value="Paid">Paid</option>
-                                            <option value="Pending">Pending</option>
-                                            <option value="Cancelled">Cancelled</option>
-                                        </select>
-                                        <button type="submit" name="update_status" class="btn btn-primary margin">Update Status</button>
-                                        <hr>
-                                    </form>
-                                    <?php
-                                }
-                                ?>
+                                </form>
                             </div>
                         </div>
                     </div>
