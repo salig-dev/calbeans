@@ -9,6 +9,15 @@
 /* COLOR */
 :root {
   --primary: #d4ac63;
+  --text: #636363;
+  --nav-text: #c3d4e4;
+  --nav-color: #2c3639;
+  --light: #f6f1ea;
+}
+
+.calbeans-menu-text {
+  font-family: "Chivo", sans-serif;
+  color: #c3d4e4;
 }
 
 /* TEXT */
