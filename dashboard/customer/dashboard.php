@@ -43,7 +43,7 @@ require_once('partials/_analytics.php');
       <div class="container-fluid">
         <div class="header-body">
           <!-- Card stats -->
-          <div class="row">
+          <div class="row justify-content-center">
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-10 col-11 mx-md-0 mx-auto">
               <a href="orders.php">
                 <div class="card card-stats mb-4 mb-xl-0">
