@@ -54,6 +54,8 @@
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+
 </head>
 
 <body>
@@ -87,15 +89,15 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="text-success" scope="col">Code</th>
+                                        <th class="__col-odd" scope="col">Code</th>
                                         <th scope="col">Customer</th>
-                                        <th class="text-success" scope="col">Product</th>
+                                        <th class="__col-odd" scope="col">Product</th>
                                         <th scope="col">Unit Price</th>
-                                        <th class="text-success" scope="col">Quantity</th>
+                                        <th class="__col-odd" scope="col">Quantity</th>
                                         <th scope="col">Total Price</th>
-                                        <th scope="col">Status</th>
+                                        <th class="__col-odd" scope="col">Status</th>
                                         <th scope="col">Order Date</th>
-                                        <th scope="col">Order Time</th>
+                                        <th class="__col-odd" scope="col">Order Time</th>
                                         <th scope="col">Action</th> <!-- New column for action -->
                                     </tr>
                                 </thead>
@@ -108,13 +110,13 @@
                                 while ($row = $res->fetch_object()) {
                                     ?>
                                     <tr>
-                                        <td class="text-success"><?php echo $row->order_code; ?></td>
+                                        <td class="__col-odd"><?php echo $row->order_code; ?></td>
                                         <td><?php echo $row->customer_name; ?></td>
-                                        <td class="text-success"><?php echo $row->prod_name; ?></td>
+                                        <td class="__col-odd"><?php echo $row->prod_name; ?></td>
                                         <td>₱ <?php echo $row->prod_price; ?></td>
-                                        <td class="text-success"><?php echo $row->prod_qty; ?></td>
+                                        <td class="__col-odd"><?php echo $row->prod_qty; ?></td>
                                         <td>₱ <?php echo (int)$row->prod_price * (int)$row->prod_qty; ?></td>
-                                        <td>
+                                        <td class="__col-odd">
                                             <?php if ($row->order_status == '') { ?>
                                                 <span class='badge badge-danger'>Not Paid</span>
                                             <?php } else { ?>
@@ -122,7 +124,7 @@
                                             <?php } ?>
                                         </td>
                                         <td><?php echo date('d/M/Y', strtotime($row->created_at)); ?></td>
-                                        <td><?php echo date('g:i', strtotime($row->created_at)); ?></td>
+                                        <td class="__col-odd"><?php echo date('g:i', strtotime($row->created_at)); ?></td>
                                         <td>
                                             <!-- View Order Form -->
                                             <form action="order_summary.php" method="POST" target="_self" style="display: inline-block;">
