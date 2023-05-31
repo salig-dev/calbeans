@@ -201,7 +201,7 @@ $_SESSION['total_sales'] = $total_sales;
                                                     $time = date('g:i', $firstCreatedDateTime);
                                                     ?>
                                                     <td rowspan="<?php echo $num_orders; ?>"><?php echo $date; ?></td>
-                                                    <td class="text-success"><?php echo $time; ?></td>
+                                                    <td rowspan="2"><?php echo $time; ?></td>
                                                 <?php } ?>
                                             </tr>
                                         <?php } ?>
