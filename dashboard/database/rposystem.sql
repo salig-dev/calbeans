@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2023 at 03:02 PM
+-- Generation Time: May 31, 2023 at 11:28 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,7 +39,7 @@ CREATE TABLE `rpos_admin` (
 --
 
 INSERT INTO `rpos_admin` (`admin_id`, `admin_name`, `admin_email`, `admin_password`) VALUES
-('10e0b6dc958adfb5b094d8935a13aeadbe783c25', 'System Admin', 'admin@mail.com', '903b21879b4a60fc9103c3334e4f6f62cf6c3a2d');
+('10e0b6dc958adfb5b094d8935a13aeadbe783c25', 'System Admin', 'admin@mail.com', '036d0ef7567a20b5a4ad24a354ea4a945ddab676');
 
 -- --------------------------------------------------------
 
@@ -61,22 +61,7 @@ CREATE TABLE `rpos_customers` (
 --
 
 INSERT INTO `rpos_customers` (`customer_id`, `customer_name`, `customer_phoneno`, `customer_email`, `customer_password`, `created_at`) VALUES
-('06549ea58afd', 'Ana J. Browne', '4589698780', 'anaj@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:39:48.523820'),
-('0e1ef1e5b7c7', 'clement', '123', 'customer@mail.com', '51cd91ab70d4dd85eddcd7cad6b396eeb5102c95', '2023-05-28 11:40:10.461376'),
-('1fc1f694985d', 'Jane Doe', '2145896547', 'janed@mail.com', 'a69681bcf334ae130217fea4505fd3c994f5683f', '2022-09-03 13:39:13.076592'),
-('27e4a5bc74c2', 'Tammy R. Polley', '4589654780', 'tammy@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:37:47.049438'),
-('29c759d624f9', 'Trina L. Crowder', '5896321002', 'trina@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 13:16:18.927595'),
-('35135b319ce3', 'Christine Moore', '7412569698', 'christine@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-04 16:29:45.133297'),
-('3859d26cd9a5', 'Louise R. Holloman', '7856321000', 'holloman@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:38:12.149280'),
-('487e8fef4732', 'Andrew Tate', '09192639274', 'topg@gmail.com', 'a9d2f4c14695cd5e43957572a0d3dd4aabba3e6d', '2023-05-29 09:49:31.394663'),
-('57b7541814ed', 'Howard W. Anderson', '8745554589', 'howard@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 08:35:10.959590'),
-('7c8f2100d552', 'Melody E. Hance', '3210145550', 'melody@mail.com', 'a69681bcf334ae130217fea4505fd3c994f5683f', '2022-09-03 13:16:23.996068'),
-('9c7fcc067bda', 'Delbert G. Campbell', '7850001256', 'delbert@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:38:56.944364'),
-('9f6378b79283', 'William C. Gallup', '7145665870', 'william@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:39:26.507932'),
-('d0ba61555aee', 'Jamie R. Barnes', '4125556587', 'jamie@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:36:59.643216'),
-('d7c2db8f6cbf', 'Victor A. Pierson', '1458887896', 'victor@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:37:21.568155'),
-('e711dcc579d9', 'Julie R. Martin', '3245557896', 'julie@mail.com', '55c3b5386c486feb662a0785f340938f518d547f', '2022-09-03 12:38:33.397498'),
-('fe6bb69bdd29', 'Brian S. Boucher', '1020302055', 'brians@mail.com', 'a69681bcf334ae130217fea4505fd3c994f5683f', '2022-09-03 13:16:29.591980');
+('044bdfae8bed', 'Sample Customer', '09123456788', 'customer@mail.com', 'c2878c9008b74f48f39c702251c1f00c802e3f11', '2023-05-31 09:24:32.492437');
 
 -- --------------------------------------------------------
 
@@ -102,12 +87,7 @@ CREATE TABLE `rpos_orders` (
 --
 
 INSERT INTO `rpos_orders` (`order_id`, `order_code`, `customer_id`, `customer_name`, `prod_id`, `prod_name`, `prod_price`, `prod_qty`, `order_status`, `created_at`) VALUES
-('4562882832', 'HKVQ-4921', '0e1ef1e5b7c7', 'clement', '6d24e7448b', 'Calbeans\' Cookie', '40.00', '3', 'Paid', '2023-05-28 12:03:13.685130'),
-('5d41685be0', 'LOPM-2819', '487e8fef4732', 'Andrew Tate', '6d24e7448b', 'Calbeans\' Cookie', '40.00', '23', 'Paid', '2023-05-29 10:26:50.912433'),
-('62d778a61f', 'TLBY-1605', '06549ea58afd', 'Ana J. Browne', '0c4b5c0604', 'Cortado (12oz|Hot)', '95.00', '2', 'Paid', '2023-05-28 12:19:21.100158'),
-('e0f06f3406', 'RHYC-1372', '0e1ef1e5b7c7', 'clement', 'b431559811', 'Banana Cake', '45.00', '3', '', '2023-05-28 11:40:38.917291'),
-('e19d21255a', 'AYCZ-4615', '487e8fef4732', 'Andrew Tate', '6d24e7448b', 'Calbeans\' Cookie', '40.00', '2', '', '2023-05-29 11:21:28.674320'),
-('f355e0d785', 'TDAQ-7314', '06549ea58afd', 'Ana J. Browne', '066614cccc', 'Carbonara', '100.00', '2', '', '2023-05-28 12:19:00.885522');
+('a6394af5f9', 'XKTS-4253', '044bdfae8bed', 'Sample Customer', '108933eeb7                      ', 'Tea (Green or Black) 12oz|Hot                      ', '50.00', '1', '', '2023-05-31 09:24:59.138920');
 
 -- --------------------------------------------------------
 
@@ -124,13 +104,6 @@ CREATE TABLE `rpos_pass_resets` (
   `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `rpos_pass_resets`
---
-
-INSERT INTO `rpos_pass_resets` (`reset_id`, `reset_code`, `reset_token`, `reset_email`, `reset_status`, `created_at`) VALUES
-(1, '63KU9QDGSO', '4ac4cee0a94e82a2aedc311617aa437e218bdf68', 'sysadmin@icofee.org', 'Pending', '2020-08-17 15:20:14.318643');
-
 -- --------------------------------------------------------
 
 --
@@ -146,23 +119,6 @@ CREATE TABLE `rpos_payments` (
   `pay_method` varchar(200) NOT NULL,
   `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `rpos_payments`
---
-
-INSERT INTO `rpos_payments` (`pay_id`, `pay_code`, `order_code`, `customer_id`, `pay_amt`, `pay_method`, `created_at`) VALUES
-('0bf592', '9UMWLG4BF8', 'EJKA-4501', '35135b319ce3', '8', 'Cash', '2022-09-04 16:31:54.525284'),
-('4423d7', 'QWERT0YUZ1', 'JFMB-0731', '35135b319ce3', '11', 'Cash', '2022-09-04 16:37:03.655834'),
-('442865', '146XLFSC9V', 'INHG-0875', '9c7fcc067bda', '10', 'Paypal', '2022-09-04 16:35:22.470600'),
-('65891b', 'MF2TVJA1PY', 'ZPXD-6951', 'e711dcc579d9', '16', 'Cash', '2022-09-03 13:12:46.959558'),
-('75ae21', '1QIKVO69SA', 'IUSP-9453', 'fe6bb69bdd29', '10', 'Cash', '2022-09-03 11:50:40.496625'),
-('7e1989', 'KLTF3YZHJP', 'QOEH-8613', '29c759d624f9', '9', 'Cash', '2022-09-03 12:02:32.926529'),
-('968488', '5E31DQ2NCG', 'COXP-6018', '7c8f2100d552', '22', 'Cash', '2022-09-03 12:17:44.639979'),
-('984539', 'LSBNK1WRFU', 'FNAB-9142', '35135b319ce3', '18', 'Paypal', '2022-09-04 16:32:14.852482'),
-('9fcee7', 'AZSUNOKEI7', 'OTEV-8532', '3859d26cd9a5', '15', 'Cash', '2022-09-03 13:13:38.855058'),
-('c81d2e', 'WERGFCXZSR', 'AEHM-0653', '06549ea58afd', '8', 'Cash', '2022-09-03 13:26:00.331494'),
-('e46e29', 'QMCGSNER3T', 'ONSY-2465', '57b7541814ed', '12', 'Cash', '2022-09-03 08:35:50.172062');
 
 -- --------------------------------------------------------
 
@@ -266,7 +222,7 @@ CREATE TABLE `rpos_staff` (
 --
 
 INSERT INTO `rpos_staff` (`staff_id`, `staff_name`, `staff_number`, `staff_email`, `staff_password`, `created_at`) VALUES
-(2, 'Cashier Trevor', 'QEUY-9042', 'cashier@mail.com', '903b21879b4a60fc9103c3334e4f6f62cf6c3a2d', '2022-09-04 16:11:30.581882');
+(1, 'Calbeans Staff', 'QEUY-9042', 'cashier@mail.com', '036d0ef7567a20b5a4ad24a354ea4a945ddab676036d0ef7567a20b5a4ad24a354ea4a945ddab676', '2023-05-31 09:21:50.286252');
 
 --
 -- Indexes for dumped tables
