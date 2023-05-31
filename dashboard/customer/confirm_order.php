@@ -144,7 +144,6 @@ if ($order) {
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
-                        <h1></h1>
                         <div class="card shadow">
                             <div class="card-body">
                                 <h1 class="title">CONFIRM ORDER</h1>
