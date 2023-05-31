@@ -50,10 +50,13 @@ if (isset($_POST['view_order'])) {
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 25px;
+            height: 100%;
         }
 
         .card {
             width: 40%;
+            height: 100%;
             margin: 0 auto; /* Center the card horizontally */
             padding: 10px; /* Add some padding */
             text-align: center;
@@ -63,9 +66,9 @@ if (isset($_POST['view_order'])) {
         html,
         body {
             background-image: url("../../assets/img/hero/4.png");
+            background-size: cover;
             font-family: 'Chivo', sans-serif;
             font-weight: 200;
-            margin: 0;
         }
 
         .full-height {
@@ -115,17 +118,17 @@ if (isset($_POST['view_order'])) {
                         <h1></h1>
                         <div class="card shadow">
                             <div class="card-body">
-                                <h1 class="title">ORDER SUMMARY</h1>
                                 <?php
                                 while ($order_row = $orders_result->fetch_object()) {
                                     ?>
+                                    <h1 class="title">ORDER SUMMARY</h1><hr>
                                     <p><strong>Customer:</strong> <?php echo $order_row->customer_name; ?></p>
-                                    <hr>
                                     <p><strong>Products:</strong> <?php echo $order_row->prod_name; ?></p>
                                     <p><strong>Unit Price:</strong> ₱<?php echo $order_row->prod_price; ?></p>
                                     <p><strong>Quantity:</strong> <?php echo $order_row->prod_qty . ' ' . $order_row->prod_name; ?></p>
                                     <p><strong>Total Price:</strong> ₱<?php echo $order_row->prod_price * $order_row->prod_qty; ?></p>
                                     <p><strong>Status:</strong> <?php echo $order_row->order_status; ?></p>
+                                    <hr>
                                     <form action="update_order_status.php" method="POST">
                                         <input type="hidden" name="order_id" value="<?php echo $order_row->order_id; ?>">
                                         <input type="hidden" name="customer_name" value="<?php echo $order_row->customer_name; ?>">
@@ -136,6 +139,7 @@ if (isset($_POST['view_order'])) {
                                             <option value="Cancelled">Cancelled</option>
                                         </select>
                                         <button type="submit" name="update_status" class="btn btn-primary margin">Update Status</button>
+                                        <hr>
                                     </form>
                                     <?php
                                 }
