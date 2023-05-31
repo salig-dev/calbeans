@@ -136,8 +136,8 @@ require_once('partials/_head.php');
 
                                             <div class="form-row">
                                                 <div class="col-md-6">
-                                                    <label>Product Price (₱)</label>
-                                                    <input type="text" readonly name="prod_price" value="$ <?php echo $prod->prod_price; ?>" class="form-control">
+                                                    <label>Product Price</label>
+                                                    <input type="text" readonly name="prod_price" value="₱ <?php echo $prod->prod_price; ?>" class="form-control">
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label>Product Quantity</label>
