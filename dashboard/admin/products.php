@@ -3,24 +3,26 @@ session_start();
 include('config/config.php');
 include('config/checklogin.php');
 check_login();
+
 if (isset($_GET['delete'])) {
   $id = intval($_GET['delete']);
   $adn = "DELETE FROM rpos_products WHERE prod_id = ? LIMIT 1";
   $stmt = $mysqli->prepare($adn);
-  if ($stmt) {
-      $stmt->bind_param('i', $id);
-      if ($stmt->execute()) {
-          $success = "Deleted";
-          header("refresh:1; url=products.php");
-          exit();
-      } else {
-          $err = "Failed to delete the record. Please try again later.";
-      }
-      $stmt->close();
+  $stmt->bind_param('i', $id);
+  $stmt->execute();
+  if ($stmt->error) {
+    $err = "Error: " . $stmt->error;
   } else {
-      $err = "Failed to prepare statement: " . $mysqli->error;
+    if ($stmt->affected_rows > 0) {
+      $success = "Deleted";
+      header("refresh:1; url=products.php");
+    } else {
+      $err = "No record found";
+    }
   }
+  $stmt->close();
 }
+
 require_once('partials/_head.php');
 ?>
 
