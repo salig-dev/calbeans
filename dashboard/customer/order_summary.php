@@ -17,6 +17,26 @@
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
     <link rel="stylesheet" href="../../assets/css/nice-select.css" />
 
+    <script src="../../assets/js/html2canvas.js"></script>
+
+    <script>
+    function saveOrderSummary() {
+        var orderSummaryElement = document.querySelector("#order-summary");
+        console.log("orderSummaryElement:", orderSummaryElement);
+
+        html2canvas(orderSummaryElement).then(function (canvas) {
+            var link = document.createElement("a");
+            link.href = canvas.toDataURL();
+            link.download = "order_summary.png";
+            link.click();
+        }).catch(function (error) {
+            console.error("html2canvas error:", error);
+        });
+    }
+
+    </script>
+
+
 </head>
 
 <?php
@@ -44,7 +64,7 @@ if (isset($_GET['proceed']) && $_GET["proceed"] == "true") {
         $orders_result = $stmt->get_result();
         ?>
 
-        <body class="hero-overly">
+        <body class="hero-overly" id="order-summary">
         <style>
         .main-content {
             display: flex;
@@ -125,20 +145,8 @@ if (isset($_GET['proceed']) && $_GET["proceed"] == "true") {
                                 <p><strong>Unit Price:</strong> ₱<?php echo $order->prod_price; ?></p>
                                 <p><strong>Quantity:</strong> <?php echo $order->prod_qty . ' ' . $order->prod_name; ?></p>
                                 <p><strong>Total Price:</strong> ₱<?php echo $order->prod_price * $order->prod_qty; ?></p>
-                                <p><strong>Status:</strong> <?php echo $order->order_status; ?></p>
                                 <hr>
-                                <form action="update_order_status.php" method="POST">
-                                    <input type="hidden" name="order_id" value="<?php echo $order->order_id; ?>">
-                                    <input type="hidden" name="customer_name" value="<?php echo $order->customer_name; ?>">
-                                    <select name="new_status" class="form-control">
-                                        <option value="">Select Status</option>
-                                        <option value="Paid">Paid</option>
-                                        <option value="Pending">Pending</option>
-                                        <option value="Cancelled">Cancelled</option>
-                                    </select>
-                                    <button type="submit" name="update_status" class="btn btn-primary margin">Update Status</button>
-                                    <hr>
-                                </form>
+                                <button class="btn btn-primary margin" onclick="saveOrderSummary()">Save Order</button>
                             </div>
                         </div>
                     </div>
