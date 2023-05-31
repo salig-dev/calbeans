@@ -145,7 +145,7 @@ if (isset($_POST['delete_order'])) {
                                         $time = date('g:i', $firstCreatedDateTime);
                                         ?>
                                         <td rowspan="<?php echo $num_orders; ?>"><?php echo $date; ?></td>
-                                        <td rowspan="2"><?php echo $time; ?></td>
+                                        <td rowspan=""><?php echo $time; ?></td>
                                     <?php } ?>
                                     <?php if ($i === 0) { ?>
                                         <td rowspan="<?php echo $num_orders; ?>">

@@ -6,28 +6,39 @@ include('config/code-generator.php');
 
 check_login();
 if (isset($_POST['make'])) {
-    //Prevent Posting Blank Values
-    if (empty($_POST["order_code"]) || empty($_POST["customer_name"]) || empty($_GET['prod_price'])) {
+    // Prevent Posting Blank Values
+    if (empty($_POST["order_code"]) || empty($_POST["customer_name"]) || empty($_POST['prod_qty'])) {
         $err = "Blank Values Not Accepted";
     } else {
         $order_id = $_POST['order_id'];
-        $order_code  = $_POST['order_code'];
+        $order_code = $_POST['order_code'];
         $customer_id = $_SESSION['customer_id'];
         $customer_name = $_POST['customer_name'];
-        $prod_id  = $_GET['prod_id'];
+        $prod_id = $_GET['prod_id'];
         $prod_name = $_GET['prod_name'];
         $prod_price = $_GET['prod_price'];
         $prod_qty = $_POST['prod_qty'];
 
-        //Insert Captured information to a database table
+        // Insert Captured information to a database table
         $postQuery = "INSERT INTO rpos_orders (prod_qty, order_id, order_code, customer_id, customer_name, prod_id, prod_name, prod_price) VALUES(?,?,?,?,?,?,?,?)";
         $postStmt = $mysqli->prepare($postQuery);
-        //bind paramaters
-        $rc = $postStmt->bind_param('ssssssss', $prod_qty, $order_id, $order_code, $customer_id, $customer_name, $prod_id, $prod_name, $prod_price);
-        $postStmt->execute();
-        //declare a varible which will be passed to alert function
-        if ($postStmt) {
-            $success = "Order Submitted" && header("refresh:1; url=payments.php");
+        if (
+            $postStmt &&
+            $postStmt->bind_param(
+                'ssssssss',
+                $prod_qty,
+                $order_id,
+                $order_code,
+                $customer_id,
+                $customer_name,
+                $prod_id,
+                $prod_name,
+                $prod_price
+            ) &&
+            $postStmt->execute()
+        ) {
+            $success = "Order Submitted";
+           header("refresh:1; url=prompt.php?order_id=$order_id");
         } else {
             $err = "Please Try Again Or Try Later";
         }
@@ -38,15 +49,11 @@ require_once('partials/_head.php');
 
 <body>
     <!-- Sidenav -->
-    <?php
-    require_once('partials/_sidebar.php');
-    ?>
+    <?php require_once('partials/_sidebar.php'); ?>
     <!-- Main content -->
     <div class="main-content">
         <!-- Top navbar -->
-        <?php
-        require_once('partials/_topnav.php');
-        ?>
+        <?php require_once('partials/_topnav.php'); ?>
         <!-- Header -->
         <div style="background-image: url(../admin/assets/img/theme/restro00.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
             <span class="mask bg-gradient-dark opacity-8"></span>
@@ -65,6 +72,8 @@ require_once('partials/_head.php');
                             <h3>Please Fill All Fields</h3>
                         </div>
                         <div class="card-body py-0">
+                            <form method="POST" enctype="multipart/form-data">
+                            <div class="card-body py-0">
                             <form method="POST" enctype="multipart/form-data">
 
 
@@ -163,8 +172,11 @@ require_once('partials/_head.php');
                                                 </div>
 
                                                 <div class="mt-4 col-md-12 mb-4 mx-auto">
+                                                <form action="order_summary.php" method="POST" target="_self" style="display: inline-block;">
                                                     <input style="width:50%; margin-left:22.5%" type="submit" name="make" value="Make Order" class="btn btn-success" value="">
+                                                </form>
                                                 </div>
+
                                             </div>
                                 </div>
                             <?php } ?>
@@ -180,8 +192,12 @@ require_once('partials/_head.php');
             ?>
         </div>
     </div>
+
+                        
+            <!-- Footer -->
+            <?php // require_once('partials/_footer.php'); ?>
+        </div>
+    </div>
     <!-- Argon Scripts -->
-    <?php
-    require_once('partials/_scripts.php');
-    ?>
+    <?php require_once('partials/_scripts.php'); ?>
 </body>
