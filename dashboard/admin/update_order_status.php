@@ -8,18 +8,19 @@ if (isset($_POST['update_status'])) {
     $order_id = $_POST['order_id'];
     $new_status = $_POST['new_status'];
 
-    // Update the order status
+    // Update the order status in the database
     $stmt = $mysqli->prepare("UPDATE rpos_orders SET order_status = ? WHERE order_id = ?");
     $stmt->bind_param("si", $new_status, $order_id);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
         $_SESSION['success'] = "Order status updated successfully";
+        header("Location: orders_reports.php"); // Redirect back to the order list page
+        exit();
     } else {
         $_SESSION['error'] = "Failed to update order status";
+        header("Location: orders_reports.php"); // Redirect back to the order list page
+        exit();
     }
-
-    header("Location: orders_reports.php"); // Redirect back to the order list page
-    exit();
 }
 ?>
