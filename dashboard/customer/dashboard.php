@@ -25,6 +25,7 @@ require_once('partials/_analytics.php');
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
 
 <body>
   <!-- Sidenav -->
@@ -107,14 +108,14 @@ require_once('partials/_analytics.php');
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th class="text-success" scope="col">Code</th>
+                    <th class="__col-odd" scope="col">Code</th>
                     <th scope="col">Customer</th>
-                    <th class="text-success" scope="col">Product</th>
+                    <th class="__col-odd" scope="col">Product</th>
                     <th scope="col">Unit Price</th>
-                    <th class="text-success" scope="col">#</th>
+                    <th class="__col-odd" scope="col">#</th>
                     <th scope="col">Total Price</th>
-                    <th scop="col">Status</th>
-                    <th class="text-success" scope="col">Date</th>
+                    <th class="__col-odd" scope="col">Status</th>
+                    <th scope="col">Date</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -129,18 +130,18 @@ require_once('partials/_analytics.php');
 
                   ?>
                     <tr>
-                      <th class="text-success" scope="row"><?php echo $order->order_code; ?></th>
+                      <th class="__col-odd text-success" scope="row"><?php echo $order->order_code; ?></th>
                       <td><?php echo $order->customer_name; ?></td>
-                      <td class="text-success"><?php echo $order->prod_name; ?></td>
+                      <td class="__col-odd text-success"><?php echo $order->prod_name; ?></td>
                       <td>₱<?php echo $order->prod_price; ?></td>
-                      <td class="text-success"><?php echo $order->prod_qty; ?></td>
+                      <td class="__col-odd text-success"><?php echo $order->prod_qty; ?></td>
                       <td>₱<?php echo $total; ?></td>
-                      <td><?php if ($order->order_status == '') {
+                      <td class="__col-odd"><?php if ($order->order_status == '') {
                             echo "<span class='badge badge-danger'>Not Paid</span>";
                           } else {
                             echo "<span class='badge badge-success'>$order->order_status</span>";
                           } ?></td>
-                      <td class="text-success"><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
+                      <td><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
                     </tr>
                   <?php } ?>
                 </tbody>
@@ -167,9 +168,9 @@ require_once('partials/_analytics.php');
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th class="text-success" scope="col">Code</th>
+                    <th class="__col-odd" scope="col">Code</th>
                     <th scope="col">Amount</th>
-                    <th class='text-success' scope="col">Order Code</th>
+                    <th class='__col-odd' scope="col">Order Code</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -181,13 +182,13 @@ require_once('partials/_analytics.php');
                   while ($payment = $res->fetch_object()) {
                   ?>
                     <tr>
-                      <th class="text-success" scope="row">
+                      <th class="__col-odd" scope="row">
                         <?php echo $payment->pay_code; ?>
                       </th>
                       <td>
                         ₱<?php echo $payment->pay_amt; ?>
                       </td>
-                      <td class='text-success'>
+                      <td class='__col-odd'>
                         <?php echo $payment->order_code; ?>
                       </td>
                     </tr>

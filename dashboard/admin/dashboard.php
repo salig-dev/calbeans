@@ -51,6 +51,7 @@ $_SESSION['total_sales'] = $total_sales;
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
 
 <body>
     <!-- Sidenav -->
@@ -158,15 +159,15 @@ $_SESSION['total_sales'] = $total_sales;
     <table class="table align-items-center table-flush">
         <thead class="thead-light">
             <tr>
-                <th class="text-success" scope="col">Code</th>
+                <th class="__col-odd" scope="col">Code</th>
                 <th scope="col">Customer</th>
-                <th class="text-success" scope="col">Product</th>
+                <th class="__col-odd" scope="col">Product</th>
                 <th scope="col">Unit Price</th>
-                <th class="text-success" scope="col">Quantity</th>
+                <th class="__col-odd" scope="col">Quantity</th>
                 <th scope="col">Total Price</th>
-                <th scope="col">Status</th>
+                <th class="__col-odd" scope="col">Status</th>
                 <th scope="col">Order Date</th>
-                <th scope="col">Order Time</th>
+                <th class="__col-odd" scope="col">Order Time</th>
             </tr>
         </thead>
         <tbody>
@@ -190,13 +191,13 @@ $_SESSION['total_sales'] = $total_sales;
                 $time = date('g:i', strtotime($created_at));
             ?>
                 <tr>
-                    <td class="text-success" scope="row"><?php echo $order_code; ?></td>
+                    <td class="__col-odd" scope="row"><?php echo $order_code; ?></td>
                     <td><?php echo $customer_name; ?></td>
-                    <td class="text-success"><?php echo $prod_name; ?></td>
+                    <td class="__col-odd"><?php echo $prod_name; ?></td>
                     <td>₱<?php echo $prod_price; ?></td>
-                    <td class="text-success"><?php echo $prod_qty; ?></td>
+                    <td class="__col-odd"><?php echo $prod_qty; ?></td>
                     <td>₱<?php echo $total_price; ?></td>
-                    <td>
+                    <td class="__col-odd">
                         <?php if ($order_status == '') {
                             echo "<span class='badge badge-danger'>Not Paid</span>";
                         } else {
@@ -205,7 +206,7 @@ $_SESSION['total_sales'] = $total_sales;
                         ?>
                     </td>
                     <td><?php echo $date; ?></td>
-                    <td><?php echo $time; ?></td>
+                    <td class="__col-odd"><?php echo $time; ?></td>
                 </tr>
             <?php
             }
