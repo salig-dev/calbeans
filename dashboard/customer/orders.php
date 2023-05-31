@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Customer Dashboard | Calbeans Coffee</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../../assets/img/icon/favicon.png"
+    />
+
 <?php
 session_start();
 include('config/config.php');
@@ -7,8 +22,10 @@ check_login();
 require_once('partials/_head.php');
 ?>
 
-<link rel="stylesheet" href="../../assets/css/nice-select.css" />
-<link rel="stylesheet" href="../../assets/css/dashboard.css">
+    <!-- STYLES -->
+    <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/nice-select.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
 
 <body>
   <!-- Sidenav -->
@@ -22,7 +39,7 @@ require_once('partials/_head.php');
     require_once('partials/_topnav.php');
     ?>
     <!-- Header -->
-    <div style="background-image: url(../admin/assets/img/theme/restro00.jpg); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
+    <div style="background-image: url(../../assets/img/hero/hero.png); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
       <span class="mask bg-gradient-dark opacity-8"></span>
       <div class="container-fluid">
         <div class="header-body">
