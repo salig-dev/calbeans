@@ -15,7 +15,9 @@
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
-    
+    <link rel="stylesheet" href="../../assets/css/nice-select.css" />
+
+</head>
 <?php
 session_start();
 include('config/config.php');
@@ -40,32 +42,80 @@ if (isset($_POST['view_order'])) {
         $stmt->execute();
         $orders_result = $stmt->get_result();
         ?>
-        <html>
-        <body>
+        
+        <body class="hero-overly">
         <style>
-            .main-content {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-            }
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-            .card {
-                width: 400px;
-                margin: 0 auto; /* Center the card horizontally */
-                padding: 20px; /* Add some padding */
-                text-align: center;
-            }
+        .card {
+            width: 40%;
+            margin: 0 auto; /* Center the card horizontally */
+            padding: 10px; /* Add some padding */
+            text-align: center;
+            background-color: #f6f1ea;
+        }
+
+        html,
+        body {
+            background-image: url("../../assets/img/hero/4.png");
+            font-family: 'Chivo', sans-serif;
+            font-weight: 200;
+            margin: 0;
+        }
+
+        .full-height {
+            height: 100vh;
+        }
+
+        .flex-center {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .position-ref {
+            position: relative;
+        }
+
+        .top-right {
+            position: absolute;
+            right: 10px;
+            top: 18px;
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        .title {
+            font-family: "Brice", "Chivo", sans-serif;
+            color: #d4ac63;
+            margin-top: 0px;
+            font-style: normal;
+            font-weight: 500;
+            text-transform: normal;
+            letter-spacing: 0.1rem;
+        }
+
+        .margin {
+            margin-top: 1rem;
+        }
+
         </style>
         <!-- Main content -->
         <div class="main-content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
-                        <center><h2>Customer Orders</h2></center>
+                        <h1></h1>
                         <div class="card shadow">
                             <div class="card-body">
-                                <h3>Orders Summary</h3>
+                                <h1 class="title">ORDER SUMMARY</h1>
                                 <?php
                                 while ($order_row = $orders_result->fetch_object()) {
                                     ?>
@@ -85,7 +135,7 @@ if (isset($_POST['view_order'])) {
                                             <option value="Pending">Pending</option>
                                             <option value="Cancelled">Cancelled</option>
                                         </select>
-                                        <button type="submit" name="update_status" class="btn btn-primary">Update Status</button>
+                                        <button type="submit" name="update_status" class="btn btn-primary margin">Update Status</button>
                                     </form>
                                     <?php
                                 }
@@ -96,6 +146,10 @@ if (isset($_POST['view_order'])) {
                 </div>
             </div>
         </div>
+        <!-- SCRIPT -->
+        <script src="../../assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="../../assets/js/jquery.nice-select.min.js"></script>
+
         </body>
         </html>
         <?php
