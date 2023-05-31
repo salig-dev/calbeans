@@ -121,7 +121,8 @@ require_once('partials/_head.php');
           <div class="row">
             <div class="col-lg-7 col-md-10">
               <h1 class="display-2 text-white">Hello <?php echo $admin->admin_name; ?></h1>
-              <p class="text-white mt-0 mb-5">This is your profile page. You can customize your profile as you want And also change password too</p>
+              <p class="text-white mt-0 mb-5">
+This is your profile page. Customize your profile to your heart's content and update your password as needed.</p>
             </div>
           </div>
         </div>
