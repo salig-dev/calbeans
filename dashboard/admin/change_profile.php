@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Update Profile | Calbeans Coffee</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../../assets/img/icon/favicon.png"
+    />
+
 <?php
 session_start();
 include('config/config.php');
@@ -76,6 +91,9 @@ if (isset($_POST['changePassword'])) {
 require_once('partials/_head.php');
 ?>
 
+    <!-- STYLES -->
+    <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+
 <body>
   <!-- Sidenav -->
   <?php
@@ -95,7 +113,7 @@ require_once('partials/_head.php');
     while ($admin = $res->fetch_object()) {
     ?>
       <!-- Header -->
-      <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/restro00.jpg); background-size: cover; background-position: center top;">
+      <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(../../assets/img/hero/hero.png); background-size: cover; background-position: center top;">
         <!-- Mask -->
         <span class="mask bg-gradient-default opacity-8"></span>
         <!-- Header container -->
