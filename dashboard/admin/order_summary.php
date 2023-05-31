@@ -54,9 +54,9 @@ if (isset($_POST['view_order'])) {
                                     <p><strong>Customer:</strong> <?php echo $order_row->customer_name; ?></p>
                                     <hr>
                                     <p><strong>Products:</strong> <?php echo $order_row->prod_name; ?></p>
-                                    <p><strong>Unit Price:</strong> $<?php echo $order_row->prod_price; ?></p>
+                                    <p><strong>Unit Price:</strong> ₱<?php echo $order_row->prod_price; ?></p>
                                     <p><strong>Quantity:</strong> <?php echo $order_row->prod_qty . ' ' . $order_row->prod_name; ?></p>
-                                    <p><strong>Total Price:</strong> $<?php echo $order_row->prod_price * $order_row->prod_qty; ?></p>
+                                    <p><strong>Total Price:</strong> ₱<?php echo $order_row->prod_price * $order_row->prod_qty; ?></p>
                                     <p><strong>Status:</strong> <?php echo $order_row->order_status; ?></p>
                                     <form action="update_order_status.php" method="POST">
                                         <input type="hidden" name="order_id" value="<?php echo $order_row->order_id; ?>">
