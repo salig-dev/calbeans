@@ -65,7 +65,7 @@ require_once('partials/_head.php');
                   <option disabled selected value="disabled">Select a category</option>
                   <option value="All">All</option>
                   <option value="Espresso">Espresso</option>
-                  <option value="Fresh Black Coffee/Cold Brew">Fresh Black Coffee/Cold Brew</option>
+                  <option value="Fresh Black Coffee / Cold Brew">Fresh Black Coffee / Cold Brew</option>
                   <option value="Non-Coffee Drinks">Non-Coffee Drinks</option>
                   <option value="Sandwich">Sandwich</option>
                   <option value="Pastries">Pastries</option>
@@ -97,7 +97,7 @@ require_once('partials/_head.php');
                 </thead>
                 <tbody>
                   <?php
-                  $ret = "SELECT * FROM  rpos_products ORDER BY prod_name";
+                  $ret = "SELECT * FROM rpos_products ORDER BY prod_category ASC, prod_name ASC, created_at DESC";
                   $stmt = $mysqli->prepare($ret);
                   $stmt->execute();
                   $res = $stmt->get_result();
