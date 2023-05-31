@@ -5,15 +5,20 @@ include('config/checklogin.php');
 check_login();
 if (isset($_GET['delete'])) {
   $id = intval($_GET['delete']);
-  $adn = "DELETE FROM  rpos_products  WHERE  prod_id = ?";
+  $adn = "DELETE FROM rpos_products WHERE prod_id = ? LIMIT 1";
   $stmt = $mysqli->prepare($adn);
-  $stmt->bind_param('s', $id);
-  $stmt->execute();
-  $stmt->close();
   if ($stmt) {
-    $success = "Deleted" && header("refresh:1; url=products.php");
+      $stmt->bind_param('i', $id);
+      if ($stmt->execute()) {
+          $success = "Deleted";
+          header("refresh:1; url=products.php");
+          exit();
+      } else {
+          $err = "Failed to delete the record. Please try again later.";
+      }
+      $stmt->close();
   } else {
-    $err = "Try Again Later";
+      $err = "Failed to prepare statement: " . $mysqli->error;
   }
 }
 require_once('partials/_head.php');
