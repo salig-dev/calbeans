@@ -154,75 +154,66 @@ $_SESSION['total_sales'] = $total_sales;
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <!-- Projects table -->
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th class="text-success" scope="col">Code</th>
-                                        <th scope="col">Customer</th>
-                                        <th class="text-success" scope="col">Product</th>
-                                        <th scope="col">Unit Price</th>
-                                        <th class="text-success" scope="col">Quantity</th>
-                                        <th scope="col">Total Price</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Order Date</th>
-                                        <th scope="col">Order Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $ret = "SELECT customer_name, GROUP_CONCAT(order_id SEPARATOR ',') AS order_ids, GROUP_CONCAT(order_code SEPARATOR ',') AS order_codes, GROUP_CONCAT(prod_name SEPARATOR ',') AS prod_names, GROUP_CONCAT(prod_price SEPARATOR ',') AS prod_prices, GROUP_CONCAT(prod_qty SEPARATOR ',') AS prod_quantities, GROUP_CONCAT(order_status SEPARATOR ',') AS order_statuses, GROUP_CONCAT(created_at SEPARATOR ',') AS created_dates FROM rpos_orders GROUP BY customer_name ORDER BY `created_at` DESC";
-                                    $stmt = $mysqli->prepare($ret);
-                                    $stmt->execute();
-                                    $res = $stmt->get_result();
-                                    while ($row = $res->fetch_object()) {
-                                        $order_ids = explode(',', $row->order_ids);
-                                        $order_codes = explode(',', $row->order_codes);
-                                        $prod_names = explode(',', $row->prod_names);
-                                        $prod_prices = explode(',', $row->prod_prices);
-                                        $prod_quantities = explode(',', $row->prod_quantities);
-                                        $order_statuses = explode(',', $row->order_statuses);
-                                        $created_dates = explode(',', $row->created_dates);
-                                        //lol
-                                        // Get the total number of orders made by the customer
-                                        $num_orders = count($order_ids);
-                                        $total_price = 0;
-                                        ?>
-                                        <?php for ($i = 0; $i < $num_orders; $i++) { ?>
-                                            <tr>
-                                                <?php if ($i === 0) { ?>
-                                                    <td rowspan="<?php echo $num_orders; ?>" class="text-success" scope="row"><?php echo $order_codes[0]; ?></td>
-                                                    <td rowspan="<?php echo $num_orders; ?>"><?php echo $row->customer_name; ?></td>
-                                                <?php } ?>
-                                                <td class="text-success"><?php echo $prod_names[$i]; ?></td>
-                                                <td>₱ <?php echo $prod_prices[$i]; ?></td>
-                                                <td class="text-success"><?php echo $prod_quantities[$i]; ?></td>
-                                                <?php if ($i === 0) { ?>
-                                                    <?php for ($j = 0; $j < $num_orders; $j++) {
-                                                        $total_price += (int)$prod_prices[$j] * (int)$prod_quantities[$j];
-                                                    } ?>
-                                                    <td rowspan="<?php echo $num_orders; ?>">₱ <?php echo $total_price; ?></td>
-                                                    <td rowspan="<?php echo $num_orders; ?>">
-                                                        <?php if ($order_statuses[0] == '') { ?>
-                                                            <span class='badge badge-danger'>Not Paid</span>
-                                                        <?php } else { ?>
-                                                            <span class='badge badge-success'><?php echo $order_statuses[0]; ?></span>
-                                                        <?php } ?>
-                                                    </td>
-                                                    <?php
-                                                    $firstCreatedDateTime = strtotime($created_dates[0]);
-                                                    $date = date('d/M/Y', $firstCreatedDateTime);
-                                                    $time = date('g:i', $firstCreatedDateTime);
-                                                    ?>
-                                                    <td rowspan="<?php echo $num_orders; ?>"><?php echo $date; ?></td>
-                                                    <td rowspan="2"><?php echo $time; ?></td>
-                                                <?php } ?>
-                                            </tr>
-                                        <?php } ?>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </div>
+    <!-- Projects table -->
+    <table class="table align-items-center table-flush">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-success" scope="col">Code</th>
+                <th scope="col">Customer</th>
+                <th class="text-success" scope="col">Product</th>
+                <th scope="col">Unit Price</th>
+                <th class="text-success" scope="col">Quantity</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Status</th>
+                <th scope="col">Order Date</th>
+                <th scope="col">Order Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $ret = "SELECT order_id, order_code, customer_name, prod_name, prod_price, prod_qty, order_status, created_at FROM rpos_orders ORDER BY created_at DESC";
+            $stmt = $mysqli->prepare($ret);
+            $stmt->execute();
+            $res = $stmt->get_result();
+            while ($row = $res->fetch_object()) {
+                $order_id = $row->order_id;
+                $order_code = $row->order_code;
+                $customer_name = $row->customer_name;
+                $prod_name = $row->prod_name;
+                $prod_price = $row->prod_price;
+                $prod_qty = $row->prod_qty;
+                $order_status = $row->order_status;
+                $created_at = $row->created_at;
+
+                $total_price = (int)$prod_price * (int)$prod_qty;
+                $date = date('d/M/Y', strtotime($created_at));
+                $time = date('g:i', strtotime($created_at));
+            ?>
+                <tr>
+                    <td class="text-success" scope="row"><?php echo $order_code; ?></td>
+                    <td><?php echo $customer_name; ?></td>
+                    <td class="text-success"><?php echo $prod_name; ?></td>
+                    <td>₱<?php echo $prod_price; ?></td>
+                    <td class="text-success"><?php echo $prod_qty; ?></td>
+                    <td>₱<?php echo $total_price; ?></td>
+                    <td>
+                        <?php if ($order_status == '') {
+                            echo "<span class='badge badge-danger'>Not Paid</span>";
+                        } else {
+                            echo "<span class='badge badge-success'>$order_status</span>";
+                        }
+                        ?>
+                    </td>
+                    <td><?php echo $date; ?></td>
+                    <td><?php echo $time; ?></td>
+                </tr>
+            <?php
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
                     </div>
                 </div>
             </div>

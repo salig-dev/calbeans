@@ -13,47 +13,48 @@
       href="../../assets/img/icon/favicon.png"
     />
 
-<?php
-session_start();
-include('config/config.php');
-include('config/checklogin.php');
-check_login();
-require_once('partials/_head.php');
+    <?php
+    session_start();
+    include('config/config.php');
+    include('config/checklogin.php');
+    check_login();
+    require_once('partials/_head.php');
 
-// Update Order Status
-if (isset($_POST['update_status'])) {
-    $order_id = $_POST['order_id'];
-    $new_status = $_POST['new_status'];
+    // Update Order Status
+    if (isset($_POST['update_status'])) {
+        $order_id = $_POST['order_id'];
+        $new_status = $_POST['new_status'];
 
-    $stmt = $mysqli->prepare("UPDATE rpos_orders SET order_status = ? WHERE order_id = ?");
-    $stmt->bind_param("si", $new_status, $order_id);
-    $stmt->execute();
+        $stmt = $mysqli->prepare("UPDATE rpos_orders SET order_status = ? WHERE order_id = ?");
+        $stmt->bind_param("si", $new_status, $order_id);
+        $stmt->execute();
 
-    if ($stmt->affected_rows > 0) {
-        $_SESSION['success'] = "Order status updated successfully";
-    } else {
-        $_SESSION['error'] = "Failed to update order status";
+        if ($stmt->affected_rows > 0) {
+            $_SESSION['success'] = "Order status updated successfully";
+        } else {
+            $_SESSION['error'] = "Failed to update order status";
+        }
     }
-}
 
-// Delete Order
-if (isset($_POST['delete_order'])) {
-    $order_id = $_POST['order_id'];
+    // Delete Order
+    if (isset($_POST['delete_order'])) {
+        $order_id = $_POST['order_id'];
 
-    $stmt = $mysqli->prepare("DELETE FROM rpos_orders WHERE order_id = ?");
-    $stmt->bind_param("i", $order_id);
-    $stmt->execute();
+        $stmt = $mysqli->prepare("DELETE FROM rpos_orders WHERE order_id = ?");
+        $stmt->bind_param("i", $order_id);
+        $stmt->execute();
 
-    if ($stmt->affected_rows > 0) {
-        $_SESSION['success'] = "Order deleted successfully";
-    } else {
-        $_SESSION['error'] = "Failed to delete order";
+        if ($stmt->affected_rows > 0) {
+            $_SESSION['success'] = "Order deleted successfully";
+        } else {
+            $_SESSION['error'] = "Failed to delete order";
+        }
     }
-}
-?>
+    ?>
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+</head>
 
 <body>
     <!-- Sidenav -->
@@ -100,69 +101,41 @@ if (isset($_POST['delete_order'])) {
                                 </thead>
                                 <tbody>
                                 <?php
-                                $ret = "SELECT customer_name, GROUP_CONCAT(order_id SEPARATOR ',') AS order_ids, GROUP_CONCAT(order_code SEPARATOR ',') AS order_codes, GROUP_CONCAT(prod_name SEPARATOR ',') AS prod_names, GROUP_CONCAT(prod_price SEPARATOR ',') AS prod_prices, GROUP_CONCAT(prod_qty SEPARATOR ',') AS prod_quantities, GROUP_CONCAT(order_status SEPARATOR ',') AS order_statuses, GROUP_CONCAT(created_at SEPARATOR ',') AS created_dates FROM rpos_orders GROUP BY customer_name ORDER BY `created_at` DESC";
+                                $ret = "SELECT order_id, order_code, customer_name, prod_name, prod_price, prod_qty, order_status, created_at FROM rpos_orders ORDER BY created_at DESC";
                                 $stmt = $mysqli->prepare($ret);
                                 $stmt->execute();
                                 $res = $stmt->get_result();
                                 while ($row = $res->fetch_object()) {
-                                    $order_ids = explode(',', $row->order_ids);
-                                    $order_codes = explode(',', $row->order_codes);
-                                    $prod_names = explode(',', $row->prod_names);
-                                    $prod_prices = explode(',', $row->prod_prices);
-                                    $prod_quantities = explode(',', $row->prod_quantities);
-                                    $order_statuses = explode(',', $row->order_statuses);
-                                    $created_dates = explode(',', $row->created_dates);
-
-                                    // Get the total number of orders made by the customer
-                                    $num_orders = count($order_ids);
                                     ?>
-                                    <?php for ($i = 0; $i < $num_orders; $i++) { ?>
                                     <tr>
-                                    <?php if ($i === 0) { ?>
-                                        <td rowspan="<?php echo $num_orders; ?>" class="text-success" scope="row"><?php echo $order_codes[0]; ?></td>
-                                        <td rowspan="<?php echo $num_orders; ?>"><?php echo $row->customer_name; ?></td>
-                                    <?php } ?>
-                                    <td class="text-success"><?php echo $prod_names[$i]; ?></td>
-                                    <td>₱ <?php echo $prod_prices[$i]; ?></td>
-                                    <td class="text-success"><?php echo $prod_quantities[$i]; ?></td>
-                                    <?php if ($i === 0) {
-                                        $total_price = 0;
-                                        for ($j = 0; $j < $num_orders; $j++) {
-                                            $total_price += (int)$prod_prices[$j] * (int)$prod_quantities[$j];
-                                        }
-                                        ?>
-                                        <td rowspan="<?php echo $num_orders; ?>">₱ <?php echo $total_price; ?></td>
-                                        <td rowspan="<?php echo $num_orders; ?>">
-                                            <?php if ($order_statuses[0] == '') { ?>
+                                        <td class="text-success"><?php echo $row->order_code; ?></td>
+                                        <td><?php echo $row->customer_name; ?></td>
+                                        <td class="text-success"><?php echo $row->prod_name; ?></td>
+                                        <td>₱ <?php echo $row->prod_price; ?></td>
+                                        <td class="text-success"><?php echo $row->prod_qty; ?></td>
+                                        <td>₱ <?php echo (int)$row->prod_price * (int)$row->prod_qty; ?></td>
+                                        <td>
+                                            <?php if ($row->order_status == '') { ?>
                                                 <span class='badge badge-danger'>Not Paid</span>
                                             <?php } else { ?>
-                                                <span class='badge badge-success'><?php echo $order_statuses[0]; ?></span>
+                                                <span class='badge badge-success'><?php echo $row->order_status; ?></span>
                                             <?php } ?>
                                         </td>
-                                        <?php
-                                        $firstCreatedDateTime = strtotime($created_dates[0]);
-                                        $date = date('d/M/Y', $firstCreatedDateTime);
-                                        $time = date('g:i', $firstCreatedDateTime);
-                                        ?>
-                                        <td rowspan="<?php echo $num_orders; ?>"><?php echo $date; ?></td>
-                                        <td rowspan=""><?php echo $time; ?></td>
-                                    <?php } ?>
-                                    <?php if ($i === 0) { ?>
-                                        <td rowspan="<?php echo $num_orders; ?>">
+                                        <td><?php echo date('d/M/Y', strtotime($row->created_at)); ?></td>
+                                        <td><?php echo date('g:i', strtotime($row->created_at)); ?></td>
+                                        <td>
                                             <!-- View Order Form -->
                                             <form action="order_summary.php" method="POST" target="_self" style="display: inline-block;">
-                                                <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
+                                                <input type="hidden" name="order_id" value="<?php echo $row->order_id; ?>">
                                                 <button type="submit" name="view_order" class="btn btn-primary btn-sm">View Order</button>
                                             </form>
                                             <!-- Delete Order Form -->
                                             <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?')" style="display: inline-block;">
-                                                <input type="hidden" name="order_id" value="<?php echo $order_ids[0]; ?>">
+                                                <input type="hidden" name="order_id" value="<?php echo $row->order_id; ?>">
                                                 <button type="submit" name="delete_order" class="btn btn-danger btn-sm">Delete</button>
                                             </form>
                                         </td>
-                                    <?php } ?>
-                                </tr>
-                                <?php } ?>
+                                    </tr>
                                 <?php } ?>
                                 </tbody>
                             </table>
@@ -179,5 +152,4 @@ if (isset($_POST['delete_order'])) {
     <!-- Argon Scripts -->
     <?php require_once('partials/_scripts.php'); ?>
 </body>
-
 </html>
