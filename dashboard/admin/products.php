@@ -21,7 +21,7 @@ check_login();
 
 if (isset($_GET['delete'])) {
   $id = intval($_GET['delete']);
-  $adn = "DELETE FROM rpos_products WHERE prod_id = ? LIMIT 1";
+  $adn = "DELETE FROM rpos_products WHERE prod_id = ?";
   $stmt = $mysqli->prepare($adn);
   $stmt->bind_param('i', $id);
   $stmt->execute();
@@ -31,6 +31,7 @@ if (isset($_GET['delete'])) {
     if ($stmt->affected_rows > 0) {
       $success = "Deleted";
       header("refresh:1; url=products.php");
+      exit();
     } else {
       $err = "No record found";
     }
@@ -124,12 +125,11 @@ require_once('partials/_head.php');
                       <td class = "__prod_category __col-odd"><?php echo $prod->prod_category; ?></td>
                       <td class = "__prod_price">₱ <?php echo $prod->prod_price; ?></td>
                       <td class = "__prod_id __col-odd">
-                        <a href="products.php?delete=<?php echo $prod->prod_id; ?>">
-                          <button class="btn btn-sm btn-danger">
-                            <i class="fas fa-trash"></i>
-                            Delete
-                          </button>
-                        </a> <!-- Btn: Delete  -->
+                      <a href="products.php?delete=<?php echo $prod->prod_id; ?>" onclick="return confirm('Are you sure you want to delete this product?');">
+                        <button class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash"></i> Delete
+                      </button>
+                      </a> <!-- Btn: Delete  -->
 
                         <a href="update_product.php?update=<?php echo $prod->prod_id; ?>">
                           <button class="btn btn-sm btn-primary">
