@@ -102,7 +102,17 @@ require_once('partials/_head.php');
                   </div>
                   <div class="col-md-6">
                     <label>Product Category</label>
-                    <input type="text" name="prod_category" class="form-control" value="">
+                      <select name="prod_category" class="form-control">
+                        <option value="Espresso">Espresso</option>
+                        <option value="Fresh Black Coffee / Cold Brew">Fresh Black Coffee / Cold Brew</option>
+                        <option value="Non-Coffee Drinks">Non-Coffee Drinks</option>
+                        <option value="Sandwich">Sandwich</option>
+                        <option value="Pastries">Pastries</option>
+                        <option value="Pasta">Pasta</option>
+                        <option value="Starters">Starters</option>
+                        <option value="Coffee Beans / Ground">Coffee Beans / Ground</option>
+                        <!-- Add more options as needed -->
+                      </select>
                   </div>
                   <div class="col-md-6">
                     <label>Product Price</label>
