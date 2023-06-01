@@ -150,55 +150,7 @@ require_once('partials/_analytics.php');
           </div>
         </div>
       </div>
-      <div class="row mt-5">
-        <div class="col-xl-12">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">My Recent Payments</h3>
-                </div>
-                <div class="col text-right">
-                  <a href="payments_reports.php" class="btn btn-sm btn-primary">See all</a>
-                </div>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th class="__col-odd" scope="col">Code</th>
-                    <th scope="col">Amount</th>
-                    <th class='__col-odd' scope="col">Order Code</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $ret = "SELECT * FROM   rpos_payments WHERE customer_id ='$customer_id'   ORDER BY `rpos_payments`.`created_at` DESC LIMIT 10 ";
-                  $stmt = $mysqli->prepare($ret);
-                  $stmt->execute();
-                  $res = $stmt->get_result();
-                  while ($payment = $res->fetch_object()) {
-                  ?>
-                    <tr>
-                      <th class="__col-odd" scope="row">
-                        <?php echo $payment->pay_code; ?>
-                      </th>
-                      <td>
-                        ₱<?php echo $payment->pay_amt; ?>
-                      </td>
-                      <td class='__col-odd'>
-                        <?php echo $payment->order_code; ?>
-                      </td>
-                    </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <!-- Footer -->
       <?php //require_once('partials/_footer.php'); ?>
     </div>
