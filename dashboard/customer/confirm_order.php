@@ -13,7 +13,7 @@
       href="../../assets/img/icon/favicon.png"
     />
 
-<?php
+    <?php
 session_start();
 include('config/config.php');
 include('config/checklogin.php');
@@ -38,6 +38,11 @@ if ($order) {
     if (isset($_POST['cancel'])) {
         // Code for canceling the order
 
+        // Delete the order from the database
+        $stmt = $mysqli->prepare("DELETE FROM rpos_orders WHERE order_id = ?");
+        $stmt->bind_param("i", $order_id);
+        $stmt->execute();
+
         // Redirect back to make_order.php
         header("Location: orders.php");
         exit;
@@ -54,6 +59,7 @@ if ($order) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
