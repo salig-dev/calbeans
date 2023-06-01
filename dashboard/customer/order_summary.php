@@ -1,3 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Order Summary | Calbeans Coffee</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../../assets/img/icon/favicon.png"
+    />
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/nice-select.css" />
+
+    <script src="../../assets/js/html2canvas.js"></script>
+
+    <script>
+    function saveOrderSummary() {
+        var orderSummaryElement = document.querySelector("#order-summary");
+        console.log("orderSummaryElement:", orderSummaryElement);
+
+        html2canvas(orderSummaryElement).then(function (canvas) {
+            var link = document.createElement("a");
+            link.href = canvas.toDataURL();
+            link.download = "order_summary.png";
+            link.click();
+        }).catch(function (error) {
+            console.error("html2canvas error:", error);
+        });
+    }
+
+    </script>
+
+
+</head>
+
 <?php
 session_start();
 include('config/config.php');
@@ -113,9 +154,6 @@ if (isset($_GET['proceed']) && $_GET["proceed"] == "true") {
                     </div>
                 </div>
             </div>
-
-            <!-- SCRIPTS -->
-            <script src="../../assets/js/html2canvas.js"></script>
             <script>
                 function saveOrderSummary() {
                     var orderSummaryElement = document.querySelector("#order-summary");
@@ -141,3 +179,4 @@ if (isset($_GET['proceed']) && $_GET["proceed"] == "true") {
     }
 }
 ?>
+
