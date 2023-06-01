@@ -22,7 +22,7 @@ include('config/code-generator.php');
 check_login();
 if (isset($_POST['addProduct'])) {
   //Prevent Posting Blank Values
-  if (empty($_POST["prod_code"]) || empty($_POST["prod_name"]) || empty($_POST['prod_desc']) || empty($_POST['prod_price'])) {
+  if (empty($_POST["prod_code"]) || empty($_POST["prod_name"]) || empty($_POST['prod_desc']) || empty($_POST['prod_price']) || empty($_POST['prod_category'])) {
     $err = "Blank Values Not Accepted";
   } else {
     $prod_id = $_POST['prod_id'];
@@ -32,11 +32,12 @@ if (isset($_POST['addProduct'])) {
     move_uploaded_file($_FILES["prod_img"]["tmp_name"], "assets/img/products/" . $_FILES["prod_img"]["name"]);
     $prod_desc = $_POST['prod_desc'];
     $prod_price = $_POST['prod_price'];
+    $prod_category = $_POST['prod_category'];
     //Insert Captured information to a database table
-    $postQuery = "INSERT INTO rpos_products (prod_id, prod_code, prod_name, prod_img, prod_desc, prod_price ) VALUES(?,?,?,?,?,?)";
+    $postQuery = "INSERT INTO rpos_products (prod_id, prod_code, prod_name, prod_img, prod_desc, prod_price, prod_category ) VALUES(?,?,?,?,?,?,?)";
     $postStmt = $mysqli->prepare($postQuery);
     //bind paramaters
-    $rc = $postStmt->bind_param('ssssss', $prod_id, $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price);
+    $rc = $postStmt->bind_param('sssssss', $prod_id, $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price, $prod_category);
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
@@ -98,6 +99,10 @@ require_once('partials/_head.php');
                   <div class="col-md-6">
                     <label>Product Image</label>
                     <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="">
+                  </div>
+                  <div class="col-md-6">
+                    <label>Product Category</label>
+                    <input type="text" name="prod_category" class="form-control" value="">
                   </div>
                   <div class="col-md-6">
                     <label>Product Price</label>
