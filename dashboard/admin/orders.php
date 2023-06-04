@@ -99,7 +99,7 @@ require_once('partials/_head.php');
                       <td class="__prod_code __col-odd"><?php echo $prod->prod_code; ?></td>
                       <td class="__prod_name"><?php echo $prod->prod_name; ?></td>
                       <td class="__prod_category __col-odd"><?php echo $prod->prod_category; ?></td>
-                      <td class="__prod_price">₱ <?php echo $prod->prod_price; ?></td>
+                      <td class="__prod_price"><b>₱</b> <?php echo $prod->prod_price; ?></td>
                       <td class="__col-odd"> <!-- Place Order Button : Admin -->
                         <a href="make_oder.php?prod_id=<?php echo $prod->prod_id; ?>
                         &prod_name=<?php echo $prod->prod_name; ?>

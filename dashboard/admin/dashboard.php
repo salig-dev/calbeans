@@ -192,9 +192,9 @@
                                     <td class="__prod_code __col-odd" scope="row"><?php echo $order_code; ?></td>
                                     <td class="" ><?php echo $customer_name; ?></td>
                                     <td class="__prod_name __col-odd"><?php echo $prod_name; ?></td>
-                                    <td class="__prod_price">₱<?php echo number_format($prod_price, 2, '.', ','); ?></td>
+                                    <td class="__prod_price"><b>₱</b> <?php echo number_format($prod_price, 2, '.', ','); ?></td>
                                     <td class="td-w-0 __col-odd"><?php echo $prod_qty; ?></td>
-                                    <td class="">₱<?php echo number_format($total_price, 2, '.', ','); ?></td>
+                                    <td class=""><b>₱</b> <?php echo number_format($total_price, 2, '.', ','); ?></td>
                                     <td class="__col-odd">
                                         <?php if ($row->order_status == '') { ?>
                                             <span class='badge badge-danger'>Not Paid</span>

@@ -123,7 +123,7 @@ require_once('partials/_head.php');
                       <td class = "__prod_code __col-odd"><?php echo $prod->prod_code; ?></td>
                       <td class = "__prod_name"><?php echo $prod->prod_name; ?></td>
                       <td class = "__prod_category __col-odd"><?php echo $prod->prod_category; ?></td>
-                      <td class = "__prod_price">₱ <?php echo $prod->prod_price; ?></td>
+                      <td class = "__prod_price"><b>₱</b> <?php echo $prod->prod_price; ?></td>
                       <td class = "__prod_id __col-odd">
                       <a href="products.php?delete=<?php echo $prod->prod_id; ?>" onclick="return confirm('Are you sure you want to delete this product?');">
                         <button class="btn btn-sm btn-danger">
