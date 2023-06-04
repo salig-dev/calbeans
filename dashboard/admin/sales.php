@@ -5,21 +5,33 @@ include('config/checklogin.php');
 check_login();
 require_once('partials/_head.php');
 
-// Fetch Sales Data
-$salesData = array();
-$result = $mysqli->query("SELECT DATE(created_at) AS order_date, SUM(prod_price * prod_qty) AS total_sales FROM rpos_orders GROUP BY DATE(created_at)");
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $salesData[$row['order_date']] = $row['total_sales'];
-    }
-}
-
 // Fetch Top 10 Products
 $topProducts = array();
 $result = $mysqli->query("SELECT prod_name, SUM(prod_qty) AS total_quantity FROM rpos_orders GROUP BY prod_name ORDER BY total_quantity DESC LIMIT 10");
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $topProducts[$row['prod_name']] = $row['total_quantity'];
+    }
+} else {
+    $topProducts = array(); // Set an empty array if no top products found
+}
+
+
+// Fetch Daily Sales Data
+$dailySalesData = array();
+$result = $mysqli->query("SELECT DATE(created_at) AS order_date, SUM(prod_price * prod_qty) AS total_sales FROM rpos_orders GROUP BY DATE(created_at)");
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $dailySalesData[$row['order_date']] = $row['total_sales'];
+    }
+}
+
+// Fetch Monthly Sales Data
+$monthlySalesData = array();
+$result = $mysqli->query("SELECT DATE_FORMAT(created_at, '%Y-%m') AS order_month, SUM(prod_price * prod_qty) AS total_sales FROM rpos_orders GROUP BY DATE_FORMAT(created_at, '%Y-%m')");
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $monthlySalesData[$row['order_month']] = $row['total_sales'];
     }
 }
 ?>
@@ -63,47 +75,62 @@ if ($result->num_rows > 0) {
 
         <!-- Page content -->
         <div class="container-fluid mt--8">
-            <div class="row">
-                <div class="col-lg-8">
-                    <!-- Top 10 Products -->
-                    <div class="card shadow">
-                        <div class="card-header border-0">
-                            <h3 class="mb-0">Top 10 Products</h3>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush table-sm">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>Product</th>
-                                        <th class="text-right">Quantity Sold</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    foreach ($topProducts as $product => $quantity) {
-                                        echo "<tr>";
-                                        echo "<td>$product</td>";
-                                        echo "<td class='text-right'>$quantity</td>";
-                                        echo "</tr>";
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Top 10 Products -->
+                <div class="card shadow mb-4">
+                    <div class="card-header border-0">
+                        <h3 class="mb-0">Top 10 Products</h3>
                     </div>
-
-                    <!-- Sales Chart -->
-                    <div class="card shadow mt-4">
-                        <div class="card-header border-0">
-                            <h3 class="mb-0">Sales Chart</h3>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="salesChart" style="height: 400px; width: 100%;"></canvas>
-                        </div>
+                    <div class="table-responsive" style="padding: 0 20px;">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Product</th>
+                                    <th class="text-right">Quantity Sold</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($topProducts as $product => $quantity) {
+                                    echo "<tr>";
+                                    echo "<td>$product</td>";
+                                    echo "<td class='text-right'>$quantity</td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
 
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Daily Sales Chart -->
+                <div class="card shadow mb-4">
+                    <div class="card-header border-0">
+                        <h3 class="mb-0">Daily Sales</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="dailySalesChart" style="height: 400px; width: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <!-- Monthly Sales Chart -->
+                <div class="card shadow mb-4">
+                    <div class="card-header border-0">
+                        <h3 class="mb-0">Monthly Sales</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="monthlySalesChart" style="height: 400px; width: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
             <!-- Footer -->
             <?php require_once('partials/_footer.php'); ?>
         </div>
@@ -112,80 +139,142 @@ if ($result->num_rows > 0) {
     <!-- Argon Scripts -->
     <?php require_once('partials/_scripts.php'); ?>
 
-    <!-- Initialize Sales Chart -->
-    <script>
-        var salesData = <?php echo json_encode(array_values($salesData)); ?>;
-        var salesLabels = <?php echo json_encode(array_keys($salesData)); ?>;
+   <!-- Initialize Daily Sales Chart -->
+<script>
+    var dailySalesData = <?php echo json_encode(array_values($dailySalesData)); ?>;
+    var dailySalesLabels = <?php echo json_encode(array_map(function($date) { return date('M j, Y', strtotime($date)); }, array_keys($dailySalesData))); ?>;
 
-        var salesChart = new Chart(document.getElementById('salesChart'), {
-            type: 'line',
-            data: {
-                labels: salesLabels,
-                datasets: [{
-                    label: 'Total Sales (in ₱)',
-                    data: salesData,
-                    backgroundColor: 'rgba(78, 115, 223, 0.05)',
-                    borderColor: 'rgba(78, 115, 223, 1)',
-                    borderWidth: 2,
-                    pointRadius: 1,
-                    pointBackgroundColor: 'rgba(78, 115, 223, 1)',
-                    pointBorderColor: 'rgba(78, 115, 223, 1)',
-                    pointHoverRadius: 3,
-                    pointHoverBackgroundColor: 'rgba(78, 115, 223, 1)',
-                    pointHoverBorderColor: 'rgba(78, 115, 223, 1)',
-                    pointHitRadius: 10,
-                    pointBorderWidth: 2,
-                    lineTension: 0.3
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                scales: {
-                    x: {
-                        type: 'time',
-                        time: {
-                            unit: 'day',
-                            displayFormats: {
-                                day: 'MMM D'
-                            }
-                        },
-                        ticks: {
-                            source: 'auto',
-                            maxRotation: 0,
-                            autoSkip: true
+    var dailySalesChart = new Chart(document.getElementById('dailySalesChart'), {
+        type: 'line',
+        data: {
+            labels: dailySalesLabels,
+            datasets: [{
+                label: 'Daily Sales (in ₱)',
+                data: dailySalesData,
+                backgroundColor: 'rgba(78, 115, 223, 0.05)',
+                borderColor: 'rgba(78, 115, 223, 1)',
+                borderWidth: 2,
+                pointRadius: 1,
+                pointBackgroundColor: 'rgba(78, 115, 223, 1)',
+                pointBorderColor: 'rgba(78, 115, 223, 1)',
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: 'rgba(78, 115, 223, 1)',
+                pointHoverBorderColor: 'rgba(78, 115, 223, 1)',
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
+                lineTension: 0.3
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day',
+                        displayFormats: {
+                            day: 'MMM D, Y'
                         }
                     },
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function (value, index, values) {
-                                if (Math.floor(value) === value) {
-                                    return '₱' + value;
-                                }
+                    ticks: {
+                        source: 'auto',
+                        maxRotation: 0,
+                        autoSkip: true
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function (value, index, values) {
+                            if (Math.floor(value) === value) {
+                                return '₱' + value;
                             }
                         }
                     }
-                },
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function (context) {
-                                var value = context.parsed.y;
-                                if (Math.floor(value) === value) {
-                                    return '₱' + value;
-                                } else {
-                                    return '₱' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-                                }
-                            }
-                        }
-                    }
-                },
-                legend: {
-                    display: false
                 }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            var value = context.parsed.y;
+                            if (Math.floor(value) === value) {
+                                return '₱' + value;
+                            } else {
+                                return '₱' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                display: false
             }
-        });
+        }
+    });
+</script>
+
+<!-- Initialize Monthly Sales Chart -->
+<script>
+    var monthlySalesData = <?php echo json_encode(array_values($monthlySalesData)); ?>;
+    var monthlySalesLabels = <?php echo json_encode(array_keys($monthlySalesData)); ?>;
+
+    var monthlySalesChart = new Chart(document.getElementById('monthlySalesChart'), {
+        type: 'bar',
+        data: {
+            labels: monthlySalesLabels,
+            datasets: [{
+                label: 'Monthly Sales (in ₱)',
+                data: monthlySalesData,
+                backgroundColor: 'rgba(78, 115, 223, 0.5)',
+                borderColor: 'rgba(78, 115, 223, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        maxRotation: 0,
+                        autoSkip: true
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function (value, index, values) {
+                            if (Math.floor(value) === value) {
+                                return '₱' + value;
+                            }
+                        }
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            var value = context.parsed.y;
+                            if (Math.floor(value) === value) {
+                                return '₱' + value;
+                            } else {
+                                return '₱' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                            }
+                        }
+                    }
+                }
+            },
+            legend: {
+                display: false
+            }
+        }
+    });
     </script>
 </body>
 
