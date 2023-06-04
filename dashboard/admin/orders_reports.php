@@ -7,10 +7,7 @@
     <title>Records | Calbeans Coffee</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="../../assets/img/icon/favicon.png"
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/icon/favicon.png"
     />
 
     <?php
@@ -25,8 +22,8 @@
         $order_id = $_POST['order_id'];
         $new_status = $_POST['new_status'];
 
-        $stmt = $mysqli->prepare("UPDATE rpos_orders SET order_status = ? WHERE order_id = ?");
-        $stmt->bind_param("si", $new_status, $order_id);
+        $stmt = $mysqli->prepare("UPDATE rpos_orders SET order_status = ? WHERE order_id = ? limit 1");
+        $stmt->bind_param("ss", $new_status, $order_id);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
@@ -40,8 +37,8 @@
     if (isset($_POST['delete_order'])) {
         $order_id = $_POST['order_id'];
 
-        $stmt = $mysqli->prepare("DELETE FROM rpos_orders WHERE order_id = ?");
-        $stmt->bind_param("i", $order_id);
+        $stmt = $mysqli->prepare("DELETE FROM rpos_orders WHERE order_id = ? limit 1");
+        $stmt->bind_param("s", $order_id);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
@@ -119,21 +116,27 @@
                                         <td class="__col-odd">
                                             <?php if ($row->order_status == '') { ?>
                                                 <span class='badge badge-danger'>Not Paid</span>
+                                            <?php } else if ($row->order_status == 'Pending') { ?>
+                                                <span class='badge badge-warning'>Pending</span>
+                                            <?php } else if ($row->order_status == 'Cancelled') { ?>
+                                                <span class='badge badge-light'>Cancelled</span>
                                             <?php } else { ?>
                                                 <span class='badge badge-success'><?php echo $row->order_status; ?></span>
                                             <?php } ?>
                                         </td>
                                         <td><?php echo date('d/M/Y', strtotime($row->created_at)); ?></td>
-                                        <td class="__col-odd"><?php echo date('g:i', strtotime($row->created_at)); ?></td>
+                                        <td class="__col-odd"><?php echo date('g:i A', strtotime($row->created_at)); ?></td>
                                         <td>
                                             <!-- View Order Form -->
                                             <form action="order_summary.php" method="POST" target="_self" style="display: inline-block;">
                                                 <input type="hidden" name="order_id" value="<?php echo $row->order_id; ?>">
+                                                <!-- <?php // RESERVED FOR DEBUGGING: echo $row->order_id; ?> -->
                                                 <button type="submit" name="view_order" class="btn btn-primary btn-sm">View Order</button>
                                             </form>
                                             <!-- Delete Order Form -->
                                             <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?')" style="display: inline-block;">
                                                 <input type="hidden" name="order_id" value="<?php echo $row->order_id; ?>">
+                                                <?php // RESERVED FOR DEBUGGING: echo $row->order_id; ?>
                                                 <button type="submit" name="delete_order" class="btn btn-danger btn-sm">Delete</button>
                                             </form>
                                         </td>

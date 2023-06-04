@@ -10,7 +10,7 @@ if (isset($_POST['update_status'])) {
 
     // Update the order status in the database for the specific order
     $stmt = $mysqli->prepare("UPDATE rpos_orders SET order_status = ? WHERE order_id = ? LIMIT 1");
-    $stmt->bind_param("si", $new_status, $order_id);
+    $stmt->bind_param("ss", $new_status, $order_id);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
