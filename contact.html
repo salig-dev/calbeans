@@ -88,6 +88,28 @@
         })(w, d, "zarazData", "script");
       })(window, document);
     </script>
+
+<script>
+  function validateForm() {
+    var email = document.forms["contactForm"]["email"].value;
+    var contactNumber = document.forms["contactForm"]["contactnum"].value;
+
+    // Email validation
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.match(emailRegex)) {
+      alert("Please enter a valid email address");
+      return false;
+    }
+
+    // Contact number validation
+    var contactRegex = /^09\d{9}$/;
+    if (!contactNumber.match(contactRegex)) {
+      alert("Please enter a valid email address and a valid 11-digit contact number starting with '09'");
+      return false;
+    }
+  }
+</script>
+
   </head>
   <body>
     <header>
@@ -198,10 +220,11 @@
               </h2>
             </div>
             <div class="offset-xl-1 col-lg-7">
-              <form
+              <form name="contactForm"
                 class="form-contact"
                 action="contact-details.php"
                 method="post"
+                onsubmit="return validateForm()"
               >
                 <div class="row">
                   <div class="col-12">
