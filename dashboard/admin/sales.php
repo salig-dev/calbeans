@@ -26,6 +26,7 @@ if ($result->num_rows > 0) {
 
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,33 +63,19 @@ if ($result->num_rows > 0) {
 
         <!-- Page content -->
         <div class="container-fluid mt--8">
-            <!-- Sales Chart -->
             <div class="row">
-                <div class="col">
+                <div class="col-lg-8">
+                    <!-- Top 10 Products -->
                     <div class="card shadow">
                         <div class="card-header border-0">
-                            Sales Chart
-                        </div>
-                        <div class="card-body">
-                            <canvas id="salesChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Top 10 Products -->
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="card shadow">
-                        <div class="card-header border-0">
-                            Top 10 Products
+                            <h3 class="mb-0">Top 10 Products</h3>
                         </div>
                         <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
+                            <table class="table align-items-center table-flush table-sm">
                                 <thead class="thead-light">
                                     <tr>
                                         <th>Product</th>
-                                        <th>Quantity Sold</th>
+                                        <th class="text-right">Quantity Sold</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,12 +83,22 @@ if ($result->num_rows > 0) {
                                     foreach ($topProducts as $product => $quantity) {
                                         echo "<tr>";
                                         echo "<td>$product</td>";
-                                        echo "<td>$quantity</td>";
+                                        echo "<td class='text-right'>$quantity</td>";
                                         echo "</tr>";
                                     }
                                     ?>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+
+                    <!-- Sales Chart -->
+                    <div class="card shadow mt-4">
+                        <div class="card-header border-0">
+                            <h3 class="mb-0">Sales Chart</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="salesChart" style="height: 400px; width: 100%;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -125,7 +122,7 @@ if ($result->num_rows > 0) {
             data: {
                 labels: salesLabels,
                 datasets: [{
-                    label: 'Total Sales',
+                    label: 'Total Sales (in ₱)',
                     data: salesData,
                     backgroundColor: 'rgba(78, 115, 223, 0.05)',
                     borderColor: 'rgba(78, 115, 223, 1)',
@@ -143,6 +140,7 @@ if ($result->num_rows > 0) {
             },
             options: {
                 maintainAspectRatio: false,
+                responsive: true,
                 scales: {
                     x: {
                         type: 'time',
@@ -163,16 +161,23 @@ if ($result->num_rows > 0) {
                         ticks: {
                             callback: function (value, index, values) {
                                 if (Math.floor(value) === value) {
-                                    return value;
+                                    return '₱' + value;
                                 }
                             }
                         }
                     }
                 },
-                tooltips: {
-                    callbacks: {
-                        label: function (context) {
-                            return '₱' + context.value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                var value = context.parsed.y;
+                                if (Math.floor(value) === value) {
+                                    return '₱' + value;
+                                } else {
+                                    return '₱' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                                }
+                            }
                         }
                     }
                 },
@@ -183,4 +188,5 @@ if ($result->num_rows > 0) {
         });
     </script>
 </body>
+
 </html>
