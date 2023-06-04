@@ -96,8 +96,13 @@ require_once('partials/_head.php');
                                     <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
                                     <label class="custom-control-label" for=" customCheckLogin">
                                         <span class="text-muted">Remember me</span>
+                                        
                                     </label>
                                 </div>
+                                <div class="mt-2">
+                                     <a href="#" id="showPasswordBtn"  class="text-muted">Show Password</a>
+                                            </div>
+
                                 <div class="form-group">
                                     <div class="text-left">
                                         <button type="submit" name="login" class="btn btn-primary my-4">Log In</button>
@@ -125,6 +130,31 @@ require_once('partials/_head.php');
     <?php
     require_once('partials/_scripts.php');
     ?>
+    <script>
+    var showPasswordBtn = document.getElementById('showPasswordBtn');
+    var passwordInput = document.querySelector('input[name="customer_password"]');
+
+    var showPassword = false;
+
+    showPasswordBtn.addEventListener('mousedown', function() {
+      passwordInput.type = "text";
+      showPassword = true;
+    });
+
+    showPasswordBtn.addEventListener('mouseup', function() {
+      if (!showPassword) {
+        passwordInput.type = "password";
+      }
+      showPassword = false;
+    });
+
+    showPasswordBtn.addEventListener('mouseleave', function() {
+      if (!showPassword) {
+        passwordInput.type = "password";
+      }
+      showPassword = false;
+    });
+  </script>
 </body>
 
 </html>
