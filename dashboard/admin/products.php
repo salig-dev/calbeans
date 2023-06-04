@@ -20,10 +20,10 @@ include('config/checklogin.php');
 check_login();
 
 if (isset($_GET['delete'])) {
-  $id = intval($_GET['delete']);
-  $adn = "DELETE FROM rpos_products WHERE prod_id = ?";
+  $id = ($_GET['delete']);
+  $adn = "DELETE FROM rpos_products WHERE prod_id = ? limit 1";
   $stmt = $mysqli->prepare($adn);
-  $stmt->bind_param('i', $id);
+  $stmt->bind_param('s', $id);
   $stmt->execute();
   if ($stmt->error) {
     $err = "Error: " . $stmt->error;
