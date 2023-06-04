@@ -69,7 +69,7 @@ require_once('partials/_head.php');
                 <div class="form-row">
 
                   <div class="col-md-4">
-                    <label>Customer Name</label>
+                    <label>Customer Name <span class="label-required"> *</span></label>
                     <select class="form-control" name="customer_name" id="custName" onChange="getCustomer(this.value)">
                       <option value="">Select Customer Name</option>
                       <?php
@@ -108,11 +108,11 @@ require_once('partials/_head.php');
                   <div class="form-row">
                     <div class="col-md-6">
                       <label>Product Price (₱)</label>
-                      <input type="text" readonly name="prod_price" value="₱ <?php echo $prod->prod_price; ?>" class="form-control">
+                      <input type="text" readonly name="prod_price" value="₱ <?php echo number_format($prod->prod_price, 2, '.', ','); ?>" class="form-control">
                     </div>
                     <div class="col-md-6">
-                      <label>Product Quantity</label>
-                      <input type="number" name="prod_qty" class="form-control" value="" min="1" max="30">
+                      <label>Product Quantity<span class="label-required"> *</span></label>
+                      <input type="number" name="prod_qty" class="form-control" value="" min="1" max="30" required aria-required="true">
                     </div>
                   </div>
                 <?php } ?>
