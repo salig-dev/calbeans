@@ -55,6 +55,19 @@ require_once('config/code-generator.php');
             background-image: url("../../assets/img/hero/1.png");
         }
     </style>
+
+    <script>
+        function validateForm() {
+            var email = document.forms["contactForm"]["customer_email"].value;
+
+            // Email validation
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.match(emailRegex)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
+        }
+    </script>
 </head>
 
 <body class="bg-dark hero-overly">
