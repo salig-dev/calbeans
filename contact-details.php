@@ -204,8 +204,8 @@
               // Display submitted order details
               echo "<h2>Customer Feedback Details:</h2> <br>";
               echo "<p><strong>Message: </strong> $message</p>";
-              echo "<p><strong>Name: </strong> $email</p>";
-              echo "<p><strong>Email Address: </strong> $name</p>";
+              echo "<p><strong>Name: </strong> $name</p>";
+              echo "<p><strong>Email Address: </strong> $email</p>";
               echo "<p><strong>Contact Number: </strong> $contactnum</p>";
               echo "<p><strong>Subject: </strong> $subject</p>";
             }
