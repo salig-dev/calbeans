@@ -107,9 +107,9 @@
                                 while ($row = $res->fetch_object()) {
                                     ?>
                                     <tr>
-                                        <td class="__col-odd"><?php echo $row->order_code; ?></td>
-                                        <td><?php echo $row->customer_name; ?></td>
-                                        <td class="__col-odd"><?php echo $row->prod_name; ?></td>
+                                        <td class="__prod_code __col-odd"><?php echo $row->order_code; ?></td>
+                                        <td class=""><?php echo $row->customer_name; ?></td>
+                                        <td class=" __col-odd"><?php echo $row->prod_name; ?></td>
                                         <td>₱ <?php echo $row->prod_price; ?></td>
                                         <td class="__col-odd"><?php echo $row->prod_qty; ?></td>
                                         <td>₱ <?php echo (int)$row->prod_price * (int)$row->prod_qty; ?></td>

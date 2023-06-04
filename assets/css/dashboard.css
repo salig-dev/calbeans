@@ -1,6 +1,6 @@
 /* // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap */
-.__prod_code, .__prod_name, .__prod_category, .__prod_price{
+.td-w-0, .__prod_code, .__prod_name, .__prod_category, .__prod_price{
   width: 0;
 }
 

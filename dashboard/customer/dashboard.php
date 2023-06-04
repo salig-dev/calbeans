@@ -133,15 +133,21 @@ require_once('partials/_analytics.php');
                       <th class="__col-odd text-success" scope="row"><?php echo $order->order_code; ?></th>
                       <td><?php echo $order->customer_name; ?></td>
                       <td class="__col-odd text-success"><?php echo $order->prod_name; ?></td>
-                      <td>₱<?php echo $order->prod_price; ?></td>
+                      <td><b>₱</b> <?php echo number_format($order->prod_price, 2, '.', ','); ?></td>
                       <td class="__col-odd text-success"><?php echo $order->prod_qty; ?></td>
-                      <td>₱<?php echo $total; ?></td>
-                      <td class="__col-odd"><?php if ($order->order_status == '') {
-                            echo "<span class='badge badge-danger'>Not Paid</span>";
-                          } else {
-                            echo "<span class='badge badge-success'>$order->order_status</span>";
-                          } ?></td>
-                      <td><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
+                      <td><b>₱</b> <?php echo number_format($total, 2, '.', ',');?></td>
+                      <td class="__col-odd">
+                        <?php if ($order->order_status == '') { ?>
+                          <span class='badge badge-danger'>Not Paid</span>
+                        <?php } else if ($order->order_status == 'Pending') { ?>
+                          <span class='badge badge-warning'>Pending</span>
+                        <?php } else if ($order->order_status == 'Cancelled') { ?>
+                          <span class='badge badge-light'>Cancelled</span>
+                        <?php } else { ?>
+                          <span class='badge badge-success'><?php echo $order->order_status; ?></span>
+                        <?php } ?>
+                      </td>
+                      <td><?php echo date('d/M/Y g:i A', strtotime($order->created_at)); ?></td>
                     </tr>
                   <?php } ?>
                 </tbody>
