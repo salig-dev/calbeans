@@ -17,8 +17,30 @@
   <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
   <link rel="stylesheet" href="assets/css/themify-icons.css" />
   <link rel="stylesheet" href="assets/css/slick.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/nice-select.css" />
   <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+    }
+
+    /* Hide the pop-up by default */
+    .hidden {
+      display: none;
+    }
+  </style>
+
   <script nonce="427e1d98-b04e-411a-8d02-2e44ea003e27">
     (function(w, d) {
       !(function(dk, dl, dm, dn) {
@@ -93,6 +115,28 @@
       })(w, d, "zarazData", "script");
     })(window, document);
   </script>
+
+  <script>
+    function showSuccessMessage() {
+      // Get the pop-up element
+      var popup = document.getElementById("popup");
+
+      // Display the pop-up success message
+      popup.classList.remove("hidden");
+
+      // Automatically close the pop-up after 2 seconds
+      setTimeout(function() {
+        popup.classList.add("hidden");
+      }, 2000);
+    }
+
+
+    window.onload = function() {
+      setTimeout(showSuccessMessage, 500);
+    };
+  </script>
+
+
 </head>
 
 <body>
@@ -172,8 +216,12 @@
         <div class="row">
           <div class="offset-xxl-1 col-lg-7">
             <h2 class="contact-title pt-20">
-              Stay Connected: Your Contact Information
+              Stay Connected: <br>
+              Your Contact Information
             </h2>
+            <br>
+            <h2>Customer Feedback Details:</h2>
+            
             <?php
             $servername = "localhost";
             $username = "root";
@@ -190,19 +238,46 @@
 
             // Check if form is submitted
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-              // Retrieve form data
-              $message = $_POST['message'];
-              $name = $_POST['name'];
-              $email = $_POST['email'];
-              $contactnum = $_POST['contactnum'];
-              $subject = $_POST['subject'];
+              // Retrieve form data & Sanitize and validate user input
+              $message = mysqli_real_escape_string($conn, $_POST['message']);
+              $name = mysqli_real_escape_string($conn, $_POST['name']);
+              $email = mysqli_real_escape_string($conn, $_POST['email']);
+              $contactnum = mysqli_real_escape_string($conn, $_POST['contactnum']);
+              $subject = mysqli_real_escape_string($conn, $_POST['subject']);
 
-              $sql = "INSERT INTO contacts (message, name, email, contactnum, subject)" .
-                "VALUES ('$message', '$name', '$email', '$contactnum', '$subject')";
-              $result = $conn->query($sql);
+              // Validate email format
+              if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo "Invalid email address.";
+                exit;
+              }
+
+              // Prepare and bind the parameters
+              $stmt = $conn->prepare("INSERT INTO contacts (message, name, email, contactnum, subject) VALUES (?, ?, ?, ?, ?)");
+              $stmt->bind_param("sssss", $message, $name, $email, $contactnum, $subject);
+
+              try {
+                $stmt->execute();
+                echo "Record inserted successfully.";
+              } catch (mysqli_sql_exception $e) {
+                if ($e->getCode() === 1062) {
+                  // Duplicate entry detected, update the existing record
+                  $stmt = $conn->prepare("UPDATE contacts SET message = ?, name = ?, contactnum = ?, subject = ? WHERE email = ?");
+                  $stmt->bind_param("sssss", $message, $name, $contactnum, $subject, $email);
+
+                  try {
+                    $stmt->execute();
+                    echo "<div role='alert' class='alert alert-danger'>Duplicate entry detected: <strong>The existing record has been updated & overwritten</strong>.</div><br>";
+                  } catch (mysqli_sql_exception $e) {
+                    echo "Error: " . $e->getMessage();
+                  }
+                } else {
+                  echo "Error: " . $e->getMessage();
+                }
+              }
+
+
 
               // Display submitted order details
-              echo "<h2>Customer Feedback Details:</h2> <br>";
               echo "<p><strong>Message: </strong> $message</p>";
               echo "<p><strong>Name: </strong> $name</p>";
               echo "<p><strong>Email Address: </strong> $email</p>";
@@ -210,7 +285,6 @@
               echo "<p><strong>Subject: </strong> $subject</p>";
             }
             ?>
-
 
           </div>
           <div class="col-lg-3 offset-lg-1">
@@ -241,6 +315,12 @@
         </div>
       </div>
     </section>
+
+    <!-- The pop-up element -->
+    <div id="popup" class="popup hidden">
+      <h3>Success!</h3>
+      <p>Your message has been sent.</p>
+    </div>
   </main>
 
   <!-- START OF FOOTER -->
