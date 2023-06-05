@@ -2,5 +2,5 @@
 session_start();
 unset($_SESSION['customer_id']);
 session_destroy();
-header("Location: /calbeans/dashboard/index.php");
+header("Location: /calbeans/index.html");
 exit;
