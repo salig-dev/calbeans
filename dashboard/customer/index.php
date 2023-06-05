@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,42 +9,38 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="../../assets/img/icon/favicon.png"
-    />
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/icon/favicon.png" />
 
-<?php
-session_start();
-include('config/config.php');
-//login 
-if (isset($_POST['login'])) {
-    $customer_email = $_POST['customer_email'];
-    $customer_password = sha1(md5($_POST['customer_password'])); //double encrypt to increase security
+    <?php
+    session_start();
+    include('config/config.php');
+    //login 
+    if (isset($_POST['login'])) {
+        $customer_email = $_POST['customer_email'];
+        $customer_password = sha1(md5($_POST['customer_password'])); //double encrypt to increase security
 
-    // Check if it's an admin login
-    if ($customer_email === 'admin@mail.com' && $customer_password === sha1(md5('admin123'))) {
-        // Redirect to the admin dashboard
-        header("location: ../admin/dashboard.php");
-        exit(); // Make sure to exit after redirection
+        // Check if it's an admin login
+        if ($customer_email === 'admin@mail.com' && $customer_password === sha1(md5('admin123'))) {
+            // Redirect to the admin dashboard
+            header("location: ../admin/dashboard.php");
+            exit(); // Make sure to exit after redirection
+        }
+
+        $stmt = $mysqli->prepare("SELECT customer_email, customer_password, customer_id  FROM  rpos_customers WHERE (customer_email =? AND customer_password =?)"); //sql to log in user
+        $stmt->bind_param('ss',  $customer_email, $customer_password); //bind fetched parameters
+        $stmt->execute(); //execute bind 
+        $stmt->bind_result($customer_email, $customer_password, $customer_id); //bind result
+        $rs = $stmt->fetch();
+        $_SESSION['customer_id'] = $customer_id;
+        if ($rs) {
+            //if its sucessfull
+            header("location:dashboard.php");
+        } else {
+            $err = "Incorrect Authentication Credentials ";
+        }
     }
-
-    $stmt = $mysqli->prepare("SELECT customer_email, customer_password, customer_id  FROM  rpos_customers WHERE (customer_email =? AND customer_password =?)"); //sql to log in user
-    $stmt->bind_param('ss',  $customer_email, $customer_password); //bind fetched parameters
-    $stmt->execute(); //execute bind 
-    $stmt->bind_result($customer_email, $customer_password, $customer_id); //bind result
-    $rs = $stmt->fetch();
-    $_SESSION['customer_id'] = $customer_id;
-    if ($rs) {
-        //if its sucessfull
-        header("location:dashboard.php");
-    } else {
-        $err = "Incorrect Authentication Credentials ";
-    }
-}
-require_once('partials/_head.php');
-?>
+    require_once('partials/_head.php');
+    ?>
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
@@ -65,7 +62,7 @@ require_once('partials/_head.php');
                 <i class="fa-solid fa-chevron-left"></i> Return
             </a>
         </div>
-        
+
         <div class="header bg-gradient-primar py-7">
             <div class="container">
                 <div class="header-body text-center mb-7">
@@ -94,27 +91,24 @@ require_once('partials/_head.php');
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group input-group-alternative">
-                                    <div class="input-group-prepend">
+                                        <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                    </div>
+                                        </div>
                                         <input class="form-control" required name="customer_password" placeholder="Password" type="password">
-                                    <div class="input-group-append">
+                                        <div class="input-group-append">
                                             <span class="input-group-text show-password-icon">
-                                        <i id="showPasswordIcon" class="fa-solid fa-eye"></i>
-                                             </span>
+                                                <i id="showPasswordIcon" class="fa-solid fa-eye"></i>
+                                            </span>
+                                        </div>
                                     </div>
-
                                 </div>
                                 <div class="custom-control custom-control-alternative custom-checkbox">
                                     <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
                                     <label class="custom-control-label" for=" customCheckLogin">
                                         <span class="text-muted">Remember me</span>
-                                        
+
                                     </label>
                                 </div>
-                               
-
-                                                
                                 <div class="form-group">
                                     <div class="text-left">
                                         <button type="submit" name="login" class="btn btn-primary my-4">Log In</button>
@@ -142,25 +136,25 @@ require_once('partials/_head.php');
     <?php
     require_once('partials/_scripts.php');
     ?>
-   <script>
-    var showPasswordIcon = document.getElementById('showPasswordIcon');
-    var passwordInput = document.querySelector('input[name="customer_password"]');
-    var passwordVisible = false;
+    <script>
+        var showPasswordIcon = document.getElementById('showPasswordIcon');
+        var passwordInput = document.querySelector('input[name="customer_password"]');
+        var passwordVisible = false;
 
-    showPasswordIcon.addEventListener('click', function() {
-        if (passwordVisible) {
-            passwordInput.type = "password";
-            showPasswordIcon.classList.remove('fa-eye-slash');
-            showPasswordIcon.classList.add('fa-eye');
-            passwordVisible = false;
-        } else {
-            passwordInput.type = "text";
-            showPasswordIcon.classList.remove('fa-eye');
-            showPasswordIcon.classList.add('fa-eye-slash');
-            passwordVisible = true;
-        }
-    });
-</script>
+        showPasswordIcon.addEventListener('click', function() {
+            if (passwordVisible) {
+                passwordInput.type = "password";
+                showPasswordIcon.classList.remove('fa-eye-slash');
+                showPasswordIcon.classList.add('fa-eye');
+                passwordVisible = false;
+            } else {
+                passwordInput.type = "text";
+                showPasswordIcon.classList.remove('fa-eye');
+                showPasswordIcon.classList.add('fa-eye-slash');
+                passwordVisible = true;
+            }
+        });
+    </script>
 
 </body>
 
