@@ -59,6 +59,8 @@ require_once('config/code-generator.php');
     <script>
         function validateForm() {
             var email = document.forms["contactForm"]["customer_email"].value;
+            var password = document.forms["contactForm"]["customer_password"].value;
+            var phoneNumber = document.forms["contactForm"]["customer_phoneno"].value;
 
             // Email validation
             var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -66,6 +68,22 @@ require_once('config/code-generator.php');
                 alert("Please enter a valid email address");
                 return false;
             }
+
+            // Password validation
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long");
+                return false;
+            }
+
+            // Phone number validation
+            var phoneNumberRegex = /^(09|\+639)\d{9}$/;
+            if (!phoneNumber.match(phoneNumberRegex)) {
+                alert("Please enter a valid Philippine phone number (e.g., 09123456789 or +639123456789)");
+                return false;
+            }
+
+            // If all validations pass, the form will be submitted
+            return true;
         }
     </script>
 </head>
@@ -89,7 +107,7 @@ require_once('config/code-generator.php');
                 <div class="col-lg-5 col-md-7">
                     <div class="card bg-secondary shadow border-0">
                         <div class="card-body px-lg-5 py-lg-5">
-                            <form method="post" role="form">
+                            <form method="post" role="form" name="contactForm" onsubmit="return validateForm()">
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-alternative">
                                         <div class="input-group-prepend">
