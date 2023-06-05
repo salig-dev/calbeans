@@ -7,7 +7,7 @@ require_once('partials/_head.php');
 
 // Fetch Top 10 Products
 $topProducts = array();
-$result = $mysqli->query("SELECT prod_name, SUM(prod_qty) AS total_quantity FROM rpos_orders GROUP BY prod_name ORDER BY total_quantity DESC LIMIT 10");
+$result = $mysqli->query("SELECT prod_name, SUM(prod_qty) AS total_quantity FROM rpos_orders WHERE order_status = 'Paid' GROUP BY prod_name ORDER BY total_quantity DESC LIMIT 10");
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $topProducts[$row['prod_name']] = $row['total_quantity'];
@@ -18,7 +18,7 @@ if ($result->num_rows > 0) {
 
 // Fetch Daily Sales Data
 $dailySalesData = array();
-$result = $mysqli->query("SELECT DATE(created_at) AS order_date, SUM(prod_price * prod_qty) AS total_sales FROM rpos_orders GROUP BY DATE(created_at)");
+$result = $mysqli->query("SELECT DATE(created_at) AS order_date, SUM(prod_price * prod_qty) AS total_sales FROM rpos_orders WHERE order_status = 'Paid' GROUP BY DATE(created_at)");
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $dailySalesData[$row['order_date']] = $row['total_sales'];
@@ -33,7 +33,7 @@ $todaySales = isset($dailySalesData[date('Y-m-d')]) ? $dailySalesData[date('Y-m-
 
 // Fetch Monthly Sales Data
 $monthlySalesData = array();
-$result = $mysqli->query("SELECT DATE_FORMAT(created_at, '%Y-%m') AS order_month, SUM(prod_price * prod_qty) AS total_sales FROM rpos_orders GROUP BY DATE_FORMAT(created_at, '%Y-%m')");
+$result = $mysqli->query("SELECT DATE_FORMAT(created_at, '%Y-%m') AS order_month, SUM(prod_price * prod_qty) AS total_sales FROM rpos_orders WHERE order_status = 'Paid' GROUP BY DATE_FORMAT(created_at, '%Y-%m')");
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $monthlySalesData[$row['order_month']] = $row['total_sales'];
@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
 
 // Calculate Yearly Sales
 $yearlySales = 0;
-$result = $mysqli->query("SELECT SUM(prod_price * prod_qty) AS total_sales FROM rpos_orders");
+$result = $mysqli->query("SELECT SUM(prod_price * prod_qty) AS total_sales FROM rpos_orders WHERE order_status = 'Paid'");
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $yearlySales = $row['total_sales'];
