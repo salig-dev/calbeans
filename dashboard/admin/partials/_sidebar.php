@@ -134,6 +134,11 @@ while ($admin = $res->fetch_object()) {
               <i class="fas fa-shopping-basket"></i> Orders Records
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact_reports.php">
+              <i class="fas fa-shopping-basket"></i> Contact Reports
+            </a>
+          </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="payments_reports.php">
               <i class="fas fa-funnel-dollar"></i> Payments
