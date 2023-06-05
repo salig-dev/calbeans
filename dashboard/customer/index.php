@@ -86,11 +86,16 @@ require_once('partials/_head.php');
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group input-group-alternative">
-                                        <div class="input-group-prepend">
+                                    <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                        </div>
-                                        <input class="form-control" required name="customer_password" placeholder="Password" type="password">
                                     </div>
+                                        <input class="form-control" required name="customer_password" placeholder="Password" type="password">
+                                    <div class="input-group-append">
+                                            <span class="input-group-text show-password-icon">
+                                        <i id="showPasswordIcon" class="fa-solid fa-eye"></i>
+                                             </span>
+                                    </div>
+
                                 </div>
                                 <div class="custom-control custom-control-alternative custom-checkbox">
                                     <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
@@ -100,15 +105,8 @@ require_once('partials/_head.php');
                                     </label>
                                 </div>
                                
-                            <div class="custom-control custom-control-alternative custom-checkbox">
-                              <input type="checkbox" id="showPasswordCheckbox" class="custom-control-input">
-                                <label class="custom-control-label" for="showPasswordCheckbox">
-                                    <span class="text-muted"> Show Password
 
-                                </label>
-                                      </div>
-                                                      
-
+                                                
                                 <div class="form-group">
                                     <div class="text-left">
                                         <button type="submit" name="login" class="btn btn-primary my-4">Log In</button>
@@ -137,13 +135,25 @@ require_once('partials/_head.php');
     require_once('partials/_scripts.php');
     ?>
    <script>
-        var showPasswordCheckbox = document.getElementById('showPasswordCheckbox');
-        var passwordInput = document.querySelector('input[name="customer_password"]');
+    var showPasswordIcon = document.getElementById('showPasswordIcon');
+    var passwordInput = document.querySelector('input[name="customer_password"]');
+    var passwordVisible = false;
 
-        showPasswordCheckbox.addEventListener('change', function() {
-            passwordInput.type = this.checked ? "text" : "password";
-        });
-    </script>
+    showPasswordIcon.addEventListener('click', function() {
+        if (passwordVisible) {
+            passwordInput.type = "password";
+            showPasswordIcon.classList.remove('fa-eye-slash');
+            showPasswordIcon.classList.add('fa-eye');
+            passwordVisible = false;
+        } else {
+            passwordInput.type = "text";
+            showPasswordIcon.classList.remove('fa-eye');
+            showPasswordIcon.classList.add('fa-eye-slash');
+            passwordVisible = true;
+        }
+    });
+</script>
+
 </body>
 
 </html>

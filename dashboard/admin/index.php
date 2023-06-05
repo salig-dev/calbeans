@@ -88,11 +88,17 @@ require_once('partials/_head.php');
                 </div><!--   -->
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" required name="admin_password" placeholder="Password" type="password">
-                  </div>
+                  <div class="input-group-prepend">
+                     <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                          </div>
+                      <input class="form-control" required name="admin_password" placeholder="Password" type="password">
+                          <div class="input-group-append">
+                             <span class="input-group-text show-password-icon">
+                                <i id="showPasswordIcon" class="fa-solid fa-eye"></i>
+                           </span>
+                            </div>
+
+
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
                   <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
@@ -100,14 +106,7 @@ require_once('partials/_head.php');
                     <span class="text-muted">Remember Me</span>
                   </label>
                   </div>
-                     
-                  <div class="custom-control custom-control-alternative custom-checkbox">
-                              <input type="checkbox" id="showPasswordCheckbox" class="custom-control-input">
-                                <label class="custom-control-label" for="showPasswordCheckbox">
-                                    <span class="text-muted"> Show Password
-
-                                </label>
-                                      </div>
+                    
 
                 <!--   -->
                 <div class="text-center">
@@ -134,14 +133,26 @@ require_once('partials/_head.php');
   <?php
   require_once('partials/_scripts.php');
   ?>
- <script>
-        var showPasswordCheckbox = document.getElementById('showPasswordCheckbox');
-        var passwordInput = document.querySelector('input[name="admin_password"]');
+<script>
+    var showPasswordIcon = document.getElementById('showPasswordIcon');
+    var passwordInput = document.querySelector('input[name="admin_password"]');
+    var passwordVisible = false;
 
-        showPasswordCheckbox.addEventListener('change', function() {
-            passwordInput.type = this.checked ? "text" : "password";
-        });
-    </script>
+    showPasswordIcon.addEventListener('click', function() {
+        if (passwordVisible) {
+            passwordInput.type = "password";
+            showPasswordIcon.classList.remove('fa-eye-slash');
+            showPasswordIcon.classList.add('fa-eye');
+            passwordVisible = false;
+        } else {
+            passwordInput.type = "text";
+            showPasswordIcon.classList.remove('fa-eye');
+            showPasswordIcon.classList.add('fa-eye-slash');
+            passwordVisible = true;
+        }
+    });
+</script>
+
 
 </body>
 <!--  -->
