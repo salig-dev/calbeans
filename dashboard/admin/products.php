@@ -129,7 +129,7 @@
                           echo "<img src='../admin/assets/img/products/default.jpg' height='50' width='50 class='img-thumbnail'>";
                         }
                         ?></td>
-                    <td class="__prod_id">
+                    <td class="__prod_id __td-w-0">
                       <a href="update_product.php?update=<?php echo $prod->prod_id; ?>">
                         <button class="btn btn-sm btn-primary" style="width:80px;">
                           <i class="fas fa-edit"></i>

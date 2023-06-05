@@ -178,7 +178,7 @@
             $servername = "localhost";
             $username = "root";
             $password = "";
-            $database = "myshop";
+            $database = "rposystem";
 
             // create connection
             $conn = mysqli_connect($servername, $username, $password, $database);
@@ -197,9 +197,9 @@
               $contactnum = $_POST['contactnum'];
               $subject = $_POST['subject'];
 
-              // $sql = "INSERT INTO contacts (message, name, email, contactnum, subject)" .
-              //   "VALUES ('$message', '$name', '$email', '$contactnum', '$subject')";
-              // $result = $conn->query($sql);
+              $sql = "INSERT INTO contacts (message, name, email, contactnum, subject)" .
+                "VALUES ('$message', '$name', '$email', '$contactnum', '$subject')";
+              $result = $conn->query($sql);
 
               // Display submitted order details
               echo "<h2>Customer Feedback Details:</h2> <br>";
