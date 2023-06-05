@@ -13,6 +13,9 @@
       href="../../assets/img/icon/favicon.png"
     />
 
+    <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+
 <?php
 session_start();
 include('config/config.php');
@@ -61,7 +64,7 @@ require_once('partials/_head.php');
     <div class="container-fluid mt--8">
       <!-- Table -->
       <div class="row">
-        <div class="col">
+        <div class="col-xl-10 col-md-11 col-12 mx-auto">
           <div class="card shadow">
             <div class="card-header border-0">
               <a href="add_customer.php" class="btn btn-outline-success">
@@ -88,21 +91,21 @@ require_once('partials/_head.php');
                   while ($cust = $res->fetch_object()) {
                   ?>
                     <tr>
-                      <td><?php echo $cust->customer_name; ?></td>
+                      <td class="__td-w-0"><?php echo $cust->customer_name; ?></td>
                       <td><?php echo $cust->customer_phoneno; ?></td>
                       <td><?php echo $cust->customer_email; ?></td>
-                      <td>
-                        <a href="customes.php?delete=<?php echo $cust->customer_id; ?>">
-                          <button class="btn btn-sm btn-danger">
-                            <i class="fas fa-trash"></i>
-                            Delete
-                          </button>
-                        </a>
-
+                      <td >
                         <a href="update_customer.php?update=<?php echo $cust->customer_id; ?>">
-                          <button class="btn btn-sm btn-primary">
+                          <button class="btn btn-sm btn-primary" style="width:80px">
                             <i class="fas fa-user-edit"></i>
                             Update
+                          </button>
+                        </a>
+                        <div class="my-2"></div>
+                        <a href="customes.php?delete=<?php echo $cust->customer_id; ?>">
+                          <button class="btn btn-sm btn-danger" style="width:80px">
+                            <i class="fas fa-trash"></i>
+                            Delete
                           </button>
                         </a>
                       </td>

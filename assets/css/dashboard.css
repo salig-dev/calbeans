@@ -40,23 +40,30 @@ tbody > tr > *:nth-child(odd){
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
   .__prod_name, .__prod_category{
-    width: 100px;
+    width: 150px;
   }
 
 }
 
 /* // Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
-
+  .__prod_name{
+    width: 180px;
+    min-width: 180px;
+  }
 }
 
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
   .__prod_category{
     width: 200px;
+    min-width: 145px;
   }
 
-
+  .__prod_name{
+    width: 225px;
+    min-width: 225px;
+  }
 
 
 }
@@ -69,6 +76,7 @@ tbody > tr > *:nth-child(odd){
 
   .__prod_name{
     min-width: 260px;
+    min-width: 260px;
   }
 
 }
@@ -76,7 +84,7 @@ tbody > tr > *:nth-child(odd){
 /* // XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) { 
   .__prod_name{
-    min-width: 260px;
+    min-width: 370px;
   }
 
 }

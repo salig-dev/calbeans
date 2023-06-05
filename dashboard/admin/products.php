@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Products | Calbeans Coffee</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="../../assets/img/icon/favicon.png"
-    />
+  <title>Products | Calbeans Coffee</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/icon/favicon.png" />
 
-<?php
-session_start();
-include('config/config.php');
-include('config/checklogin.php');
-check_login();
+  <?php
+  session_start();
+  include('config/config.php');
+  include('config/checklogin.php');
+  check_login();
 
-if (isset($_GET['delete'])) {
-  $id = ($_GET['delete']);
-  $adn = "DELETE FROM rpos_products WHERE prod_id = ? limit 1";
-  $stmt = $mysqli->prepare($adn);
-  $stmt->bind_param('s', $id);
-  $stmt->execute();
-  if ($stmt->error) {
-    $err = "Error: " . $stmt->error;
-  } else {
-    if ($stmt->affected_rows > 0) {
-      $success = "Deleted";
-      header("refresh:1; url=products.php");
-      exit();
+  if (isset($_GET['delete'])) {
+    $id = ($_GET['delete']);
+    $adn = "DELETE FROM rpos_products WHERE prod_id = ? limit 1";
+    $stmt = $mysqli->prepare($adn);
+    $stmt->bind_param('s', $id);
+    $stmt->execute();
+    if ($stmt->error) {
+      $err = "Error: " . $stmt->error;
     } else {
-      $err = "No record found";
+      if ($stmt->affected_rows > 0) {
+        $success = "Deleted";
+        header("refresh:1; url=products.php");
+        exit();
+      } else {
+        $err = "No record found";
+      }
     }
+    $stmt->close();
   }
-  $stmt->close();
-}
 
-require_once('partials/_head.php');
-?>
+  require_once('partials/_head.php');
+  ?>
 
-<link rel="stylesheet" href="../../assets/css/nice-select.css" />
-<link rel="stylesheet" href="../../assets/css/dashboard.css">
-<link rel="stylesheet" href="../../assets/css/calbeans-style.css">
+  <link rel="stylesheet" href="../../assets/css/nice-select.css" />
+  <link rel="stylesheet" href="../../assets/css/dashboard.css">
+  <link rel="stylesheet" href="../../assets/css/calbeans-style.css">
 
 <body>
   <!-- Sidenav -->
@@ -59,7 +56,7 @@ require_once('partials/_head.php');
     ?>
     <!-- Header -->
     <div style="background-image: url(../../assets/img/hero/hero.png); background-size: cover;" class="header  pb-8 pt-5 pt-md-8">
-    <span class="mask bg-gradient-dark opacity-8"></span>
+      <span class="mask bg-gradient-dark opacity-8"></span>
       <div class="container-fluid">
         <div class="header-body">
         </div>
@@ -70,87 +67,91 @@ require_once('partials/_head.php');
       <!-- Table -->
       <div class="row">
         <div class="col mx-auto card shadow">
-            <!-- SELECTION MENU-->
-            <section class="row mx-0 py-2">
-              <div class="card-header border-0 col-xl-5 col-lg-4 col-md-8 col-sm-10 col-11 text-lg-left text-center mx-auto">
-                Select On Any Product To Update
-              </div>
+          <!-- SELECTION MENU-->
+          <section class="row mx-0 py-2">
+            <div class="card-header border-0 col-xl-5 col-lg-4 col-md-8 col-sm-10 col-11 text-lg-left text-center mx-auto">
+              Select On Any Product To Update
+            </div>
 
-              <div class="__menu-select-ctn col-xl-4 col-lg-4 col-md-6 col-sm-6 col-8  mx-auto d-flex justify-content-start align-items-center">
-                <select placeholder="Select a category" class="__menu-select-sub-ctn text-center w-100 mx-auto" id="menu-combobox" onchange="main();">
-                  <option disabled selected value="disabled">Select a category</option>
-                  <option value="All">All</option>
-                  <option value="Espresso">Espresso</option>
-                  <option value="Fresh Black Coffee / Cold Brew">Fresh Black Coffee / Cold Brew</option>
-                  <option value="Non-Coffee Drinks">Non-Coffee Drinks</option>
-                  <option value="Sandwich">Sandwich</option>
-                  <option value="Pastries">Pastries</option>
-                  <option value="Pasta">Pasta</option>
-                  <option value="Starters">Starters</option>
-                  <!-- <option value="Matcha Series">Matcha Series</option> Unavailable -->
-                  <option value="Coffee Beans / Ground">Coffee Beans / Ground</option>
-                </select>
-              </div>
+            <div class="__menu-select-ctn col-xl-4 col-lg-4 col-md-6 col-sm-6 col-8  mx-auto d-flex justify-content-start align-items-center">
+              <select placeholder="Select a category" class="__menu-select-sub-ctn text-center w-100 mx-auto" id="menu-combobox" onchange="main();">
+                <option disabled selected value="disabled">Select a category</option>
+                <option value="All">All</option>
+                <option value="Espresso">Espresso</option>
+                <option value="Fresh Black Coffee / Cold Brew">Fresh Black Coffee / Cold Brew</option>
+                <option value="Non-Coffee Drinks">Non-Coffee Drinks</option>
+                <option value="Sandwich">Sandwich</option>
+                <option value="Pastries">Pastries</option>
+                <option value="Pasta">Pasta</option>
+                <option value="Starters">Starters</option>
+                <!-- <option value="Matcha Series">Matcha Series</option> Unavailable -->
+                <option value="Coffee Beans / Ground">Coffee Beans / Ground</option>
+              </select>
+            </div>
 
-              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12  mx-auto d-flex mt-sm-0 mt-3 justify-content-md-start justify-content-center align-items-center">
-                <a href="add_product.php" class="btn btn-outline-success">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12  mx-auto d-flex mt-sm-0 mt-3 justify-content-md-start justify-content-center align-items-center">
+              <a href="add_product.php" class="btn btn-outline-success">
                 <i class="fas fa-utensils"></i>
                 Add New Product</a>
-              </div> <!-- Add New Product -->
+            </div> <!-- Add New Product -->
 
-            </section>
+          </section>
 
-            <div class="table-responsive mt-lg-2 mt-md-4 mt-5">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th class="__prod_code"scope="col">Product Code</th>
-                    <th class="__prod_name" scope="col">Name</th>
-                    <th class="__prod_category" scope="col">Category</th>
-                    <th class="__prod_price" scope="col">Price</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $ret = "SELECT * FROM rpos_products ORDER BY prod_category ASC, prod_name ASC, created_at DESC";
-                  $stmt = $mysqli->prepare($ret);
-                  $stmt->execute();
-                  $res = $stmt->get_result();
-                  while ($prod = $res->fetch_object()) {
-                  ?>
+          <div class="table-responsive mt-lg-2 mt-md-4 mt-5">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th class="__prod_code" scope="col">Product Code</th>
+                  <th class="__prod_name" scope="col">Name</th>
+                  <th class="__prod_category" scope="col">Category</th>
+                  <th class="__prod_price" scope="col">Price</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                $ret = "SELECT * FROM rpos_products ORDER BY prod_category ASC, prod_name ASC, created_at DESC";
+                $stmt = $mysqli->prepare($ret);
+                $stmt->execute();
+                $res = $stmt->get_result();
+                while ($prod = $res->fetch_object()) {
+                ?>
                   <tr value="<?php echo $prod->prod_category; ?>" class="prod_category_row">
-                      <td class="__prod_code"><?php echo $prod->prod_code; ?></td>
-                      <td class="__prod_name"><?php echo $prod->prod_name; ?></td>
-                      <td class="__prod_category"><?php echo $prod->prod_category; ?></td>
-                      <td class="__prod_price"><b>₱</b> <?php echo $prod->prod_price; ?></td>
-                      <td><?php 
+                    <td class="__prod_code"><?php echo $prod->prod_code; ?></td>
+                    <td class="__prod_name"><?php echo $prod->prod_name; ?></td>
+                    <td class="__prod_category"><?php echo $prod->prod_category; ?></td>
+                    <td class="__prod_price"><b>₱</b> <?php echo $prod->prod_price; ?></td>
+                    <td><?php
                         if ($prod->prod_img) {
                           echo "<img src='../admin/assets/img/products/$prod->prod_img' height='50' width='50 class='img-thumbnail'>";
                         } else {
                           echo "<img src='../admin/assets/img/products/default.jpg' height='50' width='50 class='img-thumbnail'>";
                         }
-                      ?></td>
-                      <td class="__prod_id">
+                        ?></td>
+                    <td class="__prod_id">
+                      <a href="update_product.php?update=<?php echo $prod->prod_id; ?>">
+                        <button class="btn btn-sm btn-primary" style="width:80px;">
+                          <i class="fas fa-edit"></i>
+                          Update
+                        </button>
+                      </a> <!-- Btn: Update  -->
+
+                      <div class="my-2"></div>
+
                       <a href="products.php?delete=<?php echo $prod->prod_id; ?>" onclick="return confirm('Are you sure you want to delete this product?');">
-                        <button class="btn btn-sm btn-danger">
-                        <i class="fas fa-trash"></i> Delete
-                      </button>
+                        <button class="btn btn-sm btn-danger" style="width:80px;">
+                          <i class="fas fa-trash"></i> Delete
+                        </button>
                       </a> <!-- Btn: Delete  -->
 
-                        <a href="update_product.php?update=<?php echo $prod->prod_id; ?>">
-                          <button class="btn btn-sm btn-primary">
-                            <i class="fas fa-edit"></i>
-                            Update
-                          </button>
-                        </a> <!-- Btn: Update  -->
-                      </td>
+
+                    </td>
                   </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
-            </div>
+                <?php } ?>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -165,16 +166,17 @@ require_once('partials/_head.php');
   <?php
   require_once('partials/_scripts.php');
   ?>
-<script src="../../assets/js/vendor/jquery-1.12.4.min.js"></script>
-<script src="../../assets/js/jquery.nice-select.min.js"></script>
+  <script src="../../assets/js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="../../assets/js/jquery.nice-select.min.js"></script>
 
-<script>
-  $(document).ready(function() {
-    $('select').niceSelect();
-  });
-</script>
+  <script>
+    $(document).ready(function() {
+      $('select').niceSelect();
+    });
+  </script>
 
-<script src="../../../calbeans/assets/js/orders-combobox.js"></script>
+  <script src="../../../calbeans/assets/js/orders-combobox.js"></script>
 
 </body>
+
 </html>

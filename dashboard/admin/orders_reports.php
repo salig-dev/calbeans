@@ -77,7 +77,7 @@
         <div class="container-fluid mt--8">
             <!-- Table -->
             <div class="row">
-                <div class="col">
+                <div class="col mx-auto">
                     <div class="card shadow">
                         <div class="card-header border-0">
                             Orders Records
@@ -94,7 +94,6 @@
                                         <th scope="col">Total Price</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Order Date</th>
-                                        <th scope="col">Order Time</th>
                                         <th scope="col">Action</th> <!-- New column for action -->
                                     </tr>
                                 </thead>
@@ -108,11 +107,11 @@
                                     ?>
                                     <tr>
                                         <td class="__prod_code"><?php echo $row->order_code; ?></td>
-                                        <td><?php echo $row->customer_name; ?></td>
-                                        <td><?php echo $row->prod_name; ?></td>
+                                        <td class="__td-w-0"><?php echo $row->customer_name; ?></td>
+                                        <td class="__prod_name"><?php echo $row->prod_name; ?></td>
                                         <td><b>₱</b> <?php echo number_format($row->prod_price, 2, '.', ','); ?></td>
-                                        <td><?php echo $row->prod_qty; ?></td>
-                                        <td><b>₱</b> <?php echo number_format((int)$row->prod_price * (int)$row->prod_qty, 2, '.', ','); ?></td>
+                                        <td class="__td-w-0"><?php echo $row->prod_qty; ?></td>
+                                        <td class="__td-w-0"><b>₱</b> <?php echo number_format((int)$row->prod_price * (int)$row->prod_qty, 2, '.', ','); ?></td>
                                         <td>
                                             <?php if ($row->order_status == '') { ?>
                                                 <span class='badge badge-danger'>Not Paid</span>
@@ -124,20 +123,20 @@
                                                 <span class='badge badge-success'><?php echo $row->order_status; ?></span>
                                             <?php } ?>
                                         </td>
-                                        <td><?php echo date('d/M/Y', strtotime($row->created_at)); ?></td>
-                                        <td><?php echo date('g:i A', strtotime($row->created_at)); ?></td>
+                                        <td class="__td-w-0"><?php echo date('d/M/Y g:i A', strtotime($row->created_at)); ?></td>
                                         <td>
                                             <!-- View Order Form -->
                                             <form action="order_summary.php" method="POST" target="_self" style="display: inline-block;">
                                                 <input type="hidden" name="order_id" value="<?php echo $row->order_id; ?>">
                                                 <!-- <?php // RESERVED FOR DEBUGGING: echo $row->order_id; ?> -->
-                                                <button type="submit" name="view_order" class="btn btn-primary btn-sm">View Order</button>
+                                                <button type="submit" name="view_order" style="width:85px" class="btn btn-primary btn-sm">View Order</button>
                                             </form>
+                                            <div class="my-2"></div>
                                             <!-- Delete Order Form -->
                                             <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this order?')" style="display: inline-block;">
                                                 <input type="hidden" name="order_id" value="<?php echo $row->order_id; ?>">
                                                 <?php // RESERVED FOR DEBUGGING: echo $row->order_id; ?>
-                                                <button type="submit" name="delete_order" class="btn btn-danger btn-sm">Delete</button>
+                                                <button type="submit" name="delete_order" style="min-width:85px" class="btn btn-danger btn-sm">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
