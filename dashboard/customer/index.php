@@ -99,9 +99,15 @@ require_once('partials/_head.php');
                                         
                                     </label>
                                 </div>
-                                <div class="mt-2">
-                                     <a href="#" id="showPasswordBtn"  class="text-muted">Show Password</a>
-                                            </div>
+                               
+                            <div class="custom-control custom-control-alternative custom-checkbox">
+                              <input type="checkbox" id="showPasswordCheckbox" class="custom-control-input">
+                                <label class="custom-control-label" for="showPasswordCheckbox">
+                                    <span class="text-muted"> Show Password
+
+                                </label>
+                                      </div>
+                                                      
 
                                 <div class="form-group">
                                     <div class="text-left">
@@ -130,31 +136,14 @@ require_once('partials/_head.php');
     <?php
     require_once('partials/_scripts.php');
     ?>
-    <script>
-    var showPasswordBtn = document.getElementById('showPasswordBtn');
-    var passwordInput = document.querySelector('input[name="customer_password"]');
+   <script>
+        var showPasswordCheckbox = document.getElementById('showPasswordCheckbox');
+        var passwordInput = document.querySelector('input[name="customer_password"]');
 
-    var showPassword = false;
-
-    showPasswordBtn.addEventListener('mousedown', function() {
-      passwordInput.type = "text";
-      showPassword = true;
-    });
-
-    showPasswordBtn.addEventListener('mouseup', function() {
-      if (!showPassword) {
-        passwordInput.type = "password";
-      }
-      showPassword = false;
-    });
-
-    showPasswordBtn.addEventListener('mouseleave', function() {
-      if (!showPassword) {
-        passwordInput.type = "password";
-      }
-      showPassword = false;
-    });
-  </script>
+        showPasswordCheckbox.addEventListener('change', function() {
+            passwordInput.type = this.checked ? "text" : "password";
+        });
+    </script>
 </body>
 
 </html>
