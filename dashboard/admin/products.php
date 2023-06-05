@@ -104,11 +104,11 @@ require_once('partials/_head.php');
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th class="__prod_code __col-odd"scope="col">Product Code</th>
+                    <th class="__prod_code"scope="col">Product Code</th>
                     <th class="__prod_name" scope="col">Name</th>
-                    <th class="__prod_category __col-odd" scope="col">Category</th>
+                    <th class="__prod_category" scope="col">Category</th>
                     <th class="__prod_price" scope="col">Price</th>
-                    <th class="__col-odd" scope="col">Actions</th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -120,11 +120,11 @@ require_once('partials/_head.php');
                   while ($prod = $res->fetch_object()) {
                   ?>
                   <tr value="<?php echo $prod->prod_category; ?>" class="prod_category_row">
-                      <td class = "__prod_code __col-odd"><?php echo $prod->prod_code; ?></td>
-                      <td class = "__prod_name"><?php echo $prod->prod_name; ?></td>
-                      <td class = "__prod_category __col-odd"><?php echo $prod->prod_category; ?></td>
-                      <td class = "__prod_price"><b>₱</b> <?php echo $prod->prod_price; ?></td>
-                      <td class = "__prod_id __col-odd">
+                      <td class="__prod_code"><?php echo $prod->prod_code; ?></td>
+                      <td class="__prod_name"><?php echo $prod->prod_name; ?></td>
+                      <td class="__prod_category"><?php echo $prod->prod_category; ?></td>
+                      <td class="__prod_price"><b>₱</b> <?php echo $prod->prod_price; ?></td>
+                      <td class="__prod_id">
                       <a href="products.php?delete=<?php echo $prod->prod_id; ?>" onclick="return confirm('Are you sure you want to delete this product?');">
                         <button class="btn btn-sm btn-danger">
                         <i class="fas fa-trash"></i> Delete

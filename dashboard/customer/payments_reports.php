@@ -5,6 +5,7 @@ include('config/checklogin.php');
 check_login();
 require_once('partials/_head.php');
 ?>
+<link rel="stylesheet" href="../../assets/css/dashboard.css">
 
 <body>
     <!-- Sidenav -->
@@ -26,14 +27,10 @@ require_once('partials/_head.php');
             </div>
         </div>
         <!-- Page content -->
-        <div class="container-fluid mt--8">
+        <div class="container-fluid mt--8 row">
             <!-- Table -->
-            <div class="row">
-                <div class="col">
-                    <div class="card shadow">
-                        <div class="card-header border-0">
-                            Payment Reports
-                        </div>
+            <div class="col card shadow mx-auto px-0">
+                        <div class="card-header border-0">Payment Reports</div>
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
@@ -76,8 +73,6 @@ require_once('partials/_head.php');
                             </table>
                         </div>
                     </div>
-                </div>
-            </div>
             <!-- Footer -->
             <?php
             // require_once('partials/_footer.php');

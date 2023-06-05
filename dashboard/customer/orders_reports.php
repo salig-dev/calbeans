@@ -55,13 +55,13 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th class="__col-odd" scope="col">Code</th>
+                    <th scope="col">Code</th>
                     <th scope="col">Customer</th>
-                    <th class="__col-odd" scope="col">Product</th>
+                    <th scope="col">Product</th>
                     <th scope="col">Unit Price</th>
-                    <th class="__col-odd" scope="col">#</th>
+                    <th scope="col">#</th>
                     <th scope="col">Total Price</th>
-                    <th class="__col-odd" scope="col">Status</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Date</th>
                   </tr>
                 </thead>
@@ -77,13 +77,13 @@
 
                   ?>
                     <tr>
-                      <th class="__col-odd text-success" scope="row"><?php echo $order->order_code; ?></th>
+                      <th scope="row"><?php echo $order->order_code; ?></th>
                       <td><?php echo $order->customer_name; ?></td>
-                      <td class="__col-odd text-success"><?php echo $order->prod_name; ?></td>
+                      <td ><?php echo $order->prod_name; ?></td>
                       <td><b>₱</b> <?php echo number_format($order->prod_price, 2, '.', ','); ?></td>
-                      <td class="__col-odd text-success"><?php echo $order->prod_qty; ?></td>
+                      <td ><?php echo $order->prod_qty; ?></td>
                       <td><b>₱</b> <?php echo number_format($total, 2, '.', ','); ?></td>
-                      <td class="__col-odd">
+                      <td>
                         <?php if ($order->order_status == '') { ?>
                           <span class='badge badge-danger'>Not Paid</span>
                         <?php } else if ($order->order_status == 'Pending') { ?>

@@ -1,10 +1,15 @@
 /* // X-Small devices (portrait phones, less than 576px)
 // No media query for `xs` since this is the default in Bootstrap */
-.td-w-0, .__prod_code, .__prod_name, .__prod_category, .__prod_price{
+.__td-w-0, .__prod_code, .__prod_name, .__prod_category, .__prod_price{
   width: 0;
+  min-width: 0px;
 }
 
-.__prod_name, .__prod_category{
+.__td-w-0{
+  min-width: max-content;
+}
+
+.__td-w-0, .__prod_name, .__prod_category{
   white-space: break-spaces !important;
 }
 
@@ -12,19 +17,23 @@
   max-width: fit-content;
 }
 
-tr .__col-odd{
-  background: #b98b4010 ;
-}
-
-thead > tr .__col-odd{
+thead > tr > th:nth-child(odd){
   background: #b98b4029 !important;
 }
 
+tbody > tr > td:nth-child(odd){
+  background: #b98b4010 ;
+}
 
-.__col-odd{
+thead > tr > *:nth-child(odd),
+tbody > tr > *:nth-child(odd){
   color: #b98b40 !important;
 }
 
+
+.__prod_name{
+  min-width: 160px;
+}
 
 /* // Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) { 
@@ -41,9 +50,10 @@ thead > tr .__col-odd{
 
 /* // Large devices (desktops, 992px and up) */
 @media (min-width: 992px) { 
-  .__prod_name, .__prod_category{
+  .__prod_category{
     width: 200px;
   }
+
 
 
 
@@ -52,7 +62,11 @@ thead > tr .__col-odd{
 /* // X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { 
   .__prod_name, .__prod_category{
-    width: 200px;
+    width: 250px;
+  }
+
+  .__prod_name{
+    min-width: 260px;
   }
 
 }
@@ -60,7 +74,7 @@ thead > tr .__col-odd{
 /* // XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) { 
   .__prod_name{
-    width: 300px;
+    min-width: 260px;
   }
 
 }

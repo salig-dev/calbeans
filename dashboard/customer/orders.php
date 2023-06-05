@@ -79,11 +79,11 @@ require_once('partials/_head.php');
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th class="__prod_code __col-odd"scope="col">Product Code</th>
+                  <th class="__prod_code"scope="col">Product Code</th>
                   <th class="__prod_name" scope="col">Name</th>
-                  <th class="__prod_category __col-odd" scope="col">Category</th>
+                  <th class="__prod_category" scope="col">Category</th>
                   <th class="__prod_price" scope="col">Price</th>
-                  <th class="__col-odd" scope="col">Action</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
 
@@ -96,11 +96,11 @@ require_once('partials/_head.php');
                 while ($prod = $res->fetch_object()) {
                 ?>
                   <tr value="<?php echo $prod->prod_category; ?>" class="prod_category_row">
-                    <td class="__prod_code __col-odd"><?php echo $prod->prod_code; ?></td>
+                    <td class="__prod_code "><?php echo $prod->prod_code; ?></td>
                     <td class="__prod_name"><?php echo $prod->prod_name; ?></td>
-                    <td class="__prod_category __col-odd"><?php echo $prod->prod_category; ?></td>
+                    <td class="__prod_category "><?php echo $prod->prod_category; ?></td>
                     <td class="__prod_price"><b>₱</b> <?php echo number_format($prod->prod_price, 2, '.', ','); ?></td>
-                    <td class="__col-odd" > <!-- Place Order Button -->
+                    <td> <!-- Place Order Button -->
                       <a href="make_oder.php?prod_id=<?php echo $prod->prod_id; ?>
                       &prod_name=<?php echo $prod->prod_name; ?>
                       &prod_price=<?php echo $prod->prod_price; ?>">

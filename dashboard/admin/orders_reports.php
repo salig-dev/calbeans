@@ -86,15 +86,15 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="__col-odd" scope="col">Code</th>
+                                        <th scope="col">Code</th>
                                         <th scope="col">Customer</th>
-                                        <th class="__col-odd" scope="col">Product</th>
+                                        <th scope="col">Product</th>
                                         <th scope="col">Unit Price</th>
-                                        <th class="__col-odd" scope="col">Quantity</th>
+                                        <th scope="col">Quantity</th>
                                         <th scope="col">Total Price</th>
-                                        <th class="__col-odd" scope="col">Status</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col">Order Date</th>
-                                        <th class="__col-odd" scope="col">Order Time</th>
+                                        <th scope="col">Order Time</th>
                                         <th scope="col">Action</th> <!-- New column for action -->
                                     </tr>
                                 </thead>
@@ -107,13 +107,13 @@
                                 while ($row = $res->fetch_object()) {
                                     ?>
                                     <tr>
-                                        <td class="__prod_code __col-odd"><?php echo $row->order_code; ?></td>
-                                        <td class=""><?php echo $row->customer_name; ?></td>
-                                        <td class=" __col-odd"><?php echo $row->prod_name; ?></td>
-                                        <td><b>₱</b> <?php echo $row->prod_price; ?></td>
-                                        <td class="__col-odd"><?php echo $row->prod_qty; ?></td>
-                                        <td><b>₱</b> <?php echo (int)$row->prod_price * (int)$row->prod_qty; ?></td>
-                                        <td class="__col-odd">
+                                        <td class="__prod_code"><?php echo $row->order_code; ?></td>
+                                        <td><?php echo $row->customer_name; ?></td>
+                                        <td><?php echo $row->prod_name; ?></td>
+                                        <td><b>₱</b> <?php echo number_format($row->prod_price, 2, '.', ','); ?></td>
+                                        <td><?php echo $row->prod_qty; ?></td>
+                                        <td><b>₱</b> <?php echo number_format((int)$row->prod_price * (int)$row->prod_qty, 2, '.', ','); ?></td>
+                                        <td>
                                             <?php if ($row->order_status == '') { ?>
                                                 <span class='badge badge-danger'>Not Paid</span>
                                             <?php } else if ($row->order_status == 'Pending') { ?>
@@ -125,7 +125,7 @@
                                             <?php } ?>
                                         </td>
                                         <td><?php echo date('d/M/Y', strtotime($row->created_at)); ?></td>
-                                        <td class="__col-odd"><?php echo date('g:i A', strtotime($row->created_at)); ?></td>
+                                        <td><?php echo date('g:i A', strtotime($row->created_at)); ?></td>
                                         <td>
                                             <!-- View Order Form -->
                                             <form action="order_summary.php" method="POST" target="_self" style="display: inline-block;">
