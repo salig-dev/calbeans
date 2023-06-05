@@ -42,15 +42,15 @@
       </div>
     </div>
     <!-- Page content -->
-    <div class="container-fluid mt--8">
+    <main class="container-fluid mt--8">
       <!-- Table -->
       <div class="row">
-        <div class="col">
+        <div class="col mx-auto">
           <div class="card shadow">
             <div class="card-header border-0">
               Orders Records
             </div>
-            <div class="table-responsive">
+            <section class="table-responsive">
               <!-- Projects table -->
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
@@ -77,13 +77,13 @@
 
                   ?>
                     <tr>
-                      <th scope="row"><?php echo $order->order_code; ?></th>
-                      <td><?php echo $order->customer_name; ?></td>
-                      <td ><?php echo $order->prod_name; ?></td>
-                      <td><b>₱</b> <?php echo number_format($order->prod_price, 2, '.', ','); ?></td>
-                      <td ><?php echo $order->prod_qty; ?></td>
-                      <td><b>₱</b> <?php echo number_format($total, 2, '.', ','); ?></td>
-                      <td>
+                      <td class="" scope="row"><?php echo $order->order_code; ?></td>
+                      <td class="__td-w-0"><?php echo $order->customer_name; ?></td>
+                      <td class="__prod_name"><?php echo $order->prod_name; ?></td>
+                      <td class="__td-w-0"><b>₱</b> <?php echo number_format($order->prod_price, 2, '.', ','); ?></td>
+                      <td class="__td-w-0"><?php echo $order->prod_qty; ?></td>
+                      <td class="__td-w-0"><b>₱</b> <?php echo number_format($total, 2, '.', ',');?></td>
+                      <td class="">
                         <?php if ($order->order_status == '') { ?>
                           <span class='badge badge-danger'>Not Paid</span>
                         <?php } else if ($order->order_status == 'Pending') { ?>
@@ -94,20 +94,16 @@
                           <span class='badge badge-success'><?php echo $order->order_status; ?></span>
                         <?php } ?>
                       </td>
-                      <td><?php echo date('d/M/Y g:i A', strtotime($order->created_at)); ?></td>
+                      <td class="__td-w-0"><?php echo date('d/M/Y g:i A', strtotime($order->created_at)); ?></td>
                     </tr>
                   <?php } ?>
                 </tbody>
               </table>
-            </div>
+            </section>
           </div>
         </div>
       </div>
-      <!-- Footer -->
-      <?php
-      //require_once('partials/_footer.php');
-      ?>
-    </div>
+    </main>
   </div>
   <!-- Argon Scripts -->
   <?php

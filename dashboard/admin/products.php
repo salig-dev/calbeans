@@ -108,6 +108,7 @@ require_once('partials/_head.php');
                     <th class="__prod_name" scope="col">Name</th>
                     <th class="__prod_category" scope="col">Category</th>
                     <th class="__prod_price" scope="col">Price</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -124,6 +125,13 @@ require_once('partials/_head.php');
                       <td class="__prod_name"><?php echo $prod->prod_name; ?></td>
                       <td class="__prod_category"><?php echo $prod->prod_category; ?></td>
                       <td class="__prod_price"><b>₱</b> <?php echo $prod->prod_price; ?></td>
+                      <td><?php 
+                        if ($prod->prod_img) {
+                          echo "<img src='../admin/assets/img/products/$prod->prod_img' height='50' width='50 class='img-thumbnail'>";
+                        } else {
+                          echo "<img src='../admin/assets/img/products/default.jpg' height='50' width='50 class='img-thumbnail'>";
+                        }
+                      ?></td>
                       <td class="__prod_id">
                       <a href="products.php?delete=<?php echo $prod->prod_id; ?>" onclick="return confirm('Are you sure you want to delete this product?');">
                         <button class="btn btn-sm btn-danger">

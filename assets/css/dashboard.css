@@ -2,7 +2,9 @@
 // No media query for `xs` since this is the default in Bootstrap */
 .__td-w-0, .__prod_code, .__prod_name, .__prod_category, .__prod_price{
   width: 0;
+  height: 0;
   min-width: 0px;
+  min-height: 0px;
 }
 
 .__td-w-0{

@@ -50,7 +50,7 @@ require_once('partials/_head.php');
     <main class="container-fluid mt--8 overflow-visible">
       <!-- Table -->
       <div class="row">
-        <div class="col mx-auto card shadow">
+        <div class="card shadow col mx-auto px-0">
           <!-- SELECTION MENU-->
           <section class="row mx-0 py-2">
             <div class="card-header border-0 col-xl-6 col-lg-7 col-md-6 col-11 text-md-left text-center mx-auto">
@@ -83,6 +83,7 @@ require_once('partials/_head.php');
                   <th class="__prod_name" scope="col">Name</th>
                   <th class="__prod_category" scope="col">Category</th>
                   <th class="__prod_price" scope="col">Price</th>
+                  <th scope="col">Image</th>
                   <th scope="col">Action</th>
                 </tr>
               </thead>
@@ -100,6 +101,13 @@ require_once('partials/_head.php');
                     <td class="__prod_name"><?php echo $prod->prod_name; ?></td>
                     <td class="__prod_category "><?php echo $prod->prod_category; ?></td>
                     <td class="__prod_price"><b>₱</b> <?php echo number_format($prod->prod_price, 2, '.', ','); ?></td>
+                    <td><?php 
+                        if ($prod->prod_img) {
+                          echo "<img src='../admin/assets/img/products/$prod->prod_img' height='50' width='50 class='img-thumbnail'>";
+                        } else {
+                          echo "<img src='../admin/assets/img/products/default.jpg' height='50' width='50 class='img-thumbnail'>";
+                        }
+                      ?></td>
                     <td> <!-- Place Order Button -->
                       <a href="make_oder.php?prod_id=<?php echo $prod->prod_id; ?>
                       &prod_name=<?php echo $prod->prod_name; ?>
