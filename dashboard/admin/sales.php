@@ -154,10 +154,10 @@ if ($result->num_rows > 0) {
                 backgroundColor: 'rgba(78, 115, 223, 0.05)',
                 borderColor: 'rgba(78, 115, 223, 1)',
                 borderWidth: 2,
-                pointRadius: 1,
+                pointRadius: 5, // Increased the point radius to make dots bigger
                 pointBackgroundColor: 'rgba(78, 115, 223, 1)',
                 pointBorderColor: 'rgba(78, 115, 223, 1)',
-                pointHoverRadius: 3,
+                pointHoverRadius: 5, // Increased the point hover radius to make dots bigger
                 pointHoverBackgroundColor: 'rgba(78, 115, 223, 1)',
                 pointHoverBorderColor: 'rgba(78, 115, 223, 1)',
                 pointHitRadius: 10,
@@ -188,7 +188,7 @@ if ($result->num_rows > 0) {
                     ticks: {
                         callback: function (value, index, values) {
                             if (Math.floor(value) === value) {
-                                return '₱' + value;
+                                return '₱' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             }
                         }
                     }
@@ -200,7 +200,7 @@ if ($result->num_rows > 0) {
                         label: function (context) {
                             var value = context.parsed.y;
                             if (Math.floor(value) === value) {
-                                return '₱' + value;
+                                return '₱' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             } else {
                                 return '₱' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                             }
@@ -250,7 +250,7 @@ if ($result->num_rows > 0) {
                     ticks: {
                         callback: function (value, index, values) {
                             if (Math.floor(value) === value) {
-                                return '₱' + value;
+                                return '₱' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             }
                         }
                     }
@@ -262,7 +262,7 @@ if ($result->num_rows > 0) {
                         label: function (context) {
                             var value = context.parsed.y;
                             if (Math.floor(value) === value) {
-                                return '₱' + value;
+                                return '₱' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             } else {
                                 return '₱' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                             }
@@ -277,5 +277,4 @@ if ($result->num_rows > 0) {
     });
     </script>
 </body>
-
 </html>
