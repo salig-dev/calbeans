@@ -89,27 +89,13 @@
       })(window, document);
     </script>
 
-<script>
-  function validateForm() {
-    var email = document.forms["contactForm"]["email"].value;
-    var contactNumber = document.forms["contactForm"]["contactnum"].value;
-
-    // Email validation
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.match(emailRegex)) {
-      alert("Please enter a valid email address");
-      return false;
-    }
-
-    // Contact number validation
-    var contactRegex = /^09\d{9}$/;
-    if (!contactNumber.match(contactRegex)) {
-      alert("Please enter a valid email address and a valid 11-digit contact number starting with '09'");
-      return false;
-    }
-  }
-</script>
-
+    <style>
+      .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -220,7 +206,8 @@
               </h2>
             </div>
             <div class="offset-xl-1 col-lg-7">
-              <form name="contactForm"
+              <form
+                name="contactForm"
                 class="form-contact"
                 action="contact-details.php"
                 method="post"
@@ -238,6 +225,7 @@
                         onblur="this.placeholder = 'Enter Subject'"
                         placeholder="Enter Subject"
                       />
+                      <div class="error-message" id="subject-error"></div>
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -251,19 +239,21 @@
                         onblur="this.placeholder = 'Enter Name'"
                         placeholder="Enter Name"
                       />
+                      <div class="error-message" id="name-error"></div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
                       <input
-                        class="form-control valid"
+                        class="form-control"
                         name="email"
                         id="email"
-                        type="text"
+                        type="email"
                         onfocus="this.placeholder = ''"
                         onblur="this.placeholder = 'Enter Email Address'"
                         placeholder="Enter Email Address"
                       />
+                      <div class="error-message" id="email-error"></div>
                     </div>
                   </div>
                   <div class="col-12">
@@ -277,6 +267,7 @@
                         onblur="this.placeholder = 'Enter Contact Number'"
                         placeholder="Enter Contact number"
                       />
+                      <div class="error-message" id="contactnum-error"></div>
                     </div>
                   </div>
                   <div class="col-12">
@@ -291,6 +282,7 @@
                         onblur="this.placeholder = 'Enter Message'"
                         placeholder=" Enter Message"
                       ></textarea>
+                      <div class="error-message" id="message-error"></div>
                     </div>
                   </div>
                 </div>
@@ -460,6 +452,75 @@
         <i class="fas fa-long-arrow-alt-up scroll-animate"></i
       ></a>
     </div>
+
+    <script>
+      function validateForm() {
+        var name = document.forms["contactForm"]["name"].value;
+        var subject = document.forms["contactForm"]["subject"].value;
+        var message = document.forms["contactForm"]["message"].value;
+        var email = document.forms["contactForm"]["email"].value;
+        var phoneNumber = document.forms["contactForm"]["contactnum"].value;
+
+        // Name validation
+        if (name.trim() === "") {
+          displayErrorMessage("Name must be filled out", "name");
+          return false;
+        } else {
+          hideErrorMessage("name");
+        }
+
+        // Subject validation
+        if (subject.trim() === "") {
+          displayErrorMessage("Subject must be filled out", "subject");
+          return false;
+        } else {
+          hideErrorMessage("subject");
+        }
+
+        // Message validation
+        if (message.trim() === "") {
+          displayErrorMessage("Message must be filled out", "message");
+          return false;
+        } else {
+          hideErrorMessage("message");
+        }
+
+        // Email validation
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.match(emailRegex)) {
+          displayErrorMessage("Please enter a valid email address", "email");
+          return false;
+        } else {
+          hideErrorMessage("email");
+        }
+
+        // Phone number validation
+        var phoneNumberRegex = /^(09|\+639)\d{9}$/;
+        if (!phoneNumber.match(phoneNumberRegex)) {
+          displayErrorMessage(
+            "Please enter a valid phone number (e.g., 09123456789 or +639123456789)",
+            "contactnum"
+          );
+          return false;
+        } else {
+          hideErrorMessage("contactnum");
+        }
+
+        // If all validations pass, the form will be submitted
+        return true;
+      }
+
+      function displayErrorMessage(message, fieldId) {
+        var errorElement = document.getElementById(fieldId + "-error");
+        errorElement.innerText = message;
+        errorElement.style.display = "block";
+      }
+
+      function hideErrorMessage(fieldId) {
+        var errorElement = document.getElementById(fieldId + "-error");
+        errorElement.style.display = "none";
+      }
+    </script>
 
     <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
