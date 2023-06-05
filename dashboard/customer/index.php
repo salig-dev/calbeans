@@ -21,6 +21,14 @@ include('config/config.php');
 if (isset($_POST['login'])) {
     $customer_email = $_POST['customer_email'];
     $customer_password = sha1(md5($_POST['customer_password'])); //double encrypt to increase security
+
+    // Check if it's an admin login
+    if ($customer_email === 'admin@mail.com' && $customer_password === sha1(md5('admin123'))) {
+        // Redirect to the admin dashboard
+        header("location: ../admin/dashboard.php");
+        exit(); // Make sure to exit after redirection
+    }
+
     $stmt = $mysqli->prepare("SELECT customer_email, customer_password, customer_id  FROM  rpos_customers WHERE (customer_email =? AND customer_password =?)"); //sql to log in user
     $stmt->bind_param('ss',  $customer_email, $customer_password); //bind fetched parameters
     $stmt->execute(); //execute bind 
