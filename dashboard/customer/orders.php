@@ -137,7 +137,7 @@ require_once('partials/_head.php');
     require_once('partials/_scripts.php');
     ?>
 
-    <script src="../../assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- <script src="../../assets/js/vendor/jquery-1.12.4.min.js"></script> Causes bugs in navbar mobile -->
     <script src="../../assets/js/jquery.nice-select.min.js"></script>
 
     <script>
