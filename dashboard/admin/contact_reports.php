@@ -16,6 +16,7 @@
   include('config/checklogin.php');
   check_login();
   require_once('partials/_head.php');
+  $_SESSION['id'] = $_SESSION['admin_id'];
   ?>
 
   <!-- STYLES -->
