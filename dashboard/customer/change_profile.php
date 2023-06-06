@@ -249,7 +249,7 @@ require_once('partials/_head.php');
                 <div class="form-group">
                     <label class="form-control-label" for="input-old-password">Old Password</label>
                     <div class="input-group">
-                        <input type="password" name="old_password" id="input-old-password" class="form-control form-control-alternative">
+                        <input type="password" name="old_password" id="input-old-password" placeholder="Enter your current password" class="form-control form-control-alternative">
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <i class="fas fa-eye" id="toggleOldPassword" onclick="togglePasswordVisibility('input-old-password', 'toggleOldPassword')"></i>
@@ -261,9 +261,9 @@ require_once('partials/_head.php');
 
             <div class="col-lg-12">
                 <div class="form-group">
-                    <label class="form-control-label" for="input-email">New Password</label>
+                    <label class="form-control-label" for="input-email">New Password <small>(min. 8 characters, at least 1 Uppercase and 1 lowercase letter, and 1 number)</small></label>
                     <div class="input-group">
-                        <input type="password" name="new_password" id="input-new-password" class="form-control form-control-alternative">
+                        <input type="password" name="new_password" id="input-new-password" placeholder="New password (Ex: calBeans123)" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" required class="form-control form-control-alternative">
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <i class="fas fa-eye" id="toggleNewPassword" onclick="togglePasswordVisibility('input-new-password', 'toggleNewPassword')"></i>
@@ -277,7 +277,7 @@ require_once('partials/_head.php');
                 <div class="form-group">
                     <label class="form-control-label" for="input-email">Confirm New Password</label>
                     <div class="input-group">
-                        <input type="password" name="confirm_password" id="input-confirm-password" class="form-control form-control-alternative">
+                        <input type="password" name="confirm_password" id="input-confirm-password" placeholder="Confirm new password (Must match the new password)" class="form-control form-control-alternative">
                         <div class="input-group-append">
                             <span class="input-group-text">
                                 <i class="fas fa-eye" id="toggleConfirmPassword" onclick="togglePasswordVisibility('input-confirm-password', 'toggleConfirmPassword')"></i>
