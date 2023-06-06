@@ -205,7 +205,7 @@ require_once('partials/_head.php');
                                             <div class=" col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-email">Phone Number</label>
-                                                    <input type="text" id="input-email" value="<?php echo $customer->customer_phoneno; ?>" name="customer_phone" class="form-control form-control-alternative">
+                                                    <input type="text" id="input-email" value="<?php echo $customer->customer_phoneno; ?>" name="customer_phoneno" class="form-control form-control-alternative">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
