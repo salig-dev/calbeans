@@ -12,6 +12,9 @@
       type="image/x-icon"
       href="../../assets/img/icon/favicon.png"
     />
+    
+
+
 
 <?php
 session_start();
@@ -23,7 +26,7 @@ check_login();
 //Add Customer
 if (isset($_POST['updateCustomer'])) {
   //Prevent Posting Blank Values
-  if (empty($_POST["customer_phoneno"]) || empty($_POST["customer_name"]) || empty($_POST['customer_email']) || empty($_POST['customer_password'])) {
+  if (empty($_POST["customer_phoneno"]) || empty($_POST["customer_name"]) || empty($_POST['customer_email'])) {
     $err = "Blank Values Not Accepted";
   } else {
     $customer_name = $_POST['customer_name'];
@@ -50,6 +53,7 @@ require_once('partials/_head.php');
 ?>
 
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css" />
 </head>
 
 <body>
@@ -81,7 +85,7 @@ require_once('partials/_head.php');
       <div class="container-fluid mt--8">
         <!-- Table -->
         <div class="row">
-          <div class="col">
+          <div class="col-xl-12 col-sm-11 mx-auto">
             <div class="card shadow">
               <div class="card-header border-0">
                 <h3>Please Fill All Fields</h3>
@@ -91,23 +95,23 @@ require_once('partials/_head.php');
                   <div class="form-row">
                     <div class="col-md-6">
                       <label>Customer Name</label>
-                      <input type="text" name="customer_name" value="<?php echo $cust->customer_name; ?>" class="form-control">
+                      <input type="text" name="customer_name" value="<?php echo $cust->customer_name; ?>" class="form-control" placeholder="Enter the customer's email address">
                     </div>
                     <div class="col-md-6">
                       <label>Customer Phone Number</label>
-                      <input type="text" name="customer_phoneno" value="<?php echo $cust->customer_phoneno; ?>" class="form-control" value="">
+                      <input type="text" name="customer_phoneno" value="<?php echo $cust->customer_phoneno; ?>" class="form-control" placeholder="Enter a valid phone number (e.g., 09275462862 or 9275462862)" pattern="^(?:\+?63)?[0-9]{10,11}$" value="">
                     </div>
                   </div>
                   <hr>
                   <div class="form-row">
                   <div class="col-md-6">
                     <label>Customer Email</label>
-                       <input type="email" name="customer_email" value="<?php echo $cust->customer_email; ?>" class="form-control" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.(mail|gmail|yahoo)$" required>
+                       <input type="email" name="customer_email" value="<?php echo $cust->customer_email; ?>" class="form-control" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]+$" placeholder="Enter the customer's email" required>
                       </div>
 
                     <div class="col-md-6">
                       <label>Customer Password</label>
-                      <input type="password" name="customer_password" class="form-control" value="">
+                      <input type="password" name="customer_password" class="form-control" placeholder="Enter the customer's password" value="">
                     </div>
                   </div>
                   <br>

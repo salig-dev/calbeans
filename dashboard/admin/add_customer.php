@@ -91,14 +91,14 @@ require_once('partials/_head.php');
                   </div>
                   <div class="col-md-6">
                     <label>Customer Phone Number</label>
-                    <input type="text" name="customer_phoneno" class="form-control" value="">
+                    <input type="text" name="customer_phoneno" class="form-control" placeholder="Enter a valid phone number (e.g., 09275462862 or 9275462862)" pattern="^(?:\+?63)?[0-9]{10,11}$" value="">
                   </div>
                 </div>
                 <hr>
                 <div class="form-row">
                 <div class="col-md-6">
                   <label>Customer Email</label>
-                     <input type="email" name="customer_email" class="form-control" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.(mail|gmail|yahoo)$" required>
+                     <input type="email" name="customer_email" class="form-control" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]+$" required>
                   </div>
 
 
