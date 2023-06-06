@@ -70,12 +70,11 @@ tbody > tr > *:nth-child(odd){
 
 /* // X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) { 
-  .__prod_name, .__prod_category{
-    width: 250px;
+  .__prod_name{
+    width: fit-content;
   }
 
   .__prod_name{
-    min-width: 260px;
     min-width: 260px;
   }
 
@@ -84,7 +83,8 @@ tbody > tr > *:nth-child(odd){
 /* // XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) { 
   .__prod_name{
-    min-width: 370px;
+    width: fit-content;
+    min-width: 200px;
   }
 
 }

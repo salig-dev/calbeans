@@ -94,10 +94,12 @@ require_once('partials/_head.php');
                 </div>
                 <hr>
                 <div class="form-row">
-                  <div class="col-md-6">
-                    <label>Customer Email</label>
-                    <input type="email" name="customer_email" class="form-control" value="">
+                <div class="col-md-6">
+                  <label>Customer Email</label>
+                     <input type="email" name="customer_email" class="form-control" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.(mail|gmail|yahoo)$" required>
                   </div>
+
+
                   <div class="col-md-6">
                     <label>Customer Password</label>
                     <input type="password" name="customer_password" class="form-control" value="">
