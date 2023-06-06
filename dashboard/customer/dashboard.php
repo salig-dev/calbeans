@@ -49,7 +49,7 @@ require_once('partials/_analytics.php');
               <a href="orders.php">
                 <div class="card card-stats mb-4 mb-xl-0">
                   <div class="card-body">
-                    <div class="row">
+                    <div class="row justify-content-between">
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">Available Items</h5>
                         <span class="h2 font-weight-bold mb-0"><?php echo $products; ?></span>
@@ -68,7 +68,7 @@ require_once('partials/_analytics.php');
               <a href="orders_reports.php">
                 <div class="card card-stats mb-4 mb-xl-0">
                   <div class="card-body">
-                    <div class="row">
+                    <div class="row justify-content-between">
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">Total Orders</h5>
                         <span class="h2 font-weight-bold mb-0"><?php echo $orders; ?></span>
