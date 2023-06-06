@@ -45,53 +45,49 @@ if (isset($_POST['ChangeProfile'])) {
   }
 }
 if (isset($_POST['changePassword'])) {
-
-    //Change Password
     $error = 0;
-    if (isset($_POST['old_password']) && !empty($_POST['old_password'])) {
-        $old_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['old_password']))));
-    } else {
+
+    // Validate input fields
+    if (empty($_POST['old_password'])) {
         $error = 1;
-        $err = "Old Password Cannot Be Empty";
-    }
-    if (isset($_POST['new_password']) && !empty($_POST['new_password'])) {
-        $new_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['new_password']))));
-    } else {
+        $err = "Old Password cannot be empty";
+    } elseif (empty($_POST['new_password'])) {
         $error = 1;
-        $err = "New Password Cannot Be Empty";
-    }
-    if (isset($_POST['confirm_password']) && !empty($_POST['confirm_password'])) {
-        $confirm_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['confirm_password']))));
-    } else {
+        $err = "New Password cannot be empty";
+    } elseif (empty($_POST['confirm_password'])) {
         $error = 1;
-        $err = "Confirmation Password Cannot Be Empty";
+        $err = "Confirmation Password cannot be empty";
     }
 
     if (!$error) {
         $customer_id = $_SESSION['customer_id'];
-        $sql = "SELECT * FROM rpos_customers   WHERE customer_id = '$customer_id'";
+        $old_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['old_password']))));
+        $new_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['new_password']))));
+        $confirm_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['confirm_password']))));
+
+        $sql = "SELECT * FROM rpos_customers WHERE customer_id = '$customer_id'";
         $res = mysqli_query($mysqli, $sql);
+
         if (mysqli_num_rows($res) > 0) {
             $row = mysqli_fetch_assoc($res);
+            
             if ($old_password != $row['customer_password']) {
-                $err =  "Please Enter Correct Old Password";
+                $err = "Please enter the correct old password";
             } elseif ($new_password != $confirm_password) {
-                $err = "Confirmation Password Does Not Match";
+                $err = "Confirmation password does not match";
             } else {
-
-                $new_password  = sha1(md5($_POST['new_password']));
-                //Insert Captured information to a database table
-                $query = "UPDATE rpos_customers SET  customer_password =? WHERE customer_id =?";
+                // Update password in the database
+                $new_password = sha1(md5($_POST['new_password']));
+                $query = "UPDATE rpos_customers SET customer_password = ? WHERE customer_id = ?";
                 $stmt = $mysqli->prepare($query);
-                //bind paramaters
-                $rc = $stmt->bind_param('si', $new_password, $customer_id);
+                $stmt->bind_param('si', $new_password, $customer_id);
                 $stmt->execute();
 
-                //declare a varible which will be passed to alert function
                 if ($stmt) {
-                    $success = "Password Changed" && header("refresh:1; url=dashboard.php");
+                    $success = "Password changed successfully";
+                    header("refresh:1; url=dashboard.php");
                 } else {
-                    $err = "Please Try Again Or Try Later";
+                    $err = "Failed to update the password";
                 }
             }
         }
@@ -223,7 +219,7 @@ require_once('partials/_head.php');
                                     </div>
                                 </form>
                                 <hr>
-                                <form method =" post">
+                                <form method ="post">
                                         <h6 class="heading-small text-muted mb-4">Change Password</h6>
                                         <div class="pl-lg-4">
                                             <div class="row">
@@ -250,13 +246,23 @@ require_once('partials/_head.php');
 
                                                 <div class="col-lg-12">
                                                     <div class="form-group">
-                                                        <input type="submit" id="input-email" name="changePassword" class="btn btn-success form-control-alternative" value="Change Password">
+                                                        <input type="submit" name="changePassword" class="btn btn-success form-control-alternative" value="Change Password">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+                                <?php if (isset($err)) { ?>
+                                    <div class="alert alert-danger mt-3">
+                                    <?php echo $err; ?>
+                                    </div>
+                                <?php } ?>
+                                    <?php if (isset($success)) { ?>
+                                    <div class="alert alert-success mt-3">
+                                    <?php echo $success; ?>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
