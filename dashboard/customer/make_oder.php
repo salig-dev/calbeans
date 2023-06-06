@@ -159,14 +159,14 @@ require_once('partials/_head.php');
                                                 </div>
                                             </div>
 
-                                            <div class="form-row">
+                                            <!-- <div class="form-row"> 
                                                 <div class="col-md-6">
                                                     <label>Product Size</label>
                                                     <select id="prod_size" name="prod_size" class="form-control">
                                                         <option value="8oz">8oz</option>
                                                         <option value="12oz">12oz</option>
                                                     </select>
-                                                </div>
+                                                </div> 
 
                                                 <div class="col-md-6">
                                                     <label>Hot/Cold</label>
@@ -175,7 +175,7 @@ require_once('partials/_head.php');
                                                         <option value="cold">Cold</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <div class="form-row">
                                                 <div class="mt-4 col-md-12">
