@@ -121,6 +121,6 @@ table.align-items-center > tbody > tr > *:nth-child(odd){
   transform: scaleX(1);
 }
 
-/* .card.shadow.mb-4 > .card-header.border-0{
-  background: #fbf8f3;
-} */
+div.input-group-append{
+  z-index: 2;
+}

@@ -102,6 +102,24 @@ require_once('partials/_head.php');
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
     <link rel="stylesheet" href="../../assets/css/dashboard.css">
 
+    <script>
+    // Function to toggle password visibility
+    function togglePasswordVisibility(inputId, toggleId) {
+        const input = document.getElementById(inputId);
+        const toggle = document.getElementById(toggleId);
+        if (input.type === "password") {
+            input.type = "text";
+            toggle.classList.remove("fa-eye");
+            toggle.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            toggle.classList.remove("fa-eye-slash");
+            toggle.classList.add("fa-eye");
+        }
+    }
+</script>
+
+
 <body>
     <!-- Sidenav -->
     <?php
@@ -222,40 +240,62 @@ require_once('partials/_head.php');
                                     </div>
                                 </form>
                                 <hr>
-                                <form method ="post">
-                                        <h6 class="heading-small text-muted mb-4">Change Password</h6>
-                                        <div class="pl-lg-4">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label" for="input-username">Old Password</label>
-                                                        <input type="password" name="old_password" id="input-username" class="form-control form-control-alternative">
-                                                    </div>
-                                                </div>
 
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label" for="input-email">New Password</label>
-                                                        <input type="password" name="new_password" class="form-control form-control-alternative">
-                                                    </div>
-                                                </div>
+                                <form method="post">
+    <h6 class="heading-small text-muted mb-4">Change Password</h6>
+    <div class="pl-lg-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label class="form-control-label" for="input-old-password">Old Password</label>
+                    <div class="input-group">
+                        <input type="password" name="old_password" id="input-old-password" class="form-control form-control-alternative">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fas fa-eye" id="toggleOldPassword" onclick="togglePasswordVisibility('input-old-password', 'toggleOldPassword')"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label" for="input-email">Confirm New Password</label>
-                                                        <input type="password" name="confirm_password" class="form-control form-control-alternative">
-                                                    </div>
-                                                </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label class="form-control-label" for="input-email">New Password</label>
+                    <div class="input-group">
+                        <input type="password" name="new_password" id="input-new-password" class="form-control form-control-alternative">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fas fa-eye" id="toggleNewPassword" onclick="togglePasswordVisibility('input-new-password', 'toggleNewPassword')"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <input type="submit" name="changePassword" class="btn btn-success form-control-alternative" value="Change Password">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label class="form-control-label" for="input-email">Confirm New Password</label>
+                    <div class="input-group">
+                        <input type="password" name="confirm_password" id="input-confirm-password" class="form-control form-control-alternative">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fas fa-eye" id="toggleConfirmPassword" onclick="togglePasswordVisibility('input-confirm-password', 'toggleConfirmPassword')"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <input type="submit" name="changePassword" class="btn btn-success form-control-alternative" value="Change Password">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
                                 <?php if (isset($err)) { ?>
                                     <div class="alert alert-danger mt-3">
                                     <?php echo $err; ?>
