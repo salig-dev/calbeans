@@ -201,15 +201,15 @@ if ($result->num_rows > 0) {
                 datasets: [{
                     label: 'Daily Sales (in ₱)',
                     data: dailySalesData,
-                    backgroundColor: 'rgba(78, 115, 223, 0.05)',
-                    borderColor: 'rgba(78, 115, 223, 1)',
+                    backgroundColor: 'rgba(212, 172, 99, 0.25)',
+                    borderColor: 'rgba(212, 172, 99, 1)',
                     borderWidth: 2,
                     pointRadius: 5, // Increased the point radius to make dots bigger
-                    pointBackgroundColor: 'rgba(78, 115, 223, 1)',
-                    pointBorderColor: 'rgba(78, 115, 223, 1)',
+                    pointBackgroundColor: 'rgba(212, 172, 99, 1)',
+                    pointBorderColor: 'rgba(212, 172, 99, 1)',
                     pointHoverRadius: 5, // Increased the point hover radius to make dots bigger
-                    pointHoverBackgroundColor: 'rgba(78, 115, 223, 1)',
-                    pointHoverBorderColor: 'rgba(78, 115, 223, 1)',
+                    pointHoverBackgroundColor: 'rgba(212, 172, 99, 1)',
+                    pointHoverBorderColor: 'rgba(212, 172, 99, 1)',
                     pointHitRadius: 10,
                     pointBorderWidth: 2,
                     lineTension: 0.3
@@ -277,8 +277,8 @@ if ($result->num_rows > 0) {
                 datasets: [{
                     label: 'Monthly Sales (in ₱)',
                     data: monthlySalesData,
-                    backgroundColor: 'rgba(78, 115, 223, 0.5)',
-                    borderColor: 'rgba(78, 115, 223, 1)',
+                    backgroundColor: 'rgb(212, 172, 99, 0.5)',
+                    borderColor: 'rgb(212, 172, 99, 1)',
                     borderWidth: 1
                 }]
             },
