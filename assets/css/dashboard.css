@@ -19,16 +19,16 @@
   max-width: fit-content;
 }
 
-thead > tr > th:nth-child(odd){
+table.align-items-center > thead > tr > th:nth-child(odd){
   background: #b98b4029 !important;
 }
 
-tbody > tr > td:nth-child(odd){
+table.align-items-center > tbody > tr > td:nth-child(odd){
   background: #b98b4010 ;
 }
 
-thead > tr > *:nth-child(odd),
-tbody > tr > *:nth-child(odd){
+table.align-items-center > thead > tr > *:nth-child(odd),
+table.align-items-center > tbody > tr > *:nth-child(odd){
   color: #b98b40 !important;
 }
 
@@ -88,3 +88,39 @@ tbody > tr > *:nth-child(odd){
   }
 
 }
+
+.text-primary
+{
+  color: #b98b40 !important;
+}
+
+.navbar.navbar-vertical .navbar-nav > .nav-item:hover{
+  background: #f1e5d050;
+  font-weight: 500;
+}
+
+.navbar.navbar-vertical .navbar-nav > .nav-item > a {
+  text-decoration: none;
+  position: relative;
+}
+
+.navbar.navbar-vertical .navbar-nav > .nav-item > a::after {
+  content: '';
+  position: absolute;
+  bottom: 12px;
+  left: 25.25%;
+  width: 40%;
+  height: 0.75px;
+  background-color: #3d2e16;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease-in-out;
+}
+
+.navbar.navbar-vertical .navbar-nav > .nav-item > a:hover::after {
+  transform: scaleX(1);
+}
+
+/* .card.shadow.mb-4 > .card-header.border-0{
+  background: #fbf8f3;
+} */

@@ -118,7 +118,7 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-10 mx-auto">
                     <!-- Top 10 Products -->
                     <div class="card shadow mb-4 ">
                         <div class="card-header border-0">

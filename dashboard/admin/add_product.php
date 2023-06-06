@@ -52,6 +52,8 @@ require_once('partials/_head.php');
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+
 
 <body>
   <!-- Sidenav -->
@@ -76,7 +78,7 @@ require_once('partials/_head.php');
     <div class="container-fluid mt--8">
       <!-- Table -->
       <div class="row">
-        <div class="col">
+        <div class="col-xl-12 col-11 mx-auto">
           <div class="card shadow">
             <div class="card-header border-0">
               <h3>Please Fill All Fields</h3>

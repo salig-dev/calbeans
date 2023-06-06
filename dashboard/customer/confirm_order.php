@@ -176,7 +176,7 @@ if ($order) {
                                 <p><strong>Total Price:</strong> ₱<?php echo $order->prod_price * $order->prod_qty; ?></p>
                                 <hr>
                                 <form method="POST">
-                                    <input type="submit" name="cancel" value="Cancel Order" class="btn btn-primary margin">
+                                    <input type="submit" name="cancel" value="Cancel Order" class="btn btn-danger margin">
                                     <input type="submit" name="proceed" value="Proceed with Order" class="btn btn-primary margin">
                                 </form>
                             </div>

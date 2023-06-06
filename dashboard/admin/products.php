@@ -66,7 +66,7 @@
     <div class="container-fluid mt--8">
       <!-- Table -->
       <div class="row">
-        <div class="col mx-auto card shadow">
+        <div class="col mx-auto card shadow px-0">
           <!-- SELECTION MENU-->
           <section class="row mx-0 py-2">
             <div class="card-header border-0 col-xl-5 col-lg-4 col-md-8 col-sm-10 col-11 text-lg-left text-center mx-auto">

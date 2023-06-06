@@ -136,7 +136,7 @@ while ($admin = $res->fetch_object()) {
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contact_reports.php">
-              <i class="fas fa-shopping-basket"></i> Contact Reports
+            <i class="fas fa-envelope"></i> Contact Reports
             </a>
           </li>
           <!-- <li class="nav-item">

@@ -50,7 +50,7 @@ require_once('partials/_head.php');
     <div class="container-fluid mt--8 overflow-visible">
       <!-- Table -->
         <div class="row">
-          <div class="col mx-auto card shadow">
+          <div class="col mx-auto card shadow px-0">
             <!-- SELECTION MENU-->
             <section class="row mx-0 py-2">
               <div class="card-header border-0 col-xl-6 col-lg-7 col-md-6 col-11 text-md-left text-center mx-auto">
