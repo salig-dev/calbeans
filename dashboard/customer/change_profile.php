@@ -31,10 +31,10 @@ if (isset($_POST['ChangeProfile'])) {
     $customer_id = $_SESSION['customer_id'];
 
     //Insert Captured information to a database table
-    $postQuery = "UPDATE rpos_customers SET customer_name =?, customer_phoneno =?, customer_email =?, customer_password =? WHERE  customer_id =?";
+    $postQuery = "UPDATE rpos_customers SET customer_name = ?, customer_phoneno = ?, customer_email = ? WHERE customer_id = ?";
     $postStmt = $mysqli->prepare($postQuery);
-    //bind paramaters
-    $rc = $postStmt->bind_param('sssss', $customer_name, $customer_phoneno, $customer_email, $customer_password, $customer_id);
+    // Bind parameters
+    $rc = $postStmt->bind_param('sssi', $customer_name, $customer_phoneno, $customer_email, $customer_id);
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
