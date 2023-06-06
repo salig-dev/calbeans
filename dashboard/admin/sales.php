@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sales | Calbeans Coffee</title>
 <?php
 session_start();
 include('config/config.php');
@@ -49,13 +56,6 @@ if ($result->num_rows > 0) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en-US">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sales | Calbeans Coffee</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/icon/favicon.png" />
@@ -93,8 +93,8 @@ if ($result->num_rows > 0) {
                     <!-- Daily Sales Summary -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <h5 class="card-title"><b>Daily Sales</b></h5>
-                            <h3 class="card-text"><b>₱</b> <?php echo number_format($todaySales, 2, '.', ','); ?></h3>
+                            <h5 class="card-title text-uppercase text-muted mb-0"><b>Daily Sales</b></h5>
+                            <h3 class="card-text h2 font-weight-bold mb-0"><b>₱</b> <?php echo number_format($todaySales, 2, '.', ','); ?></h3>
                         </div>
                     </div>
                 </div>
@@ -102,8 +102,8 @@ if ($result->num_rows > 0) {
                     <!-- Monthly Sales Summary -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <h5 class="card-title"><b>Monthly Sales</b></h5>
-                            <h3 class="card-text"><b>₱</b> <?php echo number_format(array_sum($monthlySalesData), 2, '.', ','); ?></h3>
+                            <h5 class="card-title text-uppercase text-muted mb-0"><b>Monthly Sales</b></h5>
+                            <h3 class="card-text h2 font-weight-bold mb-0"><b>₱</b> <?php echo number_format(array_sum($monthlySalesData), 2, '.', ','); ?></h3>
                         </div>
                     </div>
                 </div>
@@ -111,8 +111,8 @@ if ($result->num_rows > 0) {
                     <!-- Yearly Sales Summary -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <h5 class="card-title"><b>Yearly Sales</b></h5>
-                            <h3 class="card-text"><b>₱</b> <?php echo number_format($yearlySales, 2, '.', ','); ?></h3>
+                            <h5 class="card-title text-uppercase text-muted mb-0"><b>Yearly Sales</b></h5>
+                            <h3 class="card-text h2 font-weight-bold mb-0"><b>₱</b> <?php echo number_format($yearlySales, 2, '.', ','); ?></h3>
                         </div>
                     </div>
                 </div>
