@@ -52,7 +52,7 @@
 <body class="bg-dark hero-overly">
   <div class="main-content">
     <div class="position-absolute  pt-md-5 pl-md-5 pt-4 pl-4  return-text">
-      <a href="../../dashboard/index.php" class="  text-white">
+      <a href="../../dashboard/customer/index.php" class="  text-white">
         <i class="fa-solid fa-chevron-left"></i> Return
       </a>
     </div>
