@@ -49,7 +49,7 @@
         <div class="col mx-auto">
           <div class="card shadow">
             <div class="card-header border-0">
-              Orders Records
+               Contact Records
             </div>
             <section class="table-responsive">
               <!-- Projects table -->
