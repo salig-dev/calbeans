@@ -40,12 +40,16 @@ $todaySales = isset($dailySalesData[date('Y-m-d')]) ? $dailySalesData[date('Y-m-
 
 // Fetch Monthly Sales Data
 $monthlySalesData = array();
+$currentMonth = date('Y-m'); // Get the current month in the format 'YYYY-MM'
 $result = $mysqli->query("SELECT DATE_FORMAT(created_at, '%Y-%m') AS order_month, SUM(prod_price * prod_qty) AS total_sales FROM rpos_orders WHERE order_status = 'Paid' GROUP BY DATE_FORMAT(created_at, '%Y-%m')");
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $monthlySalesData[$row['order_month']] = $row['total_sales'];
     }
 }
+
+// Get current month's sales amount
+$currentMonthSales = isset($monthlySalesData[$currentMonth]) ? $monthlySalesData[$currentMonth] : 0;
 
 // Calculate Yearly Sales
 $yearlySales = 0;
@@ -103,7 +107,7 @@ if ($result->num_rows > 0) {
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <h5 class="card-title text-uppercase text-muted mb-0"><b>Monthly Sales</b></h5>
-                            <h3 class="card-text h2 font-weight-bold mb-0"><b>₱</b> <?php echo number_format(array_sum($monthlySalesData), 2, '.', ','); ?></h3>
+                            <h3 class="card-text h2 font-weight-bold mb-0"><b>₱</b> <?php echo number_format($currentMonthSales, 2, '.', ','); ?></h3>
                         </div>
                     </div>
                 </div>
