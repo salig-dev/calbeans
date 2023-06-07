@@ -91,27 +91,113 @@ require_once('partials/_head.php');
                 <h3>Please Fill All Fields</h3>
               </div>
               <div class="card-body">
-                <form method="POST">
+                <form method="POST" role="form" name="contactForm" onsubmit="return validateForm()">
                   <div class="form-row">
                     <div class="col-md-6">
                       <label>Customer Name</label>
-                      <input type="text" name="customer_name" value="<?php echo $cust->customer_name; ?>" class="form-control" placeholder="Enter the customer's email address">
+                      <input type="text" name="customer_name" value="<?php echo $cust->customer_name; ?>" class="form-control" placeholder="Enter the customer's email address"><div class="error-message" id="customer_name-error"></div>
                     </div>
                     <div class="col-md-6">
                       <label>Customer Phone Number</label>
-                      <input type="text" name="customer_phoneno" value="<?php echo $cust->customer_phoneno; ?>" class="form-control" placeholder="Enter a valid phone number (e.g., 09275462862 or 9275462862)" pattern="^(?:\+?63)?[0-9]{10,11}$" value="">
+                      <input type="text" name="customer_phoneno" value="<?php echo $cust->customer_phoneno; ?>" class="form-control"  required onblur="validatephone()"><div class="error-message" id="customer_phoneno-error"></div>
+                      <script>
+        function validatephone() {
+           var phoneNumber = document.forms["contactForm"]["customer_phoneno"].value;
+
+            // Phone number validation
+            var phoneNumberRegex = /^(09|\+639)\d{9}$/;
+            if (!phoneNumber.match(phoneNumberRegex)) {
+                displayErrorMessage("Please enter a valid phone number (e.g., 09123456789 or +639123456789)", "customer_phoneno");
+                return false;
+            } else {
+                hideErrorMessage("customer_phoneno");
+            }
+
+            // If all validations pass, the form will be submitted
+            return true;
+        }
+
+        function displayErrorMessage(message, fieldId) {
+            var errorElement = document.getElementById(fieldId + "-error");
+            errorElement.innerText = message;
+            errorElement.style.display = "block";
+        }
+
+        function hideErrorMessage(fieldId) {
+            var errorElement = document.getElementById(fieldId + "-error");
+            errorElement.style.display = "none";
+        }
+    </script>
                     </div>
                   </div>
                   <hr>
                   <div class="form-row">
                   <div class="col-md-6">
                     <label>Customer Email</label>
-                       <input type="email" name="customer_email" value="<?php echo $cust->customer_email; ?>" class="form-control" pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z]+$" placeholder="Enter the customer's email" required>
+                    <input type="email" name="customer_email" value="<?php echo $cust->customer_email; ?>" class="form-control" required onblur="validateForm()">  <div class="error-message" id="customer_email-error"></div>
                       </div>
+                      <script> 
+              function validateForm() {
+               var email = document.forms["contactForm"]["customer_email"].value;
+    
+             // Email validation
+             var emailRegex = /^[^\s@]+@(gmail\.com|mail\.com|yahoo\.com)$/;
+                  if (!email.match(emailRegex)) {
+               displayErrorMessage("Please enter a valid email address (e.g., example@gmail.com, example@mail.com, example@yahoo.com)", "customer_email");
+                return false;
+                   } else {
+            hideErrorMessage("customer_email");
+            }
 
+   
+
+              // If all validations pass, the form will be submitted
+              return true;
+                  }
+
+              function displayErrorMessage(message, fieldId) {
+            var errorElement = document.getElementById(fieldId + "-error");
+          errorElement.innerText = message;
+          errorElement.style.display = "block";
+         }
+
+        function hideErrorMessage(fieldId) {
+            var errorElement = document.getElementById(fieldId + "-error");
+          errorElement.style.display = "none";
+       }
+    </script>
                     <div class="col-md-6">
                       <label>Customer Password</label>
-                      <input type="password" name="customer_password" class="form-control" placeholder="Enter the customer's password" value="">
+                      <input type="password" name="customer_password" class="form-control" value="" onblur="validatepass()"><div class="error-message" id="customer_password-error"></div>
+                      <script>
+                      function validatepass() {
+
+  // Password validation
+  var password = document.forms["contactForm"]["customer_password"].value;
+
+  // Password validation
+  if (password.length < 6) {
+                displayErrorMessage("Password must be at least 6 characters long", "customer_password");
+                return false;
+            } else {
+                hideErrorMessage("customer_password");
+            }
+
+  // If all validations pass, the form will be submitted
+  return true;
+}
+
+function displayErrorMessage(message, fieldId) {
+  var errorElement = document.getElementById(fieldId + "-error");
+  errorElement.innerText = message;
+  errorElement.style.display = "block";
+}
+
+function hideErrorMessage(fieldId) {
+  var errorElement = document.getElementById(fieldId + "-error");
+  errorElement.style.display = "none";
+}
+</script>
                     </div>
                   </div>
                   <br>
