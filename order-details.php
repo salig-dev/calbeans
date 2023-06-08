@@ -183,7 +183,7 @@
             $servername = "localhost";
             $username = "root";
             $password = "";
-            $database = "myshop";
+            $database = "rposystem";
 
             //create connection
             $conn = mysqli_connect($servername,$username,$password,$database);
@@ -209,22 +209,6 @@
                 "VALUES ('$customerName', '$serializedItems', '$email', '$phone', '$additionalNotes')";
               $result = $conn->query($sql);
 
-              // Fixed prices for each item
-              // $itemPrices = array(
-              //   "Americano (8 oz)" => 69.00,
-              //   "Vanilla Hot (12 oz)" => 69.00,
-              //   "Vanilla Cold Brew (16 oz)" => 100.00,
-              //   // Add more items and prices here for other categories
-              // );
-
-              // Calculate the total price
-              // $totalPrice = 0;
-              // for ($i = 0; $i < count($items); $i++) {
-              //   $item = $items[$i];
-              //   $quantity = $quantities[$i];
-              //   $price = $itemPrices[$item];
-              //   $totalPrice += $price * $quantity;
-              // }
 
               // Display the order summary
               echo "<h3>Order Summary:</h3><br>";

@@ -19,7 +19,7 @@ while ($customer = $res->fetch_object()) {
                 <li class="nav-item dropdown">
                     <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="media align-items-center">
-                            <span class="avatar avatar-sm rounded-circle">
+                            <span class="avatar avatar-sm rounded-circle d-none d-md-block">
                                 <img alt="Image placeholder" src="../admin/assets/img/theme/user-a-min.png">
                             </span>
                             <div class="media-body ml-2 d-none d-lg-block">

@@ -22,7 +22,7 @@ include('config/code-generator.php');
 check_login();
 if (isset($_POST['addProduct'])) {
   //Prevent Posting Blank Values
-  if (empty($_POST["prod_code"]) || empty($_POST["prod_name"]) || empty($_POST['prod_desc']) || empty($_POST['prod_price'])) {
+  if (empty($_POST["prod_code"]) || empty($_POST["prod_name"]) || empty($_POST['prod_desc']) || empty($_POST['prod_price']) || empty($_POST['prod_category'])) {
     $err = "Blank Values Not Accepted";
   } else {
     $prod_id = $_POST['prod_id'];
@@ -32,11 +32,12 @@ if (isset($_POST['addProduct'])) {
     move_uploaded_file($_FILES["prod_img"]["tmp_name"], "assets/img/products/" . $_FILES["prod_img"]["name"]);
     $prod_desc = $_POST['prod_desc'];
     $prod_price = $_POST['prod_price'];
+    $prod_category = $_POST['prod_category'];
     //Insert Captured information to a database table
-    $postQuery = "INSERT INTO rpos_products (prod_id, prod_code, prod_name, prod_img, prod_desc, prod_price ) VALUES(?,?,?,?,?,?)";
+    $postQuery = "INSERT INTO rpos_products (prod_id, prod_code, prod_name, prod_img, prod_desc, prod_price, prod_category ) VALUES(?,?,?,?,?,?,?)";
     $postStmt = $mysqli->prepare($postQuery);
     //bind paramaters
-    $rc = $postStmt->bind_param('ssssss', $prod_id, $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price);
+    $rc = $postStmt->bind_param('sssssss', $prod_id, $prod_code, $prod_name, $prod_img, $prod_desc, $prod_price, $prod_category);
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
@@ -51,6 +52,8 @@ require_once('partials/_head.php');
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+
 
 <body>
   <!-- Sidenav -->
@@ -75,7 +78,7 @@ require_once('partials/_head.php');
     <div class="container-fluid mt--8">
       <!-- Table -->
       <div class="row">
-        <div class="col">
+        <div class="col-xl-12 col-11 mx-auto">
           <div class="card shadow">
             <div class="card-header border-0">
               <h3>Please Fill All Fields</h3>
@@ -98,6 +101,20 @@ require_once('partials/_head.php');
                   <div class="col-md-6">
                     <label>Product Image</label>
                     <input type="file" name="prod_img" class="btn btn-outline-success form-control" value="">
+                  </div>
+                  <div class="col-md-6">
+                    <label>Product Category</label>
+                      <select name="prod_category" class="form-control">
+                        <option value="Espresso">Espresso</option>
+                        <option value="Fresh Black Coffee / Cold Brew">Fresh Black Coffee / Cold Brew</option>
+                        <option value="Non-Coffee Drinks">Non-Coffee Drinks</option>
+                        <option value="Sandwich">Sandwich</option>
+                        <option value="Pastries">Pastries</option>
+                        <option value="Pasta">Pasta</option>
+                        <option value="Starters">Starters</option>
+                        <option value="Coffee Beans / Ground">Coffee Beans / Ground</option>
+                        <!-- Add more options as needed -->
+                      </select>
                   </div>
                   <div class="col-md-6">
                     <label>Product Price</label>

@@ -305,3 +305,28 @@ p {
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc202738', endColorstr='var()00000',GradientType=1 );
 }
+
+
+.return-text{
+  z-index: 2;
+}
+
+.return-text {
+  transition: transform 2s ease-in-out;
+}
+
+.return-text:hover {
+  animation: pulse 0.8s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

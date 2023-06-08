@@ -46,7 +46,6 @@ include('config/checklogin.php');
 check_login();
 require_once('partials/_head.php');
 
-
 if (isset($_GET['proceed']) && $_GET["proceed"] == "true") {
     $order_id = $_GET['order_id'];
 
@@ -65,94 +64,113 @@ if (isset($_GET['proceed']) && $_GET["proceed"] == "true") {
         ?>
 
         <body class="hero-overly" id="order-summary">
-        <style>
-        .main-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 25px;
-            height: 100%;
-        }
-        
-        .card {
-            width: 40%;
-            height: 100%;
-            margin: 0 auto; /* Center the card horizontally */
-            padding: 10px; /* Add some padding */
-            text-align: center;
-            background-color: #f6f1ea;
-        }
+            <style>
+                .main-content {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 100vh;
+                    padding: 25px;
+                    height: 100%;
+                }
 
-        html,
-        body {
-            background-image: url("../../assets/img/hero/4.png");
-            background-size: cover;
-            font-family: 'Chivo', sans-serif;
-            font-weight: 200;
-        }
+                .card {
+                    width: 40%;
+                    height: 100%;
+                    margin: 0 auto; /* Center the card horizontally */
+                    padding: 10px; /* Add some padding */
+                    text-align: center;
+                    background-color: #f6f1ea;
+                }
 
-        .full-height {
-            height: 100vh;
-        }
+                html,
+                body {
+                    background-image: url("../../assets/img/hero/4.png");
+                    background-size: cover;
+                    font-family: 'Chivo', sans-serif;
+                    font-weight: 200;
+                }
 
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
+                .full-height {
+                    height: 100vh;
+                }
 
-        .position-ref {
-            position: relative;
-        }
+                .flex-center {
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                }
 
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
+                .position-ref {
+                    position: relative;
+                }
 
-        .content {
-            text-align: center;
-        }
+                .top-right {
+                    position: absolute;
+                    right: 10px;
+                    top: 18px;
+                }
 
-        .title {
-            font-family: "Brice", "Chivo", sans-serif;
-            color: #d4ac63;
-            margin-top: 0px;
-            font-style: normal;
-            font-weight: 500;
-            text-transform: normal;
-            letter-spacing: 0.1rem;
-        }
+                .content {
+                    text-align: center;
+                }
 
-        .margin {
-            margin-top: 1rem;
-        }
+                .title {
+                    font-family: "Brice", "Chivo", sans-serif;
+                    color: #d4ac63;
+                    margin-top: 0px;
+                    font-style: normal;
+                    font-weight: 500;
+                    text-transform: normal;
+                    letter-spacing: 0.1rem;
+                }
 
-        </style>
-        <!-- Main Content -->
-        <div class="main-content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <h1></h1>
-                        <div class="card shadow">
-                            <div class="card-body">
-                                <h1 class="title">ORDER SUMMARY</h1><hr>
-                                <p><strong>Customer:</strong> <?php echo $order->customer_name; ?></p>
-                                <p><strong>Products:</strong> <?php echo $order->prod_name; ?></p>
-                                <p><strong>Unit Price:</strong> ₱<?php echo $order->prod_price; ?></p>
-                                <p><strong>Quantity:</strong> <?php echo $order->prod_qty . ' ' . $order->prod_name; ?></p>
-                                <p><strong>Total Price:</strong> ₱<?php echo $order->prod_price * $order->prod_qty; ?></p>
-                                <hr>
-                                <button class="btn btn-primary margin" onclick="saveOrderSummary()">Save Order</button>
+                .margin {
+                    margin-top: 1rem;
+                }
+
+            </style>
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <h1></h1>
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <h1 class="title">ORDER SUMMARY</h1>
+                                    <hr>
+                                    <p><strong>Customer:</strong> <?php echo $order->customer_name; ?></p>
+                                    <p><strong>Products:</strong> <?php echo $order->prod_name; ?></p>
+                                    <p><strong>Unit Price:</strong> ₱<?php echo $order->prod_price; ?></p>
+                                    <p><strong>Quantity:</strong> <?php echo $order->prod_qty . ' ' . $order->prod_name; ?></p>
+                                    <p><strong>Total Price:</strong> ₱<?php echo $order->prod_price * $order->prod_qty; ?></p>
+                                    <hr>
+                                    <button class="btn btn-primary margin" onclick="saveOrderSummary()">Save Order</button>
+                                    <a class="btn btn-primary margin" href="orders_reports.php">Back to Orders</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <script>
+                function saveOrderSummary() {
+                    var orderSummaryElement = document.querySelector("#order-summary");
+                    console.log("orderSummaryElement:", orderSummaryElement);
+
+                    html2canvas(orderSummaryElement).then(function (canvas) {
+                        var link = document.createElement("a");
+                        link.href = canvas.toDataURL();
+                        link.download = "order_summary.png";
+                        link.click();
+                    }).catch(function (error) {
+                        console.error("html2canvas error:", error);
+                    });
+                }
+            </script>
+        </body>
+        </html>
         <?php
     } else {
         $_SESSION['error'] = "Order not found";

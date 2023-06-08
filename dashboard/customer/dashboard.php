@@ -49,7 +49,7 @@ require_once('partials/_analytics.php');
               <a href="orders.php">
                 <div class="card card-stats mb-4 mb-xl-0">
                   <div class="card-body">
-                    <div class="row">
+                    <div class="row justify-content-between">
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">Available Items</h5>
                         <span class="h2 font-weight-bold mb-0"><?php echo $products; ?></span>
@@ -68,7 +68,7 @@ require_once('partials/_analytics.php');
               <a href="orders_reports.php">
                 <div class="card card-stats mb-4 mb-xl-0">
                   <div class="card-body">
-                    <div class="row">
+                    <div class="row justify-content-between">
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">Total Orders</h5>
                         <span class="h2 font-weight-bold mb-0"><?php echo $orders; ?></span>
@@ -89,11 +89,10 @@ require_once('partials/_analytics.php');
       </div>
     </div>
     <!-- Page content -->
-    <div class="container-fluid mt--7">
-      <div class="row mt-5">
-        <div class="col-xl-12 mb-5 mb-xl-0">
-          <div class="card shadow">
-            <div class="card-header border-0">
+    <main class="container-fluid mt--7 mx-auto">
+        <div class="row">
+          <div class="card shadow col-xl-11 col-12 mt-5 mx-auto mb-5 mb-xl-0 px-0">
+            <section class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
                   <h3 class="mb-0">Recent Orders</h3>
@@ -101,20 +100,20 @@ require_once('partials/_analytics.php');
                 <div class="col text-right">
                   <a href="orders_reports.php" class="btn btn-sm btn-primary">See all</a>
                 </div>
-              </div>
-            </div>
-            <div class="table-responsive">
+            </section>
+            
+            <section class="table-responsive">
               <!-- Projects table -->
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th class="__col-odd" scope="col">Code</th>
+                    <th scope="col">Code</th>
                     <th scope="col">Customer</th>
-                    <th class="__col-odd" scope="col">Product</th>
+                    <th scope="col">Product</th>
                     <th scope="col">Unit Price</th>
-                    <th class="__col-odd" scope="col">#</th>
+                    <th scope="col">#</th>
                     <th scope="col">Total Price</th>
-                    <th class="__col-odd" scope="col">Status</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Date</th>
                   </tr>
                 </thead>
@@ -130,78 +129,32 @@ require_once('partials/_analytics.php');
 
                   ?>
                     <tr>
-                      <th class="__col-odd text-success" scope="row"><?php echo $order->order_code; ?></th>
-                      <td><?php echo $order->customer_name; ?></td>
-                      <td class="__col-odd text-success"><?php echo $order->prod_name; ?></td>
-                      <td>₱<?php echo $order->prod_price; ?></td>
-                      <td class="__col-odd text-success"><?php echo $order->prod_qty; ?></td>
-                      <td>₱<?php echo $total; ?></td>
-                      <td class="__col-odd"><?php if ($order->order_status == '') {
-                            echo "<span class='badge badge-danger'>Not Paid</span>";
-                          } else {
-                            echo "<span class='badge badge-success'>$order->order_status</span>";
-                          } ?></td>
-                      <td><?php echo date('d/M/Y g:i', strtotime($order->created_at)); ?></td>
+                      <td class="" scope="row"><?php echo $order->order_code; ?></td>
+                      <td class="__td-w-0"><?php echo $order->customer_name; ?></td>
+                      <td class="__prod_name"><?php echo $order->prod_name; ?></td>
+                      <td class="__td-w-0"><b>₱</b> <?php echo number_format($order->prod_price, 2, '.', ','); ?></td>
+                      <td class="__td-w-0"><?php echo $order->prod_qty; ?></td>
+                      <td class="__td-w-0"><b>₱</b> <?php echo number_format($total, 2, '.', ',');?></td>
+                      <td class="">
+                        <?php if ($order->order_status == '') { ?>
+                          <span class='badge badge-danger'>Not Paid</span>
+                        <?php } else if ($order->order_status == 'Pending') { ?>
+                          <span class='badge badge-warning'>Pending</span>
+                        <?php } else if ($order->order_status == 'Cancelled') { ?>
+                          <span class='badge badge-light'>Cancelled</span>
+                        <?php } else { ?>
+                          <span class='badge badge-success'><?php echo $order->order_status; ?></span>
+                        <?php } ?>
+                      </td>
+                      <td class="__td-w-0"><?php echo date('d/M/Y g:i A', strtotime($order->created_at)); ?></td>
                     </tr>
                   <?php } ?>
                 </tbody>
               </table>
-            </div>
+            </section>
           </div>
         </div>
-      </div>
-      <div class="row mt-5">
-        <div class="col-xl-12">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">My Recent Payments</h3>
-                </div>
-                <div class="col text-right">
-                  <a href="payments_reports.php" class="btn btn-sm btn-primary">See all</a>
-                </div>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th class="__col-odd" scope="col">Code</th>
-                    <th scope="col">Amount</th>
-                    <th class='__col-odd' scope="col">Order Code</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $ret = "SELECT * FROM   rpos_payments WHERE customer_id ='$customer_id'   ORDER BY `rpos_payments`.`created_at` DESC LIMIT 10 ";
-                  $stmt = $mysqli->prepare($ret);
-                  $stmt->execute();
-                  $res = $stmt->get_result();
-                  while ($payment = $res->fetch_object()) {
-                  ?>
-                    <tr>
-                      <th class="__col-odd" scope="row">
-                        <?php echo $payment->pay_code; ?>
-                      </th>
-                      <td>
-                        ₱<?php echo $payment->pay_amt; ?>
-                      </td>
-                      <td class='__col-odd'>
-                        <?php echo $payment->order_code; ?>
-                      </td>
-                    </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Footer -->
-      <?php //require_once('partials/_footer.php'); ?>
-    </div>
+    </main>
   </div>
   <!-- Argon Scripts -->
   <?php

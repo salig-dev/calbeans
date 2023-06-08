@@ -13,6 +13,8 @@
       href="../../assets/img/icon/favicon.png"
     />
 
+    
+
 <?php
 session_start();
 include('config/config.php');
@@ -31,10 +33,10 @@ if (isset($_POST['ChangeProfile'])) {
     $customer_id = $_SESSION['customer_id'];
 
     //Insert Captured information to a database table
-    $postQuery = "UPDATE rpos_customers SET customer_name =?, customer_phoneno =?, customer_email =?, customer_password =? WHERE  customer_id =?";
+    $postQuery = "UPDATE rpos_customers SET customer_name = ?, customer_phoneno = ?, customer_email = ? WHERE customer_id = ?";
     $postStmt = $mysqli->prepare($postQuery);
-    //bind paramaters
-    $rc = $postStmt->bind_param('sssss', $customer_name, $customer_phoneno, $customer_email, $customer_password, $customer_id);
+    // Bind parameters
+    $rc = $postStmt->bind_param('sssi', $customer_name, $customer_phoneno, $customer_email, $customer_id);
     $postStmt->execute();
     //declare a varible which will be passed to alert function
     if ($postStmt) {
@@ -45,53 +47,49 @@ if (isset($_POST['ChangeProfile'])) {
   }
 }
 if (isset($_POST['changePassword'])) {
-
-    //Change Password
     $error = 0;
-    if (isset($_POST['old_password']) && !empty($_POST['old_password'])) {
-        $old_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['old_password']))));
-    } else {
+
+    // Validate input fields
+    if (empty($_POST['old_password'])) {
         $error = 1;
-        $err = "Old Password Cannot Be Empty";
-    }
-    if (isset($_POST['new_password']) && !empty($_POST['new_password'])) {
-        $new_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['new_password']))));
-    } else {
+        $err = "Old Password cannot be empty";
+    } elseif (empty($_POST['new_password'])) {
         $error = 1;
-        $err = "New Password Cannot Be Empty";
-    }
-    if (isset($_POST['confirm_password']) && !empty($_POST['confirm_password'])) {
-        $confirm_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['confirm_password']))));
-    } else {
+        $err = "New Password cannot be empty";
+    } elseif (empty($_POST['confirm_password'])) {
         $error = 1;
-        $err = "Confirmation Password Cannot Be Empty";
+        $err = "Confirmation Password cannot be empty";
     }
 
     if (!$error) {
         $customer_id = $_SESSION['customer_id'];
-        $sql = "SELECT * FROM rpos_customers   WHERE customer_id = '$customer_id'";
+        $old_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['old_password']))));
+        $new_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['new_password']))));
+        $confirm_password = mysqli_real_escape_string($mysqli, trim(sha1(md5($_POST['confirm_password']))));
+
+        $sql = "SELECT * FROM rpos_customers WHERE customer_id = '$customer_id'";
         $res = mysqli_query($mysqli, $sql);
+
         if (mysqli_num_rows($res) > 0) {
             $row = mysqli_fetch_assoc($res);
+            
             if ($old_password != $row['customer_password']) {
-                $err =  "Please Enter Correct Old Password";
+                $err = "Please enter the correct old password";
             } elseif ($new_password != $confirm_password) {
-                $err = "Confirmation Password Does Not Match";
+                $err = "Confirmation password does not match";
             } else {
-
-                $new_password  = sha1(md5($_POST['new_password']));
-                //Insert Captured information to a database table
-                $query = "UPDATE rpos_customers SET  customer_password =? WHERE customer_id =?";
+                // Update password in the database
+                $new_password = sha1(md5($_POST['new_password']));
+                $query = "UPDATE rpos_customers SET customer_password = ? WHERE customer_id = ?";
                 $stmt = $mysqli->prepare($query);
-                //bind paramaters
-                $rc = $stmt->bind_param('si', $new_password, $customer_id);
+                $stmt->bind_param('si', $new_password, $customer_id);
                 $stmt->execute();
 
-                //declare a varible which will be passed to alert function
                 if ($stmt) {
-                    $success = "Password Changed" && header("refresh:1; url=dashboard.php");
+                    $success = "Password changed successfully";
+                    header("refresh:1; url=dashboard.php");
                 } else {
-                    $err = "Please Try Again Or Try Later";
+                    $err = "Failed to update the password";
                 }
             }
         }
@@ -102,6 +100,25 @@ require_once('partials/_head.php');
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
+
+    <script>
+    // Function to toggle password visibility
+    function togglePasswordVisibility(inputId, toggleId) {
+        const input = document.getElementById(inputId);
+        const toggle = document.getElementById(toggleId);
+        if (input.type === "password") {
+            input.type = "text";
+            toggle.classList.remove("fa-eye");
+            toggle.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            toggle.classList.remove("fa-eye-slash");
+            toggle.classList.add("fa-eye");
+        }
+    }
+</script>
+
 
 <body>
     <!-- Sidenav -->
@@ -205,7 +222,7 @@ require_once('partials/_head.php');
                                             <div class=" col-lg-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label" for="input-email">Phone Number</label>
-                                                    <input type="text" id="input-email" value="<?php echo $customer->customer_phoneno; ?>" name="customer_phone" class="form-control form-control-alternative">
+                                                    <input type="text" id="input-email" value="<?php echo $customer->customer_phoneno; ?>" name="customer_phoneno" class="form-control form-control-alternative">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -223,40 +240,72 @@ require_once('partials/_head.php');
                                     </div>
                                 </form>
                                 <hr>
-                                <form method =" post">
-                                        <h6 class="heading-small text-muted mb-4">Change Password</h6>
-                                        <div class="pl-lg-4">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label" for="input-username">Old Password</label>
-                                                        <input type="password" name="old_password" id="input-username" class="form-control form-control-alternative">
-                                                    </div>
-                                                </div>
 
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label" for="input-email">New Password</label>
-                                                        <input type="password" name="new_password" class="form-control form-control-alternative">
-                                                    </div>
-                                                </div>
+                                <form method="post">
+    <h6 class="heading-small text-muted mb-4">Change Password</h6>
+    <div class="pl-lg-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label class="form-control-label" for="input-old-password">Old Password</label>
+                    <div class="input-group">
+                        <input type="password" name="old_password" id="input-old-password" placeholder="Enter your current password" class="form-control form-control-alternative">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fas fa-eye" id="toggleOldPassword" onclick="togglePasswordVisibility('input-old-password', 'toggleOldPassword')"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="form-control-label" for="input-email">Confirm New Password</label>
-                                                        <input type="password" name="confirm_password" class="form-control form-control-alternative">
-                                                    </div>
-                                                </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label class="form-control-label" for="input-email">New Password <small>(min. 8 characters, at least 1 Uppercase and 1 lowercase letter, and 1 number)</small></label>
+                    <div class="input-group">
+                        <input type="password" name="new_password" id="input-new-password" placeholder="New password (Ex: calBeans123)" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" required class="form-control form-control-alternative">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fas fa-eye" id="toggleNewPassword" onclick="togglePasswordVisibility('input-new-password', 'toggleNewPassword')"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <input type="submit" id="input-email" name="changePassword" class="btn btn-success form-control-alternative" value="Change Password">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label class="form-control-label" for="input-email">Confirm New Password</label>
+                    <div class="input-group">
+                        <input type="password" name="confirm_password" id="input-confirm-password" placeholder="Confirm new password (Must match the new password)" class="form-control form-control-alternative">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fas fa-eye" id="toggleConfirmPassword" onclick="togglePasswordVisibility('input-confirm-password', 'toggleConfirmPassword')"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <input type="submit" name="changePassword" class="btn btn-success form-control-alternative" value="Change Password">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+                                <?php if (isset($err)) { ?>
+                                    <div class="alert alert-danger mt-3">
+                                    <?php echo $err; ?>
                                     </div>
-                                </form>
+                                <?php } ?>
+                                    <?php if (isset($success)) { ?>
+                                    <div class="alert alert-success mt-3">
+                                    <?php echo $success; ?>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -272,6 +321,30 @@ require_once('partials/_head.php');
     <?php
     require_once('partials/_sidebar.php');
     ?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+$(".navbar-toggler").click(function() {
+    $("#sidenav-collapse-main").removeClass("collapsing").addClass("collapse show");
+});
+});
+
+document.querySelector("#sidenav-collapse-main > div > div > div.col-6.collapse-close > button").addEventListener("click", function() {
+            document.querySelector("#sidenav-collapse-main").classList.toggle("show");
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector("#sidenav-collapse-main > div > div > div.col-6.collapse-close > button").addEventListener("click", function() {
+        console.log("Test");
+        setTimeout(function() {
+            document.querySelector("#sidenav-collapse-main").classList.toggle("show");
+        }, 10);
+    });
+});
+</script>
+
 </body>
 
 </html>

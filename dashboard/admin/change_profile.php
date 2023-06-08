@@ -93,6 +93,7 @@ require_once('partials/_head.php');
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
 
 <body>
   <!-- Sidenav -->
@@ -256,6 +257,29 @@ This is your profile page. Customize your profile to your heart's content and up
   <?php
   require_once('partials/_sidebar.php');
   ?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+$(".navbar-toggler").click(function() {
+    $("#sidenav-collapse-main").removeClass("collapsing").addClass("collapse show");
+});
+});
+
+document.querySelector("#sidenav-collapse-main > div > div > div.col-6.collapse-close > button").addEventListener("click", function() {
+            document.querySelector("#sidenav-collapse-main").classList.toggle("show");
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector("#sidenav-collapse-main > div > div > div.col-6.collapse-close > button").addEventListener("click", function() {
+        console.log("Test");
+        setTimeout(function() {
+            document.querySelector("#sidenav-collapse-main").classList.toggle("show");
+        }, 10);
+    });
+});
+</script>
 </body>
 
 </html>

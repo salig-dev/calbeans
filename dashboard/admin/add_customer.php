@@ -50,7 +50,55 @@ require_once('partials/_head.php');
 
     <!-- STYLES -->
     <link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+    <link rel="stylesheet" href="../../assets/css/dashboard.css">
 
+    <script>
+        function validateForm() {
+            var email = document.forms["contactForm"]["customer_email"].value;
+            var password = document.forms["contactForm"]["customer_password"].value;
+            var phoneNumber = document.forms["contactForm"]["customer_phoneno"].value;
+
+            // Email validation
+            var emailRegex = /^[^\s@]+@(gmail\.com|mail\.com|yahoo\.com)$/;
+            if (!email.match(emailRegex)) {
+            displayErrorMessage("Please enter a valid email address (e.g., example@gmail.com, example@mail.com, example@yahoo.com)", "customer_email");
+             return false;
+             } else {
+             hideErrorMessage("customer_email");
+              }
+          // Password validation
+               if (password.length < 6) {
+                displayErrorMessage("Password must be at least 6 characters long", "customer_password");
+                return false;
+            } else {
+                hideErrorMessage("customer_password");
+            }
+            
+
+            // Phone number validation
+            var phoneNumberRegex = /^(09|\+639)\d{9}$/;
+            if (!phoneNumber.match(phoneNumberRegex)) {
+                displayErrorMessage("Please enter a valid phone number (e.g., 09123456789 or +639123456789)", "customer_phoneno");
+                return false;
+            } else {
+                hideErrorMessage("customer_phoneno");
+            }
+
+            // If all validations pass, the form will be submitted
+            return true;
+        }
+
+        function displayErrorMessage(message, fieldId) {
+            var errorElement = document.getElementById(fieldId + "-error");
+            errorElement.innerText = message;
+            errorElement.style.display = "block";
+        }
+
+        function hideErrorMessage(fieldId) {
+            var errorElement = document.getElementById(fieldId + "-error");
+            errorElement.style.display = "none";
+        }
+    </script>
 <body>
   <!-- Sidenav -->
   <?php
@@ -74,13 +122,13 @@ require_once('partials/_head.php');
     <div class="container-fluid mt--8">
       <!-- Table -->
       <div class="row">
-        <div class="col">
+        <div class="col-xl-12 col-11 mx-auto">
           <div class="card shadow">
             <div class="card-header border-0">
               <h3>Please Fill All Fields</h3>
             </div>
             <div class="card-body">
-              <form method="POST">
+              <form method="POST" role="form" name="contactForm" onsubmit="return validateForm()">
                 <div class="form-row">
                   <div class="col-md-6">
                     <label>Customer Name</label>
@@ -88,19 +136,20 @@ require_once('partials/_head.php');
                     <input type="hidden" name="customer_id" value="<?php echo $cus_id; ?>" class="form-control">
                   </div>
                   <div class="col-md-6">
-                    <label>Customer Phone Number</label>
-                    <input type="text" name="customer_phoneno" class="form-control" value="">
+                  <label>Customer Phone Number</label>
+                      <input type="text" name="customer_phoneno" class="form-control"  required> <div class="error-message" id="customer_phoneno-error"></div>
                   </div>
                 </div>
                 <hr>
                 <div class="form-row">
-                  <div class="col-md-6">
-                    <label>Customer Email</label>
-                    <input type="email" name="customer_email" class="form-control" value="">
+                <div class="col-md-6">
+                <input type="email" name="customer_email" class="form-control" required><div class="error-message" id="customer_email-error"></div>
                   </div>
+
+
                   <div class="col-md-6">
-                    <label>Customer Password</label>
-                    <input type="password" name="customer_password" class="form-control" value="">
+                  <label>Customer Password</label>
+                      <input type="password" name="customer_password" class="form-control"  required><div class="error-message" id="customer_password-error"></div>
                   </div>
                 </div>
                 <br>

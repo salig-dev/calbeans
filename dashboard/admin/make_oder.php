@@ -36,6 +36,10 @@ if (isset($_POST['make'])) {
 require_once('partials/_head.php');
 ?>
 
+<!-- STYLES -->
+<link rel="stylesheet" href="../../assets/css/calbeans-style.css" />
+<link rel="stylesheet" href="../../assets/css/dashboard.css">
+
 <body>
   <!-- Sidenav -->
   <?php
@@ -59,7 +63,7 @@ require_once('partials/_head.php');
     <div class="container-fluid mt--8">
       <!-- Table -->
       <div class="row">
-        <div class="col">
+        <div class="col-xl-11 col-lg-10 mx-auto">
           <div class="card shadow">
             <div class="card-header border-0">
               <h3>Please Fill All Fields</h3>
@@ -69,7 +73,7 @@ require_once('partials/_head.php');
                 <div class="form-row">
 
                   <div class="col-md-4">
-                    <label>Customer Name</label>
+                    <label>Customer Name <span class="label-required"> *</span></label>
                     <select class="form-control" name="customer_name" id="custName" onChange="getCustomer(this.value)">
                       <option value="">Select Customer Name</option>
                       <?php
@@ -93,7 +97,7 @@ require_once('partials/_head.php');
 
                   <div class="col-md-4">
                     <label>Order Code</label>
-                    <input type="text" name="order_code" value="<?php echo $alpha; ?>-<?php echo $beta; ?>" class="form-control" value="">
+                    <input type="text" name="order_code" readonly value="<?php echo $alpha; ?>-<?php echo $beta; ?>" class="form-control" value="">
                   </div>
                 </div>
                 <hr>
@@ -108,11 +112,11 @@ require_once('partials/_head.php');
                   <div class="form-row">
                     <div class="col-md-6">
                       <label>Product Price (₱)</label>
-                      <input type="text" readonly name="prod_price" value="₱ <?php echo $prod->prod_price; ?>" class="form-control">
+                      <input type="text" readonly name="prod_price" value="₱ <?php echo number_format($prod->prod_price, 2, '.', ','); ?>" class="form-control">
                     </div>
                     <div class="col-md-6">
-                      <label>Product Quantity</label>
-                      <input type="text" name="prod_qty" class="form-control" value="">
+                      <label>Product Quantity<span class="label-required"> *</span></label>
+                      <input type="number" name="prod_qty" class="form-control" value="" min="1" max="30" required aria-required="true">
                     </div>
                   </div>
                 <?php } ?>

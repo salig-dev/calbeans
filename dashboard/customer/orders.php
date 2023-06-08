@@ -50,7 +50,7 @@ require_once('partials/_head.php');
     <main class="container-fluid mt--8 overflow-visible">
       <!-- Table -->
       <div class="row">
-        <div class="col mx-auto card shadow">
+        <div class="card shadow col mx-auto px-0">
           <!-- SELECTION MENU-->
           <section class="row mx-0 py-2">
             <div class="card-header border-0 col-xl-6 col-lg-7 col-md-6 col-11 text-md-left text-center mx-auto">
@@ -79,11 +79,12 @@ require_once('partials/_head.php');
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
-                  <th class="__prod_code __col-odd"scope="col">Product Code</th>
+                  <th class="__prod_code"scope="col">Product Code</th>
                   <th class="__prod_name" scope="col">Name</th>
-                  <th class="__prod_category __col-odd" scope="col">Category</th>
+                  <th class="__prod_category" scope="col">Category</th>
                   <th class="__prod_price" scope="col">Price</th>
-                  <th class="__col-odd" scope="col">Action</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
 
@@ -96,11 +97,18 @@ require_once('partials/_head.php');
                 while ($prod = $res->fetch_object()) {
                 ?>
                   <tr value="<?php echo $prod->prod_category; ?>" class="prod_category_row">
-                    <td class="__prod_code __col-odd"><?php echo $prod->prod_code; ?></td>
+                    <td class="__prod_code "><?php echo $prod->prod_code; ?></td>
                     <td class="__prod_name"><?php echo $prod->prod_name; ?></td>
-                    <td class="__prod_category __col-odd"><?php echo $prod->prod_category; ?></td>
-                    <td class="__prod_price">₱ <?php echo $prod->prod_price; ?></td>
-                    <td class="__col-odd" > <!-- Place Order Button -->
+                    <td class="__prod_category "><?php echo $prod->prod_category; ?></td>
+                    <td class="__prod_price"><b>₱</b> <?php echo number_format($prod->prod_price, 2, '.', ','); ?></td>
+                    <td><?php 
+                        if ($prod->prod_img) {
+                          echo "<img src='../admin/assets/img/products/$prod->prod_img' height='50' width='50 class='img-thumbnail'>";
+                        } else {
+                          echo "<img src='../admin/assets/img/products/default.jpg' height='50' width='50 class='img-thumbnail'>";
+                        }
+                      ?></td>
+                    <td> <!-- Place Order Button -->
                       <a href="make_oder.php?prod_id=<?php echo $prod->prod_id; ?>
                       &prod_name=<?php echo $prod->prod_name; ?>
                       &prod_price=<?php echo $prod->prod_price; ?>">
@@ -129,7 +137,7 @@ require_once('partials/_head.php');
     require_once('partials/_scripts.php');
     ?>
 
-    <script src="../../assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- <script src="../../assets/js/vendor/jquery-1.12.4.min.js"></script> Causes bugs in navbar mobile -->
     <script src="../../assets/js/jquery.nice-select.min.js"></script>
 
     <script>

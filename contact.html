@@ -88,7 +88,58 @@
         })(w, d, "zarazData", "script");
       })(window, document);
     </script>
+
+    <style>
+      .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      .input-group {
+        display: flex;
+      }
+
+      .input-group .input-group-prepend {
+        flex-shrink: 0;
+        padding: 10px;
+        /* background-color: #e9ecef; */
+        border: 1px solid #ced4da;
+        border-right: none;
+        border-radius: 0.25rem 0 0 0.25rem;
+      }
+
+      .input-group .input-group-text {
+        font-weight: bold;
+        padding: 0px;
+      }
+
+      .form-control {
+        flex-grow: 1;
+        padding: 6px 12px;
+        border: 1px solid #ced4da;
+        border-left: none;
+        border-radius: 0 0.25rem 0.25rem 0;
+      }
+
+      .error-message {
+        color: red;
+        margin-top: 5px;
+        font-size: 14px;
+      }
+    </style>
   </head>
+
   <body>
     <header>
       <div class="header-area">
@@ -131,7 +182,7 @@
               </div>
 
               <div class="menu-footer">
-                <a href="dashboard/index.php" class="btn_01 mb-50"
+                <a href="dashboard/customer/index.php" class="btn_01 mb-50"
                   >Order Online</a
                 >
                 <p class="">+63 977 779 7552</p>
@@ -199,78 +250,89 @@
             </div>
             <div class="offset-xl-1 col-lg-7">
               <form
+                name="contactForm"
                 class="form-contact"
                 action="contact-details.php"
                 method="post"
+                onsubmit="return validateForm();"
               >
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
+                      <label for="subject" class="form-label">Subject</label>
                       <input
                         class="form-control"
                         name="subject"
                         id="subject"
                         type="text"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter Subject'"
-                        placeholder="Enter Subject"
+                        required
                       />
+                      <div class="error-message" id="subject-error"></div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
+                      <label for="name">Name</label>
                       <input
-                        class="form-control valid"
+                        class="form-control"
                         name="name"
                         id="name"
                         type="text"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter Name'"
                         placeholder="Enter Name"
+                        required
                       />
+                      <div class="error-message" id="name-error"></div>
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
+                      <label for="email">Email Address</label>
                       <input
-                        class="form-control valid"
+                        class="form-control"
                         name="email"
                         id="email"
                         type="email"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter Email Address'"
                         placeholder="Enter Email Address"
+                        required
                       />
+                      <div class="error-message" id="email-error"></div>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
-                      <input
-                        class="form-control valid"
-                        name="contactnum"
-                        id="contactnum"
-                        type="tel"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter Contact Number'"
-                        placeholder="Enter Contact number"
-                      />
+                      <label for="contactnum">Contact Number</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text fieldset">+63</span>
+                        </div>
+                        <input
+                          class="form-control"
+                          name="contactnum"
+                          id="contactnum"
+                          type="tel"
+                          placeholder="Enter Contact Number"
+                          required
+                        />
+                      </div>
+                      <div class="error-message" id="contactnum-error"></div>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
+                      <label for="message">Message</label>
                       <textarea
-                        class="form-control w-100"
+                        class="form-control"
                         name="message"
                         id="message"
-                        cols="30"
                         rows="9"
-                        onfocus="this.placeholder = ''"
-                        onblur="this.placeholder = 'Enter Message'"
-                        placeholder=" Enter Message"
+                        placeholder="Enter Message"
+                        required
                       ></textarea>
+                      <div class="error-message" id="message-error"></div>
                     </div>
                   </div>
                 </div>
+
                 <div class="form-group mt-3">
                   <button type="submit" class="button button-contactForm btn_1">
                     Send
@@ -437,6 +499,75 @@
         <i class="fas fa-long-arrow-alt-up scroll-animate"></i
       ></a>
     </div>
+
+    <script>
+      function validateForm() {
+        var name = document.forms["contactForm"]["name"].value;
+        var subject = document.forms["contactForm"]["subject"].value;
+        var message = document.forms["contactForm"]["message"].value;
+        var email = document.forms["contactForm"]["email"].value;
+        var phoneNumber = document.forms["contactForm"]["contactnum"].value;
+
+        // Name validation
+        if (name.trim() === "") {
+          displayErrorMessage("Name must be filled out", "name");
+          return false;
+        } else {
+          hideErrorMessage("name");
+        }
+
+        // Subject validation
+        if (subject.trim() === "") {
+          displayErrorMessage("Subject must be filled out", "subject");
+          return false;
+        } else {
+          hideErrorMessage("subject");
+        }
+
+        // Message validation
+        if (message.trim() === "") {
+          displayErrorMessage("Message must be filled out", "message");
+          return false;
+        } else {
+          hideErrorMessage("message");
+        }
+
+        // Email validation
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.match(emailRegex)) {
+          displayErrorMessage("Please enter a valid email address", "email");
+          return false;
+        } else {
+          hideErrorMessage("email");
+        }
+
+        // Phone number validation
+        var phoneNumberRegex = /^(09|9)\d{9}$/;
+        if (!phoneNumber.match(phoneNumberRegex)) {
+          displayErrorMessage(
+            "Please enter a valid phone number (e.g., 09275462862 or 9275462862)",
+            "contactnum"
+          );
+          return false;
+        } else {
+          hideErrorMessage("contactnum");
+        }
+
+        // If all validations pass, the form will be submitted
+        return true;
+      }
+
+      function displayErrorMessage(message, fieldId) {
+        var errorElement = document.getElementById(fieldId + "-error");
+        errorElement.innerText = message;
+        errorElement.style.display = "block";
+      }
+
+      function hideErrorMessage(fieldId) {
+        var errorElement = document.getElementById(fieldId + "-error");
+        errorElement.style.display = "none";
+      }
+    </script>
 
     <script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
