@@ -105,7 +105,7 @@
                                 <div class="custom-control custom-control-alternative custom-checkbox">
                                     <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
                                     <label class="custom-control-label" for=" customCheckLogin">
-                                        <span class="text-muted">Remember me</span>
+                                        <span class="text-muted">Remember Me</span>
 
                                     </label>
                                 </div>
