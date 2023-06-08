@@ -21,9 +21,9 @@ while ($admin = $res->fetch_object()) {
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
         <li class="nav-item dropdown">
-          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <!-- <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="ni ni-bell-55"></i>
-          </a>
+          </a> -->
           <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
           </div>
         </li>
@@ -72,11 +72,11 @@ while ($admin = $res->fetch_object()) {
         <!-- Form -->
         <form class="mt-4 mb-3 d-md-none">
           <div class="input-group input-group-rounded input-group-merge">
-            <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+            <input type="search" class="d-none form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
             <div class="input-group-prepend">
-              <div class="input-group-text">
+              <!-- <div class="input-group-text">
                 <span class="fa fa-search"></span>
-              </div>
+              </div> -->
             </div>
           </div>
         </form>
