@@ -1,68 +1,42 @@
-# Calbeans Coffee Business Website - Salig Tech
+# Calbeans Coffee Web Application
 
-[Calbeans Coffee](https://www.facebook.com/calbeanscoffee) Business Website by Salig Tech (Final Project for WEBAPPS 2023)
+Calbeans Coffee Web Application is a basic ordering management and point of sales system developed for the Calbeans Coffee business. It allows customers to place orders and assists the staff in managing the orders and sales.
 
-Website Link: https://calbeans.vercel.app
+The web application is hosted and can be accessed at [https://calbeans.vercel.app](https://calbeans.vercel.app).
 
-## GUIDELINES
+## Technologies Used
 
-- General Backend Structure [PROTOTYPE]
+The Calbeans Coffee Web Application is built using the following technologies:
 
-  - [MENU] ORDER > SEND TO DATABASE > PRINT AS IMAGE FOR WALK-IN ORDERS
+- HTML, CSS, JavaScript
+- Bootstrap and Argon.js frameworks for responsive design and UI components
+- PHP and MySQL for server-side functionality and database management
+- jQuery for simplified DOM manipulation and AJAX requests
 
-    - ADD EMAIL AND CONTACT NUMBER FOR ADMIN VERIFICATION
-    - INCLUDE DASHBOARD TO APPROVE OR REJECT ORDERS
+Additional libraries and frameworks used in the project include:
 
-  - [CONTACT] INQUIRY > SEND TO DATABASE > RECEIVED MESSAGE TO SENDER
-    - LINK TO EMAIL
+- html2canvas.js for capturing and saving screenshots of order receipts
+- charts.js for generating visual charts and graphs for sales analytics
 
-### TO DO: BACKEND 29-05-23
+## Getting Started
 
-[CLIENT]
-- EDIT MAKE ORDER (SORT BY CATEGORY)
-- EDIT PLACE ORDER (INCLUDE PRODUCT DESCRIPTION (CAN BE MODIFIED BY ADMIN), ORDER CLASSIFICATION (HOT OR COLD + SIZE ))
-- MAKE ORDER >  VERIFY ORDER > ORDER SUMMARY  (WHEN CLICKED SHOW ORDER SUMMARY INSTEAD OF ORDER PAYMENT)
-	- VERIFY ORDER (YES OR NO) - REPLACEMENT FOR CART
-	- ORDER SUMMARY
-	- STILL INCLUDE MAKE NEW ORDER BUTTON
-- FIX CUSTOMER DASHBOARD
+To run the Calbeans Coffee Web Application locally, follow these steps:
 
-[ADMIN]
-- ORDER SUMMARY > STATUS > ONLY CALCULATE ORDER TO TOTAL SUMMARY IF STATUS = PAID
-- EDIT PLACE ORDER (INCLUDE PRODUCT DESCRIPTION (CAN BE MODIFIED BY ADMIN), ORDER CLASSIFICATION (HOT OR COLD + SIZE ))
-- FIX DASHBOARD
+1. Clone the repository: `git clone https://github.com/your-username/calbeans-coffee.git`
+2. Set up a local web server with PHP and MySQL support (e.g., XAMPP, WAMP, or MAMP).
+3. Import the `rposystem.sql` file into your MySQL database to create the necessary tables.
+4. Update the database connection details in the `config.php` file.
+5. Open the application in a web browser by accessing the local server's URL.
 
+## Usage
 
-### TO-DO + NOTES (5-25-23)
+The Calbeans Coffee Web Application offers the following features:
 
-[GENERAL]
+- **Order Placement**: Customers can browse the menu, add items to their cart, specify customizations, and submit orders.
+- **Order Management**: Staff members can view and manage incoming orders, mark them as completed, or cancel them if necessary.
+- **Point of Sales**: The system keeps track of sales and generates order receipts for customers.
+- **Analytics**: Sales data is collected and presented in visual charts and graphs for analysis and decision-making.
 
-- STAFF PAGE CONTENT
-- FIX BROKEN LINKS (IF ANY)
-- ADJUST STLYES AND PADDING
+---
 
-[MENU IMPROVEMENTS]
-
-- REVISE MENU AND ORDER FORMS LAYOUT TO FIT BACKEND
-
-[BACK-END REVAMP]
-
-- MUST INCLUDE CRUD
-
-- [FOCUS ON ADMIN SIDE]
-- ADMIN MUST HAVE [CRUD] FUNCTIONS
-
-  - CREATE (ADD NEW CONTENT TO WEBSITE, TESTIMONIALS, NEW MENU ITEMS, ETC.)
-  - READ
-  - UPDATE (ORDER STATUS, EDIT CONTENT - i.e MENU PRICES, NAMES, ETC.)
-  - DELETE (REMOVE UNNECESSARY, CONTENT, INFO, ETC.)
-
-- CLIENT SIDE
-- CLIENT MUST INCLUDE [SAVED SESSIONS + CRUD, ETC]
-  - BASIC LOGIN AND REGISTRATION FUNCTIONS (TO SAVE USER DATA)
-  - ORDER CART (FOR SAVING ORDERS)
-  - ORDER CHECKOUT (ORDER SUMMARY - SENT TO DASHBOARD WHERE ADMIN CAN CHECK STATUS (COMPLETED / FAILED))
-
-[EMAIL CONNECTION (PHP MAILER, ETC.)]
-
-### DEADLINE [1ST WEEK OF JUNE]
+This project was developed as the final project for our INFOMAN (Information Management) and WEBAPPS (Web Applications) courses. It served as an opportunity for us to apply the knowledge and skills gained throughout these courses to create a practical web application. The project allowed us to showcase our understanding of information management principles and the development of web-based solutions. We are grateful to our instructors for providing guidance and support throughout this project.
