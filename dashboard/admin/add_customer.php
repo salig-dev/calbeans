@@ -143,7 +143,7 @@ require_once('partials/_head.php');
                 <hr>
                 <div class="form-row">
                 <div class="col-md-6">
-                  <label>Customer Password</label>
+                  <label>Customer Emai</label>
                 <input type="email" name="customer_email" class="form-control" required><div class="error-message" id="customer_email-error"></div>
                   </div>
 

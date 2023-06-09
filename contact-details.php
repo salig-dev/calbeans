@@ -179,15 +179,20 @@
             </div>
 
             <div class="menu-footer">
-              <a href="order.html" class="btn_01 mb-50">Order Online</a>
-              <p class="">+63 977 779 7552</p>
-              <p>133-F 13th Avenue East Rembo, Makati, Philippines</p>
+              <a href="dashboard/customer/index.php" class="btn_01 mb-50"
+                  >Order Online</a
+                >
+                <p class="">+63 977 779 7552</p>
+                <p>133-F 13th Avenue East Rembo, Makati, Philippines</p>
 
-              <div class="sidebar-social">
-                <a href="https://www.facebook.com/calbeanscoffee"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-              </div>
+                <div class="sidebar-social">
+                  <a href="https://www.facebook.com/calbeanscoffee"
+                    ><i class="fab fa-facebook"></i
+                  ></a>
+                  <a href="https://www.instagram.com/calbeans_coffee/"
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                </div>
             </div>
           </div>
         </div>

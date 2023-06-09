@@ -99,7 +99,7 @@
                         <td class="__td-w-0"><?php echo $contacts->email; ?></td>
                         <td class="__td-w-0"><?php echo $contacts->subject; ?></td>
                         <td style="width:0; min-width:375px; white-space: break-spaces !important;"><?php echo $contacts->message; ?></td>
-                        <td class="__td-w-0"><?php echo date('d/M/Y g:i A', strtotime($contacts->created_at)); ?></td>
+                        <td class="__td-w-0"><?php echo date('d/M/Y', strtotime($contacts->created_at)); ?></td>
                       </tr>
                   <?php }
                   } else {
